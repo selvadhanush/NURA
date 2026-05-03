@@ -1,0 +1,151 @@
+.page {
+  width: 100%;
+}
+
+.hero {
+  height: 90vh;
+  min-height: 600px;
+  background-color: #111;
+  background-image: url('/hero-bg.png');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  text-align: center;
+  padding-bottom: 4rem;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.heroContent {
+  animation: fadeIn 1.5s ease-out;
+  z-index: 10;
+}
+
+.primaryButton {
+  display: inline-block;
+  background-color: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+  padding: 0.8rem 3rem;
+  font-size: 0.75rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.primaryButton:hover {
+  background-color: var(--color-text-light);
+  color: var(--color-primary-dark);
+}
+
+.section {
+  padding: 5rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.scentedDelightsContainer {
+  background-color: transparent;
+  width: 100%;
+  margin-top: 4rem;
+}
+
+.bgWhite {
+  background-color: transparent;
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.sectionHeader h3 {
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 3px;
+  color: var(--color-text-light);
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.sectionHeader h2 {
+  font-size: 1.8rem;
+  font-weight: 300;
+  letter-spacing: 5px;
+  color: var(--color-gold);
+  text-transform: uppercase;
+}
+
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  margin-bottom: 5rem;
+}
+
+@media (max-width: 1024px) {
+  .productGrid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .productGrid { grid-template-columns: 1fr; }
+}
+
+.centerButtonContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.secondaryButton {
+  display: inline-block;
+  background-color: transparent;
+  border: 1px solid var(--color-gold);
+  color: var(--color-gold);
+  padding: 1.2rem 4rem;
+  font-size: 0.8rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  transition: all 0.3s;
+}
+
+.secondaryButton:hover {
+  background-color: var(--color-gold);
+  color: var(--color-primary-dark);
+}
+
+.categoriesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .categoriesGrid { grid-template-columns: 1fr; }
+}
+
+.categoryCard {
+  text-align: center;
+  cursor: pointer;
+}
+
+.categoryImage {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  margin-bottom: 2rem;
+  transition: transform 0.5s ease;
+  object-fit: cover;
+  background-color: #efefef;
+  display: block;
+}
+
+.categoryCard:hover .categoryImage {
+  transform: scale(1.03);
+}
+
+.categoryCard h4 {
+  font-size: 1rem;
+  font-weight: 300;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}

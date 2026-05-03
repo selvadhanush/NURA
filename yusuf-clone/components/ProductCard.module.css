@@ -1,0 +1,54 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.3s ease;
+  background: transparent;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.imageContainer {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+}
+
+.placeholderImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.5s ease;
+}
+
+.card:hover .placeholderImage {
+  transform: scale(1.03);
+}
+
+.details {
+  padding: 0;
+}
+
+.name {
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 2px;
+  margin-bottom: 0.3rem;
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+.price {
+  font-size: 0.75rem;
+  color: var(--color-text-light);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}

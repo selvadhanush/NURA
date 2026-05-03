@@ -1,0 +1,92 @@
+.footer {
+  background-color: var(--color-primary-dark);
+  color: var(--color-gold);
+  padding: 4rem 2rem 2rem;
+  margin-top: 4rem;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.newsletter {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.newsletter h3 {
+  font-size: 1.5rem;
+  font-weight: 300;
+  letter-spacing: 2px;
+  margin-bottom: 1rem;
+  color: var(--color-gold);
+}
+
+.newsletter p {
+  color: var(--color-text-light);
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
+}
+
+.inputGroup {
+  display: flex;
+  justify-content: center;
+  max-width: 400px;
+  margin: 0 auto;
+  border-bottom: 1px solid var(--color-gold);
+}
+
+.inputGroup input {
+  background: transparent;
+  border: none;
+  color: var(--color-gold);
+  padding: 0.5rem;
+  flex: 1;
+  outline: none;
+}
+
+.inputGroup button {
+  background: transparent;
+  border: none;
+  color: var(--color-gold);
+  font-size: 1.2rem;
+  padding: 0.5rem;
+}
+
+.linksSection {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.column h4 {
+  font-size: 1.1rem;
+  font-weight: 400;
+  margin-bottom: 1.5rem;
+  color: var(--color-gold);
+  letter-spacing: 1px;
+}
+
+.column ul li {
+  margin-bottom: 0.8rem;
+}
+
+.column ul li a, .column p, .column p a {
+  color: var(--color-text-light);
+  font-size: 0.9rem;
+  transition: color 0.3s;
+}
+
+.column ul li a:hover, .column p a:hover {
+  color: var(--color-gold);
+}
+
+.bottomBar {
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 2rem;
+  color: #888;
+  font-size: 0.85rem;
+}

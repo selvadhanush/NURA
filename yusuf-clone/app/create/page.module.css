@@ -1,0 +1,50 @@
+.page {
+  width: 100%;
+  min-height: 60vh;
+}
+
+.header {
+  background-color: var(--color-primary-dark);
+  color: var(--color-gold);
+  text-align: center;
+  padding: 4rem 2rem;
+  margin-bottom: 4rem;
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  font-weight: 300;
+  letter-spacing: 4px;
+}
+
+.contentContainer {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 2rem 6rem;
+  text-align: center;
+}
+
+.subtitle {
+  font-size: 1.8rem;
+  font-weight: 300;
+  color: var(--color-text-dark);
+  margin-bottom: 1rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.comingSoon {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--color-gold);
+  margin-bottom: 3rem;
+  letter-spacing: 3px;
+}
+
+.paragraph {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  text-align: justify;
+}
