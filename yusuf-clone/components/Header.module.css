@@ -5,13 +5,18 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  padding: 1.5rem 0 1rem;
+  padding: 0.8rem 0 0.5rem;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.headerHidden {
+  transform: translateY(-100%);
 }
 
 .topBar {
   padding: 0 3rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .container {
@@ -22,35 +27,65 @@
   max-width: 100%;
 }
 
-.logo a {
-  font-size: 1.6rem;
-  letter-spacing: 4px;
-  font-weight: 300;
-  color: #fff;
-  text-transform: uppercase;
-  font-family: var(--font-body);
-}
-
-.icons {
-  position: absolute;
-  right: 0;
-  display: flex;
-  gap: 1.2rem;
-}
-
-.iconBtn {
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 2rem;
+  height: 2rem;
   background: transparent;
   border: none;
-  color: #fff;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: opacity 0.3s ease;
+  padding: 0;
+  z-index: 110;
+  position: absolute;
+  left: 2rem;
 }
 
-.iconBtn:hover {
-  opacity: 0.7;
+.hamburger span {
+  width: 2rem;
+  height: 0.1rem;
+  background: var(--color-gold);
+  border-radius: 10px;
+  transition: all 0.3s linear;
+  position: relative;
+  transform-origin: 1px;
+}
+
+.hamburgerOpen span:first-child {
+  transform: rotate(45deg);
+}
+
+.hamburgerOpen span:nth-child(2) {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.hamburgerOpen span:nth-child(3) {
+  transform: rotate(-45deg);
+}
+
+.logo a {
+  font-size: 3.2rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  font-family: var(--font-display), serif;
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.logo a span {
+  background: linear-gradient(to bottom, #d4af37 0%, #f7ef8a 50%, #d4af37 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  color: var(--color-gold);
+  line-height: 1;
+}
+
+.flippedV {
+  transform: scaleY(-1) translateY(0.15rem);
 }
 
 .nav {
@@ -65,7 +100,7 @@
 }
 
 .navList a {
-  font-size: 0.75rem;
+  font-size: 1.1rem;
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--color-gold);
@@ -75,4 +110,69 @@
 
 .navList a:hover {
   color: var(--color-text-light);
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 1rem 0;
+  }
+  
+  .topBar {
+    padding: 0 1rem;
+    margin-bottom: 0;
+  }
+  
+  .container {
+    height: 4rem;
+  }
+
+  .hamburger {
+    display: flex;
+    left: 1rem;
+  }
+
+  .logo a {
+    font-size: 2rem;
+    gap: 0.4rem;
+  }
+  
+  .flippedV {
+    transform: scaleY(-1) translateY(0.04rem);
+  }
+
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #27372b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 100;
+    padding: 2rem;
+  }
+
+  .navOpen {
+    transform: translateX(0);
+  }
+
+  .navList {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem; /* Reduced gap for better fit */
+    width: 100%;
+    text-align: center;
+  }
+
+  .navList a {
+    font-size: 1.2rem; /* Slightly smaller font to handle long text */
+    letter-spacing: 3px;
+    display: block;
+    width: 100%;
+    padding: 0.5rem 0;
+  }
 }

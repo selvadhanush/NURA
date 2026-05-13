@@ -4,10 +4,10 @@ import Link from 'next/link';
 
 export default function Home() {
   const brandInspirations = [
-    { id: 1, name: 'NURA SAUVAGE', price: '1,550.00', image: '/sauvage-placeholder.png' },
-    { id: 2, name: 'NURA BLEU DE', price: '1,550.00', image: '/bleu-placeholder.png' },
-    { id: 3, name: 'NURA AVENTUS', price: '1,950.00', image: '/aventus-placeholder.png' },
-    { id: 4, name: 'NURA OMBRE LEATHER', price: '1,950.00', image: '/ombre-placeholder.png' },
+    { id: 1, name: 'NURΛ SAUVAGE', price: '1,550.00', image: '/sauvage-placeholder.png' },
+    { id: 2, name: 'NURΛ BLEU DE', price: '1,550.00', image: '/bleu-placeholder.png' },
+    { id: 3, name: 'NURΛ AVENTUS', price: '1,950.00', image: '/aventus-placeholder.png' },
+    { id: 4, name: 'NURΛ OMBRE LEATHER', price: '1,950.00', image: '/ombre-placeholder.png' },
   ];
 
   return (

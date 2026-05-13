@@ -1,43 +1,64 @@
+'use client';
+
+import { useState, useEffect } from 'react';
 import styles from './Header.module.css';
 import Link from 'next/link';
 
 export default function Header() {
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const controlHeader = () => {
+      if (typeof window !== 'undefined') {
+        if (window.scrollY > lastScrollY && window.scrollY > 100) {
+          setIsVisible(false);
+          setIsMenuOpen(false); // Close menu on scroll down
+        } else {
+          setIsVisible(true);
+        }
+        setLastScrollY(window.scrollY);
+      }
+    };
+    window.addEventListener('scroll', controlHeader);
+    return () => window.removeEventListener('scroll', controlHeader);
+  }, [lastScrollY]);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
-    <header className={styles.header}>
+    <header className={`${styles.header} ${!isVisible ? styles.headerHidden : ''}`}>
       <div className={styles.topBar}>
         <div className={styles.container}>
+          <button 
+            className={`${styles.hamburger} ${isMenuOpen ? styles.hamburgerOpen : ''}`}
+            onClick={toggleMenu}
+            aria-label="Toggle Navigation"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          
           <div className={styles.logo}>
-            <Link href="/">N U R A</Link>
-          </div>
-          <div className={styles.icons}>
-            <button className={styles.iconBtn} aria-label="Account">
-              <svg fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" width="20" height="20">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
-              </svg>
-            </button>
-            <button className={styles.iconBtn} aria-label="Search">
-              <svg fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" width="20" height="20">
-                <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-              </svg>
-            </button>
-            <button className={styles.iconBtn} aria-label="Cart">
-              <svg fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" width="20" height="20">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
-              </svg>
-            </button>
+            <Link href="/" onClick={() => setIsMenuOpen(false)}>
+              <span>N</span><span>U</span><span>R</span><span className={styles.flippedV}>V</span>
+            </Link>
           </div>
         </div>
       </div>
-      <nav className={styles.nav}>
+      
+      <nav className={`${styles.nav} ${isMenuOpen ? styles.navOpen : ''}`}>
         <ul className={styles.navList}>
-          <li><Link href="/">HOME</Link></li>
-          <li><Link href="/collections">COLLECTIONS</Link></li>
-          <li><Link href="/brand-inspiration">BRAND INSPIRATION</Link></li>
-          <li><Link href="/perfume-oil">PERFUME OIL</Link></li>
-          <li><Link href="/bakhoor">BAKHOOR</Link></li>
-          <li><Link href="/candle">CANDLE</Link></li>
-          <li><Link href="/create">CREATE</Link></li>
-          <li><Link href="/about">ABOUT US</Link></li>
+          <li><Link href="/" onClick={() => setIsMenuOpen(false)}>HOME</Link></li>
+          <li><Link href="/collections" onClick={() => setIsMenuOpen(false)}>PERFUMES</Link></li>
+          <li><Link href="/perfume-oil" onClick={() => setIsMenuOpen(false)}>OIL</Link></li>
+          <li><Link href="/candle" onClick={() => setIsMenuOpen(false)}>CIRCLE OF LIGHT</Link></li>
+          <li><Link href="/create" onClick={() => setIsMenuOpen(false)}>CHOOSE YOUR FRAGRANCE</Link></li>
+          <li><Link href="/about" onClick={() => setIsMenuOpen(false)}>ABOUT US</Link></li>
         </ul>
       </nav>
     </header>

@@ -38,7 +38,7 @@
 }
 
 .name {
-  font-size: 0.85rem;
+  font-size: 1.1rem;
   font-weight: 400;
   letter-spacing: 2px;
   margin-bottom: 0.3rem;
@@ -47,8 +47,21 @@
 }
 
 .price {
-  font-size: 0.75rem;
-  color: var(--color-text-light);
+  font-size: 0.95rem;
+  color: var(--color-gold);
   letter-spacing: 1px;
   text-transform: uppercase;
+}
+
+@media (max-width: 480px) {
+  .name {
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+  }
+  .price {
+    font-size: 0.8rem;
+  }
+  .imageContainer {
+    margin-bottom: 1rem;
+  }
 }

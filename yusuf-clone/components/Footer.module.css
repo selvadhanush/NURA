@@ -16,9 +16,9 @@
 }
 
 .newsletter h3 {
-  font-size: 1.5rem;
+  font-size: 2.2rem;
   font-weight: 300;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
   margin-bottom: 1rem;
   color: var(--color-gold);
 }
@@ -26,7 +26,7 @@
 .newsletter p {
   color: var(--color-text-light);
   margin-bottom: 2rem;
-  font-size: 0.9rem;
+  font-size: 1.1rem;
 }
 
 .inputGroup {
@@ -62,7 +62,7 @@
 }
 
 .column h4 {
-  font-size: 1.1rem;
+  font-size: 1.4rem;
   font-weight: 400;
   margin-bottom: 1.5rem;
   color: var(--color-gold);
@@ -75,7 +75,7 @@
 
 .column ul li a, .column p, .column p a {
   color: var(--color-text-light);
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   transition: color 0.3s;
 }
 
@@ -89,4 +89,20 @@
   padding-top: 2rem;
   color: #888;
   font-size: 0.85rem;
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 3rem 1rem 1rem;
+  }
+  .newsletter h3 {
+    font-size: 1.2rem;
+  }
+  .linksSection {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .inputGroup {
+    width: 100%;
+  }
 }
