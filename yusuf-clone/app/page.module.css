@@ -61,9 +61,9 @@
   background-color: transparent;
   border: 1px solid var(--color-gold);
   color: var(--color-gold);
-  padding: 1.2rem 4rem;
-  font-size: 1.1rem;
-  letter-spacing: 4px;
+  padding: 0.9rem 3rem;
+  font-size: 0.95rem;
+  letter-spacing: 3px;
   text-transform: uppercase;
   transition: all 0.3s ease;
 }
@@ -99,7 +99,6 @@
   font-weight: 400;
   letter-spacing: 3px;
   color: var(--color-gold);
-  margin-bottom: 1rem;
   text-transform: uppercase;
 }
 
@@ -109,6 +108,7 @@
   letter-spacing: 5px;
   color: var(--color-gold);
   text-transform: uppercase;
+  margin-bottom: 0.5rem;
 }
 
 .productGrid {
@@ -142,8 +142,8 @@
   background-color: transparent;
   border: 1px solid var(--color-gold);
   color: var(--color-gold);
-  padding: 1.2rem 4rem;
-  font-size: 1.1rem;
+  padding: 0.9rem 3rem;
+  font-size: 0.95rem;
   letter-spacing: 3px;
   text-transform: uppercase;
   transition: all 0.3s;
@@ -192,8 +192,8 @@
     gap: 2rem;
   }
   .secondaryButton {
-    padding: 1.2rem 2rem;
-    font-size: 1rem;
+    padding: 0.9rem 2rem;
+    font-size: 0.9rem;
     width: 100%;
     text-align: center;
     letter-spacing: 2px;

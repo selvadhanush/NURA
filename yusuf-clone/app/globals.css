@@ -13,11 +13,15 @@
   padding: 0;
 }
 
+html {
+  font-size: 14px; /* Scales down all rem-based typography site-wide */
+}
+
 body {
   font-family: var(--font-body);
   background-color: var(--color-primary-dark);
   color: var(--color-gold);
-  font-size: 1.1rem;
+  font-size: 1rem;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
@@ -54,9 +58,9 @@ button {
     padding: 0 1.25rem;
   }
   
-  h1 { font-size: 2.2rem !important; }
-  h2 { font-size: 1.8rem !important; }
-  h3 { font-size: 1.4rem !important; }
+  h1 { font-size: 2rem !important; }
+  h2 { font-size: 1.6rem !important; }
+  h3 { font-size: 1.3rem !important; }
 }
 
 @media (max-width: 480px) {
@@ -64,7 +68,7 @@ button {
     padding: 0 1rem;
   }
   
-  h1 { font-size: 1.8rem !important; }
+  h1 { font-size: 1.6rem !important; }
 }
 
 @keyframes fadeIn {

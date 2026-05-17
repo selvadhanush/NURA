@@ -37,8 +37,8 @@ export default function Home() {
 
       <section className={styles.section}>
         <div className={styles.sectionHeader}>
-          <h3>THE ICONIC DUO</h3>
-          <h2>BRAND INSPIRATIONS</h2>
+          <h2>THE ICONIC DUO</h2>
+          <h3>BRAND INSPIRATIONS</h3>
         </div>
         
         <div className={styles.productGrid}>
@@ -60,8 +60,8 @@ export default function Home() {
 
       <section className={styles.section}>
         <div className={styles.sectionHeader}>
-          <h3>NEW ARRIVALS</h3>
-          <h2>THE NURA SIGNATURE</h2>
+          <h2>NEW ARRIVALS</h2>
+          <h3>THE NURA SIGNATURE</h3>
         </div>
         
         <div className={styles.productGrid}>
