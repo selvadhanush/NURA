@@ -5,22 +5,55 @@
 .hero {
   height: 90vh;
   min-height: 600px;
-  background-color: #111;
-  background-image: url('/hero-bg.png');
-  background-size: cover;
-  background-position: center;
+  background-color: #070c08;
   display: flex;
   align-items: flex-end;
   justify-content: center;
   text-align: center;
-  padding-bottom: 4rem;
-  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  margin-bottom: 0;
   position: relative;
+  overflow: hidden;
+}
+
+.heroImageDesktop {
+  object-fit: cover;
+  object-position: center center;
+  z-index: 0;
+}
+
+.heroImageMobile {
+  display: none;
+  object-fit: cover;
+  object-position: center center;
+  z-index: 0;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle, transparent 40%, #070c08 95%);
+  z-index: 1;
 }
 
 .heroContent {
   animation: fadeIn 1.5s ease-out;
   z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.heroSubtitle {
+  font-size: 1.2rem;
+  letter-spacing: 0.5rem;
+  margin-bottom: 3rem;
+  color: var(--color-gold);
+  text-transform: uppercase;
 }
 
 .primaryButton {
@@ -41,7 +74,7 @@
 }
 
 .section {
-  padding: 5rem 2rem;
+  padding: 3rem 2rem;
   max-width: 1400px;
   margin: 0 auto;
 }
@@ -49,7 +82,7 @@
 .scentedDelightsContainer {
   background-color: transparent;
   width: 100%;
-  margin-top: 4rem;
+  margin-top: 1rem;
 }
 
 .bgWhite {
@@ -58,7 +91,7 @@
 
 .sectionHeader {
   text-align: center;
-  margin-bottom: 5rem;
+  margin-bottom: 2.5rem;
 }
 
 .sectionHeader h3 {
@@ -82,7 +115,7 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
-  margin-bottom: 5rem;
+  margin-bottom: 2.5rem;
 }
 
 @media (max-width: 1024px) {
@@ -131,17 +164,25 @@
   .hero {
     height: 60vh;
     padding-bottom: 3rem;
-    background-position: center;
+  }
+  .heroImageDesktop {
+    display: none;
+  }
+  .heroImageMobile {
+    display: block;
   }
   .section {
-    padding: 4rem 1.25rem;
+    padding: 2rem 1.25rem;
   }
   .sectionHeader {
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
   }
   .sectionHeader h2 {
     font-size: 1.8rem;
     letter-spacing: 2px;
+  }
+  .hero {
+    height: 70vh;
   }
   .sectionHeader h3 {
     font-size: 1rem;
@@ -162,6 +203,11 @@
     font-size: 1rem;
     letter-spacing: 3px;
   }
+  .heroSubtitle {
+    font-size: 0.9rem;
+    letter-spacing: 0.3rem;
+    margin-bottom: 2rem;
+  }
 }
 
 .categoryCard {
@@ -169,14 +215,19 @@
   cursor: pointer;
 }
 
-.categoryImage {
+.categoryImageContainer {
+  position: relative;
   width: 100%;
   aspect-ratio: 16 / 10;
   margin-bottom: 2rem;
-  transition: transform 0.5s ease;
-  object-fit: cover;
+  overflow: hidden;
   background-color: #efefef;
   display: block;
+}
+
+.categoryImage {
+  object-fit: cover;
+  transition: transform 0.5s ease;
 }
 
 .categoryCard:hover .categoryImage {

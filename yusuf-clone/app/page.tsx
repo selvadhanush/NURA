@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import styles from './page.module.css';
 import ProductCard from '../components/ProductCard';
 import Link from 'next/link';
@@ -13,6 +14,22 @@ export default function Home() {
   return (
     <div className={styles.page}>
       <section className={styles.hero}>
+        <Image 
+          src="/hero-desktop-wide.jpg" 
+          alt="NURA Luxury Perfume Banner" 
+          fill
+          priority
+          quality={100}
+          className={styles.heroImageDesktop}
+        />
+        <Image 
+          src="/hero-desktop-green.png" 
+          alt="NURA Luxury Perfume Banner Mobile" 
+          fill
+          priority
+          quality={100}
+          className={styles.heroImageMobile}
+        />
         <div className={styles.heroContent}>
           <Link href="/collections" className={styles.primaryButton}>EXPLORE</Link>
         </div>
@@ -41,6 +58,20 @@ export default function Home() {
         </div>
       </section>
 
+      <section className={styles.section}>
+        <div className={styles.sectionHeader}>
+          <h3>NEW ARRIVALS</h3>
+          <h2>THE NURA SIGNATURE</h2>
+        </div>
+        
+        <div className={styles.productGrid}>
+          <ProductCard name="SUMMER OUD" price="2,850.00" imageUrl="/products/summer_oud.png" link="/perfume" />
+          <ProductCard name="CANADIAN LEMON" price="2,450.00" imageUrl="/products/canadian_lemon.png" link="/perfume" />
+          <ProductCard name="JASMINE OIL" price="450.00" imageUrl="/products/jasmine_oil.png" link="/perfume-oil" />
+          <ProductCard name="AL ZAF" price="550.00" imageUrl="/products/al_zaf.png" link="/perfume-oil" />
+        </div>
+      </section>
+
       <div className={styles.scentedDelightsContainer}>
         <section className={`${styles.section} ${styles.bgWhite}`}>
           <div className={styles.sectionHeader}>
@@ -49,18 +80,24 @@ export default function Home() {
           </div>
           
           <div className={styles.categoriesGrid}>
-            <div className={styles.categoryCard}>
-              <img src="/cat-perfume.jpg" alt="Perfumes" className={styles.categoryImage} />
+            <Link href="/perfume" className={styles.categoryCard}>
+              <div className={styles.categoryImageContainer}>
+                <Image src="/cat-perfume.jpg" alt="Perfumes" fill className={styles.categoryImage} />
+              </div>
               <h4>PERFUMES</h4>
-            </div>
-            <div className={styles.categoryCard}>
-              <img src="/cat-candle.jpg" alt="Candles" className={styles.categoryImage} />
+            </Link>
+            <Link href="/candle" className={styles.categoryCard}>
+              <div className={styles.categoryImageContainer}>
+                <Image src="/cat-candle.jpg" alt="Candles" fill className={styles.categoryImage} />
+              </div>
               <h4>CANDLES</h4>
-            </div>
-            <div className={styles.categoryCard}>
-              <img src="/cat-bakhoor.jpg" alt="Bakhoor" className={styles.categoryImage} />
+            </Link>
+            <Link href="/bakhoor" className={styles.categoryCard}>
+              <div className={styles.categoryImageContainer}>
+                <Image src="/cat-bakhoor.jpg" alt="Bakhoor" fill className={styles.categoryImage} />
+              </div>
               <h4>BAKHOOR</h4>
-            </div>
+            </Link>
           </div>
         </section>
       </div>

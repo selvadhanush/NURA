@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Inter, Cinzel } from "next/font/google";
+import { Jost, Cinzel } from "next/font/google";
 import "./globals.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
-const inter = Inter({
+const jost = Jost({
   subsets: ["latin"],
   variable: "--font-body",
 });
@@ -12,6 +12,11 @@ const inter = Inter({
 const cinzel = Cinzel({
   subsets: ["latin"],
   variable: "--font-display",
+});
+
+const jostNav = Jost({
+  subsets: ["latin"],
+  variable: "--font-nav",
 });
 
 export const metadata: Metadata = {
@@ -25,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${cinzel.variable}`}>
+    <html lang="en" className={`${jost.variable} ${cinzel.variable} ${jostNav.variable}`}>
       <body>
         <Header />
         <main>{children}</main>

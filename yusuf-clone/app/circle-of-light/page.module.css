@@ -1,0 +1,323 @@
+.page {
+  min-height: 100vh;
+  background-color: #0a0e0b;
+  background-image:
+    radial-gradient(circle at 50% -20%, rgba(39, 55, 43, 0.8) 0%, transparent 60%),
+    radial-gradient(circle at 50% 120%, rgba(194, 167, 122, 0.1) 0%, transparent 50%);
+  color: var(--color-gold);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 0;
+}
+
+.header {
+  text-align: center;
+  z-index: 10;
+  margin-bottom: 1rem;
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  letter-spacing: 0.3rem;
+  font-weight: 300;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 20px rgba(194, 167, 122, 0.3);
+}
+
+/* Arch Navigation */
+.arcWrapper {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  /* Fixed height for the arch area */
+  display: flex;
+  justify-content: center;
+  touch-action: none;
+  cursor: grab;
+  z-index: 20;
+}
+
+.arcWrapper:active {
+  cursor: grabbing;
+}
+
+.arcContainer {
+  position: absolute;
+  /* width and height are handled by inline styles in JS now */
+  border-radius: 50%;
+  border: none;
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  left: 50%;
+  transform-origin: center;
+  margin-left: calc(var(--radius) * -1);
+  /* Center horizontally */
+}
+
+.bean {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(145deg, rgba(39, 55, 43, 0.9), rgba(15, 22, 17, 0.95));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(194, 167, 122, 0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  box-shadow: 
+    inset 0 2px 10px rgba(255, 255, 255, 0.1),
+    0 10px 20px rgba(0, 0, 0, 0.5);
+  transform-origin: center;
+  z-index: 20;
+  color: #c2a77a;
+}
+
+.bean:hover {
+  transform: scale(1.1);
+  border-color: rgba(194, 167, 122, 0.8);
+  box-shadow: 
+    inset 0 2px 10px rgba(255, 255, 255, 0.2),
+    0 15px 25px rgba(0, 0, 0, 0.6),
+    0 0 15px rgba(194, 167, 122, 0.2);
+}
+
+.beanActive {
+  background: linear-gradient(145deg, #f7ef8a, #d4af37);
+  color: #070c08;
+  box-shadow: 
+    inset 0 2px 10px rgba(255, 255, 255, 0.8),
+    0 10px 30px rgba(194, 167, 122, 0.6);
+  transform: scale(1.3) !important;
+  border: 1px solid #fff;
+}
+
+.beanActive::after {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  border-radius: 50%;
+  border: 1px solid var(--color-gold);
+  animation: pulseOuter 2s infinite;
+}
+
+@keyframes pulseOuter {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+.beanIcon {
+  font-family: var(--font-display), serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: 0.05rem;
+  text-shadow: 0 0 10px rgba(194, 167, 122, 0.4);
+}
+
+/* Light Beam Effect */
+.lightContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.lightBeam {
+  position: absolute;
+  top: 150px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 450px;
+  /* Wider beam to contain the card */
+  height: 80vh;
+  background: radial-gradient(ellipse at top,
+      rgba(var(--beam-color, 194, 167, 122), 0.4) 0%,
+      rgba(var(--beam-color, 194, 167, 122), 0.05) 70%,
+      transparent 100%);
+  clip-path: polygon(45% 0%, 55% 0%, 100% 100%, 0% 100%);
+  filter: blur(30px);
+  opacity: 0;
+  transition: opacity 0.8s ease, background 0.8s ease;
+  z-index: 5;
+}
+
+.lightBeamActive {
+  opacity: 1;
+  animation: beamGlow 4s infinite alternate;
+}
+
+@keyframes beamGlow {
+  0% {
+    opacity: 0.6;
+    transform: translateX(-50%) scale(1);
+  }
+
+  50% {
+    opacity: 0.9;
+    transform: translateX(-50%) scale(1.05);
+  }
+
+  100% {
+    opacity: 0.7;
+    transform: translateX(-50%) scale(0.98);
+  }
+}
+
+/* Content Card */
+.contentArea {
+  position: relative;
+  z-index: 15;
+  margin-top: 0;
+  width: 90%;
+  max-width: 450px;
+  perspective: 1000px;
+}
+
+.card {
+  background: rgba(26, 36, 29, 0.2);
+  /* Even more translucent */
+  backdrop-filter: blur(15px) saturate(150%);
+  -webkit-backdrop-filter: blur(15px) saturate(150%);
+  border: 1px solid rgba(194, 167, 122, 0.15);
+  padding: 3rem 2rem;
+  border-radius: 40px;
+  text-align: center;
+  box-shadow:
+    0 40px 100px rgba(0, 0, 0, 0.6),
+    0 0 40px rgba(194, 167, 122, 0.1);
+  transform-style: preserve-3d;
+  animation: cardEmergence 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes cardEmergence {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.card h2 {
+  font-size: 2.2rem;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.2rem;
+  font-weight: 300;
+  background: linear-gradient(to right, #fff, var(--color-gold), #fff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.card p {
+  color: #e0e0e0;
+  line-height: 1.8;
+  font-size: 1.1rem;
+  font-weight: 300;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.cardImage {
+  width: 180px;
+  height: 180px;
+  margin: 0 auto 2rem;
+  border-radius: 50%;
+  border: 1px solid rgba(194, 167, 122, 0.3);
+  padding: 10px;
+  object-fit: cover;
+  background: radial-gradient(circle, rgba(194, 167, 122, 0.1), transparent);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+}
+
+.swipeHint {
+  position: absolute;
+  bottom: 2rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  opacity: 0.5;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
+
+  100% {
+    opacity: 0.3;
+  }
+}
+
+@media (max-width: 768px) {
+  .header h1 {
+    font-size: 1.8rem;
+    letter-spacing: 0.15rem;
+  }
+
+  .arcWrapper {
+    height: 180px;
+  }
+
+  .beanIcon {
+    font-size: 1.2rem;
+  }
+
+  .card {
+    padding: 2rem 1.5rem;
+    border-radius: 25px;
+  }
+
+  .card h2 {
+    font-size: 1.6rem;
+  }
+
+  .card p {
+    font-size: 0.95rem;
+  }
+
+  .cardImage {
+    width: 140px;
+    height: 140px;
+  }
+}
+
+@media (max-width: 480px) {
+  .page {
+    padding-top: 0;
+  }
+
+  .arcWrapper {
+    height: 140px;
+  }
+
+  .lightBeam {
+    width: 100%;
+    filter: blur(20px);
+  }
+}

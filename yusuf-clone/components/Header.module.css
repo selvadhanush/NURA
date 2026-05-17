@@ -66,26 +66,34 @@
 }
 
 .logo a {
-  font-size: 3.2rem;
-  font-weight: 400;
-  text-transform: uppercase;
-  font-family: var(--font-display), serif;
   display: flex;
-  align-items: baseline;
-  gap: 1rem;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
 }
 
-.logo a span {
+.brandTitle {
+  font-family: var(--font-display), serif;
+  font-size: 3.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
   background: linear-gradient(to bottom, #d4af37 0%, #f7ef8a 50%, #d4af37 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
   color: var(--color-gold);
   line-height: 1;
+  letter-spacing: 2px;
 }
 
-.flippedV {
-  transform: scaleY(-1) translateY(0.15rem);
+.brandSubtitle {
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  letter-spacing: 4px;
+  margin-top: 0.3rem;
 }
 
 .nav {
@@ -100,16 +108,46 @@
 }
 
 .navList a {
-  font-size: 1.1rem;
-  letter-spacing: 2px;
+  font-family: var(--font-nav), sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--color-gold);
-  font-weight: 400;
+  font-weight: 500;
   transition: color 0.3s ease;
+}
+
+@media (max-width: 1200px) {
+  .navList {
+    gap: 1.5rem;
+  }
+  .navList a {
+    font-size: 0.95rem;
+  }
+  .brandTitle {
+    font-size: 2.5rem;
+  }
+  .brandSubtitle {
+    font-size: 0.65rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .navList {
+    gap: 1rem;
+  }
+  .navList a {
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+  }
 }
 
 .navList a:hover {
   color: var(--color-text-light);
+}
+
+.closeBtn, .navFooter, .overlay {
+  display: none;
 }
 
 @media (max-width: 768px) {
@@ -131,48 +169,120 @@
     left: 1rem;
   }
 
-  .logo a {
+  .brandTitle {
     font-size: 2rem;
-    gap: 0.4rem;
   }
-  
-  .flippedV {
-    transform: scaleY(-1) translateY(0.04rem);
+  .brandSubtitle {
+    font-size: 0.55rem;
   }
 
   .nav {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 85%;
+    max-width: 350px;
     height: 100vh;
     background-color: #27372b;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
     transform: translateX(-100%);
-    transition: transform 0.3s ease-in-out;
-    z-index: 100;
-    padding: 2rem;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 200;
+    padding: 2rem 0;
+    box-shadow: 10px 0 30px rgba(0, 0, 0, 0.3);
   }
 
   .navOpen {
     transform: translateX(0);
   }
 
+  .overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 150;
+    backdrop-filter: blur(2px);
+  }
+
+  .closeBtn {
+    display: block;
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    color: var(--color-gold);
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    z-index: 210;
+  }
+
   .navList {
+    display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 1.5rem; /* Reduced gap for better fit */
+    align-items: flex-start;
+    gap: 0;
     width: 100%;
-    text-align: center;
+    margin-top: 5rem;
+    overflow-y: auto;
+    padding: 0 2rem;
+  }
+
+  .navList li {
+    width: 100%;
+    border-bottom: 1px solid rgba(194, 167, 122, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .navList li:last-child {
+    border-bottom: none;
   }
 
   .navList a {
-    font-size: 1.2rem; /* Slightly smaller font to handle long text */
-    letter-spacing: 3px;
+    font-size: 0.95rem;
+    letter-spacing: 2px;
     display: block;
     width: 100%;
-    padding: 0.5rem 0;
+    padding: 1.25rem 0;
+    text-align: left;
+    color: var(--color-gold);
+    font-weight: 500;
+  }
+
+  .hasSubmenu {
+    position: relative;
+    display: flex;
+    width: 100%;
+  }
+
+  .chevron {
+    color: var(--color-gold);
+    display: flex;
+    align-items: center;
+    padding-right: 0.5rem;
+  }
+
+  .navFooter {
+    display: block;
+    margin-top: auto;
+    padding: 2rem;
+    width: 100%;
+  }
+
+  .loginLink {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--color-gold);
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    font-weight: 500;
   }
 }
