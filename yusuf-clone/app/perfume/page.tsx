@@ -3,9 +3,11 @@ import ProductCard from '../../components/ProductCard';
 
 export default function Perfume() {
   const perfumes = [
-    { id: 'summer-oud', name: 'SUMMER OUD', price: '2,850.00', image: '/products/summer_oud.png', sizes: '50ml & 100ml' },
-    { id: 'canadian-lemon', name: 'CANADIAN LEMON', price: '2,450.00', image: '/products/canadian_lemon.png', sizes: '50ml & 100ml' },
-    { id: 'tam-dao', name: 'TAM DAO', price: '3,200.00', image: '/products/tam_dao.png', sizes: '50ml & 100ml' },
+    { id: 'jasmine', name: 'Jasmine', price: '2,590.00', image: '/products/jasmine_oil.png', sizes: '50ml & 100ml' },
+    { id: 'al-zaf', name: 'AL-ZAF', price: '2,390.00', image: '/products/al_zaf.png', sizes: '50ml & 100ml' },
+    { id: 'al-haroon', name: 'Al Harun V1', price: '2,990.00', image: '/products/al_haroon.png', sizes: '50ml & 100ml' },
+    { id: 'latafa-khamrah', name: 'Lattafa Khamrah V1', price: '3,090.00', image: '/products/latafa_khamrah.png', sizes: '50ml & 100ml' },
+    { id: 'almarziyah', name: 'Al Marziyah', price: '2,890.00', image: '/products/almarziyah.png', sizes: '50ml & 100ml' },
   ];
 
   return (

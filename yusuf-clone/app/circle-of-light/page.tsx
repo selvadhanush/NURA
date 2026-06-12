@@ -172,7 +172,13 @@ export default function CircleOfLight() {
                 setRotation(90 - (60 + (i * step)));
               }}
             >
-              <span className={styles.beanIcon}>{item.icon}</span>
+              <span className={styles.beanIcon}>
+                <img 
+                  src="/nura-logo.png" 
+                  alt="NURA Logo" 
+                  className={`${styles.beanLogo} ${selectedIndex === i ? styles.beanLogoActive : ''}`} 
+                />
+              </span>
             </button>
           ))}
         </div>

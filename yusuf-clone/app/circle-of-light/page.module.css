@@ -76,6 +76,7 @@
   transform-origin: center;
   z-index: 20;
   color: #c2a77a;
+  padding: 0;
 }
 
 .bean:hover {
@@ -122,11 +123,23 @@
 }
 
 .beanIcon {
-  font-family: var(--font-display), serif;
-  font-size: 1.1rem;
-  font-weight: 500;
-  letter-spacing: 0.05rem;
-  text-shadow: 0 0 10px rgba(194, 167, 122, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.beanLogo {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  filter: invert(74%) sepia(21%) saturate(579%) hue-rotate(356deg) brightness(89%) contrast(87%);
+  transition: all 0.4s ease;
+}
+
+.beanLogoActive {
+  filter: brightness(0);
 }
 
 /* Light Beam Effect */

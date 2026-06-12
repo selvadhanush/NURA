@@ -11,14 +11,18 @@ type Preference = {
 };
 
 const PRODUCTS = [
-  { id: 'summer-oud', name: 'SUMMER OUD', type: 'perfume', profiles: ['Woody', 'Rich'], occasions: ['Special Event', 'Evening'], intensity: 'Bold & Intense', price: '2,850.00', image: '/products/summer_oud.png' },
-  { id: 'canadian-lemon', name: 'CANADIAN LEMON', type: 'perfume', profiles: ['Fresh & Citrus'], occasions: ['Everyday Wear', 'Professional Setting'], intensity: 'Subtle & Light', price: '2,450.00', image: '/products/canadian_lemon.png' },
-  { id: 'tam-dao', name: 'TAM DAO', type: 'perfume', profiles: ['Woody'], occasions: ['Relaxing at Home', 'Everyday Wear'], intensity: 'Long-lasting', price: '3,200.00', image: '/products/tam_dao.png' },
-  { id: 'jasmine', name: 'JASMINE OIL', type: 'oil', profiles: ['Sweet & Floral'], occasions: ['Special Event', 'Everyday Wear'], intensity: 'Long-lasting', price: '450.00', image: '/products/jasmine_oil.png' },
-  { id: 'al-zaf', name: 'AL ZAF', type: 'oil', profiles: ['Rich & Spicy'], occasions: ['Special Event'], intensity: 'Bold & Intense', price: '550.00', image: '/products/al_zaf.png' },
-  { id: 'al-haroon', name: 'AL HAROON', type: 'oil', profiles: ['Rich & Spicy', 'Woody'], occasions: ['Special Event', 'Professional Setting'], intensity: 'Bold & Intense', price: '600.00', image: '/products/al_haroon.png' },
-  { id: 'latafa-khamrah', name: 'LATAFA KHAMRAH', type: 'oil', profiles: ['Sweet & Floral', 'Rich & Spicy'], occasions: ['Special Event', 'Evening'], intensity: 'Bold & Intense', price: '750.00', image: '/products/latafa_khamrah.png' },
-  { id: 'almarziyah', name: 'ALMARZIYAH', type: 'oil', profiles: ['Fresh & Citrus', 'Woody'], occasions: ['Everyday Wear', 'Professional Setting'], intensity: 'Long-lasting', price: '650.00', image: '/products/almarziyah.png' },
+  // Perfumes
+  { id: 'jasmine-perfume', name: 'Jasmine', type: 'perfume', profiles: ['Sweet & Floral'], occasions: ['Everyday Wear', 'Special Event'], intensity: 'Long-lasting', price: '2,590.00', image: '/products/jasmine_oil.png' },
+  { id: 'al-zaf-perfume', name: 'AL-ZAF', type: 'perfume', profiles: ['Rich & Spicy', 'Woody'], occasions: ['Special Event', 'Evening'], intensity: 'Bold & Intense', price: '2,390.00', image: '/products/al_zaf.png' },
+  { id: 'al-harun-perfume', name: 'Al Harun V1', type: 'perfume', profiles: ['Rich & Spicy', 'Woody'], occasions: ['Special Event', 'Professional Setting'], intensity: 'Bold & Intense', price: '2,990.00', image: '/products/al_haroon.png' },
+  { id: 'latafa-khamrah-perfume', name: 'Lattafa Khamrah V1', type: 'perfume', profiles: ['Sweet & Floral', 'Rich & Spicy'], occasions: ['Special Event', 'Evening'], intensity: 'Bold & Intense', price: '3,090.00', image: '/products/latafa_khamrah.png' },
+  { id: 'al-marziyah-perfume', name: 'Al Marziyah', type: 'perfume', profiles: ['Fresh & Citrus', 'Woody'], occasions: ['Everyday Wear', 'Professional Setting'], intensity: 'Long-lasting', price: '2,890.00', image: '/products/almarziyah.png' },
+  // Oils
+  { id: 'jasmine-oil', name: 'Jasmine Oil', type: 'oil', profiles: ['Sweet & Floral'], occasions: ['Everyday Wear', 'Special Event'], intensity: 'Long-lasting', price: '569.00', image: '/products/jasmine_oil.png' },
+  { id: 'al-zaf-oil', name: 'AL-ZAF Oil', type: 'oil', profiles: ['Rich & Spicy', 'Woody'], occasions: ['Special Event', 'Evening'], intensity: 'Bold & Intense', price: '520.00', image: '/products/al_zaf.png' },
+  { id: 'al-harun-oil', name: 'Al Harun V1 Oil', type: 'oil', profiles: ['Rich & Spicy', 'Woody'], occasions: ['Special Event', 'Professional Setting'], intensity: 'Bold & Intense', price: '710.00', image: '/products/al_haroon.png' },
+  { id: 'latafa-khamrah-oil', name: 'Lattafa Khamrah V1 Oil', type: 'oil', profiles: ['Sweet & Floral', 'Rich & Spicy'], occasions: ['Special Event', 'Evening'], intensity: 'Bold & Intense', price: '729.00', image: '/products/latafa_khamrah.png' },
+  { id: 'al-marziyah-oil', name: 'Al Marziyah Oil', type: 'oil', profiles: ['Fresh & Citrus', 'Woody'], occasions: ['Everyday Wear', 'Professional Setting'], intensity: 'Long-lasting', price: '680.00', image: '/products/almarziyah.png' },
 ];
 
 export default function Create() {
@@ -120,8 +124,8 @@ export default function Create() {
               <div className={styles.noResults}>
                 <p>We couldn't find a perfect match, but you might love these classics:</p>
                 <div className={styles.resultsGrid}>
-                   <ProductCard name="SUMMER OUD" price="2,850.00" imageUrl="/products/summer_oud.png" link="/perfume" />
-                   <ProductCard name="AL ZAF" price="550.00" imageUrl="/products/al_zaf.png" link="/perfume-oil" />
+                    <ProductCard name="Jasmine" price="2,590.00" imageUrl="/products/jasmine_oil.png" link="/perfume" />
+                    <ProductCard name="AL-ZAF" price="520.00" imageUrl="/products/al_zaf.png" link="/perfume-oil" />
                 </div>
               </div>
             )}

@@ -5,6 +5,9 @@
   --color-text-dark: #222222;
   --color-bg-light: #efefef;
   --color-bg-dark: #111111;
+  --font-body: 'Jost', sans-serif;
+  --font-display: 'Cinzel', serif;
+  --font-nav: 'Jost', sans-serif;
 }
 
 * {

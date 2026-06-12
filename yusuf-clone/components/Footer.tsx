@@ -38,7 +38,7 @@ export default function Footer() {
           <div className={styles.column}>
             <h4>Contact Us</h4>
             <p>NURA Store Locations: <Link href="/store-locator">India</Link></p>
-            <p>WhatsApp: <a href="https://wa.me/919445934433">+91 94459 34433</a></p>
+            <p>WhatsApp: <a href="https://wa.me/919003954228">+91 90039 54228</a></p>
             <p>Email: <a href="mailto:info@nura.in">info@nura.in</a></p>
           </div>
         </div>

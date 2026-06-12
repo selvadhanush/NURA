@@ -3,14 +3,11 @@ import ProductCard from '../../components/ProductCard';
 
 export default function Collections() {
   const allProducts = [
-    { id: 1, name: 'NURA SAUVAGE', price: '1,550.00', image: 'https://via.placeholder.com/400x500/1a3322/c5ab84?text=SAUVAGE' },
-    { id: 2, name: 'NURA BLEU DE', price: '1,550.00', image: 'https://via.placeholder.com/400x500/1a3322/c5ab84?text=BLEU+DE' },
-    { id: 3, name: 'NURA AVENTUS', price: '1,950.00', image: 'https://via.placeholder.com/400x500/1a3322/c5ab84?text=AVENTUS' },
-    { id: 4, name: 'NURA OMBRE LEATHER', price: '1,950.00', image: 'https://via.placeholder.com/400x500/1a3322/c5ab84?text=OMBRE+LEATHER' },
-    { id: 5, name: 'DEJA VU', price: '2,500.00', image: 'https://via.placeholder.com/400x500/1a3322/c5ab84?text=DEJA+VU' },
-    { id: 6, name: 'NOBLE', price: '3,000.00', image: 'https://via.placeholder.com/400x500/1a3322/c5ab84?text=NOBLE' },
-    { id: 7, name: 'POEM', price: '2,800.00', image: 'https://via.placeholder.com/400x500/1a3322/c5ab84?text=POEM' },
-    { id: 8, name: 'TEEB', price: '2,100.00', image: 'https://via.placeholder.com/400x500/1a3322/c5ab84?text=TEEB' },
+    { id: 1, name: 'Jasmine', price: '569.00', image: '/products/jasmine_oil.png' },
+    { id: 2, name: 'AL-ZAF', price: '520.00', image: '/products/al_zaf.png' },
+    { id: 3, name: 'Al Harun V1', price: '710.00', image: '/products/al_haroon.png' },
+    { id: 4, name: 'Lattafa Khamrah V1', price: '729.00', image: '/products/latafa_khamrah.png' },
+    { id: 5, name: 'Al Marziyah', price: '680.00', image: '/products/almarziyah.png' },
   ];
 
   return (
