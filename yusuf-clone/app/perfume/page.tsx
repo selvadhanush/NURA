@@ -8,6 +8,11 @@ export default function Perfume() {
     { id: 'al-haroon', name: 'Al Harun V1', price: '2,990.00', image: '/products/al_haroon.png', sizes: '50ml & 100ml' },
     { id: 'latafa-khamrah', name: 'Lattafa Khamrah V1', price: '3,090.00', image: '/products/latafa_khamrah.png', sizes: '50ml & 100ml' },
     { id: 'almarziyah', name: 'Al Marziyah', price: '2,890.00', image: '/products/almarziyah.png', sizes: '50ml & 100ml' },
+    { id: 'althair-vanilla', name: 'Althair vanilla', price: '2,790.00', image: '/products/althair_vanilla.png', sizes: '50ml & 100ml' },
+    { id: 'delighted-dior', name: 'delighted dior', price: '2,690.00', image: '/products/delighted_dior.png', sizes: '50ml & 100ml' },
+    { id: 'erba-pura', name: 'erba pura', price: '2,290.00', image: '/products/erba_pura.png', sizes: '50ml & 100ml' },
+    { id: 'pistachio-gelato', name: 'PISTACHIO GELATO', price: '2,590.00', image: '/products/pistachio_gelato.png', sizes: '50ml & 100ml' },
+    { id: 'almarj', name: 'ALMARJ', price: '2,750.00', image: '/products/almarj.png', sizes: '50ml & 100ml' },
   ];
 
   return (

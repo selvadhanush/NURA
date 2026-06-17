@@ -3,11 +3,13 @@
 import { useState, useEffect } from 'react';
 import styles from './Header.module.css';
 import Link from 'next/link';
+import { useCart } from './CartContext';
 
 export default function Header() {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { setIsCartOpen, totalItems } = useCart();
 
   useEffect(() => {
     const controlHeader = () => {
@@ -60,6 +62,21 @@ export default function Header() {
               <span className={styles.brandSubtitle}>BY BIN SADHIK</span>
             </Link>
           </div>
+
+          <button 
+            className={styles.cartButton}
+            onClick={() => setIsCartOpen(true)}
+            aria-label={`Open shopping cart. ${totalItems} items`}
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="9" cy="21" r="1"></circle>
+              <circle cx="20" cy="21" r="1"></circle>
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+            {totalItems > 0 && (
+              <span className={styles.cartBadge}>{totalItems}</span>
+            )}
+          </button>
         </div>
       </div>
 

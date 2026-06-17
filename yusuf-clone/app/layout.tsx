@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { CartProvider } from "../components/CartContext";
+import CartDrawer from "../components/CartDrawer";
 
 export const metadata: Metadata = {
   title: "NURA India | Official Online Store",
@@ -21,9 +23,12 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400;500;700;900&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
       </head>
       <body>
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        <CartProvider>
+          <Header />
+          <CartDrawer />
+          <main>{children}</main>
+          <Footer />
+        </CartProvider>
       </body>
     </html>
   );

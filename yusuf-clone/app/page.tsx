@@ -13,6 +13,11 @@ export default function Home() {
     { id: 'al-harun', name: 'Al Harun V1', price: '2,990.00', image: '/products/al_haroon.png' },
     { id: 'lat-khamrah', name: 'Lattafa Khamrah V1', price: '3,090.00', image: '/products/latafa_khamrah.png' },
     { id: 'al-marziyah', name: 'Al Marziyah', price: '2,890.00', image: '/products/almarziyah.png' },
+    { id: 'althair-vanilla', name: 'Althair vanilla', price: '2,790.00', image: '/products/althair_vanilla.png' },
+    { id: 'delighted-dior', name: 'delighted dior', price: '2,690.00', image: '/products/delighted_dior.png' },
+    { id: 'erba-pura', name: 'erba pura', price: '2,290.00', image: '/products/erba_pura.png' },
+    { id: 'pistachio-gelato', name: 'PISTACHIO GELATO', price: '2,590.00', image: '/products/pistachio_gelato.png' },
+    { id: 'almarj', name: 'ALMARJ', price: '2,750.00', image: '/products/almarj.png' },
   ];
 
   const perfumeOils = [
@@ -21,6 +26,11 @@ export default function Home() {
     { id: 'al-harun', name: 'Al Harun V1', price: '710.00', image: '/products/al_haroon.png' },
     { id: 'lat-khamrah', name: 'Lattafa Khamrah V1', price: '729.00', image: '/products/latafa_khamrah.png' },
     { id: 'al-marziyah', name: 'Al Marziyah', price: '680.00', image: '/products/almarziyah.png' },
+    { id: 'althair-vanilla', name: 'Althair vanilla', price: '629.00', image: '/products/althair_vanilla.png' },
+    { id: 'delighted-dior', name: 'delighted dior', price: '579.00', image: '/products/delighted_dior.png' },
+    { id: 'erba-pura', name: 'erba pura', price: '509.00', image: '/products/erba_pura.png' },
+    { id: 'pistachio-gelato', name: 'PISTACHIO GELATO', price: '569.00', image: '/products/pistachio_gelato.png' },
+    { id: 'almarj', name: 'ALMARJ', price: '620.00', image: '/products/almarj.png' },
   ];
 
   const hotspots = [
@@ -70,7 +80,7 @@ export default function Home() {
               name={product.name}
               price={product.price}
               imageUrl={product.image}
-              link={`/perfume-oil`}
+              link={`/products/${product.id}`}
             />
           ))}
         </div>
@@ -93,7 +103,7 @@ export default function Home() {
               name={product.name}
               price={product.price}
               imageUrl={product.image}
-              link={`/perfume`}
+              link={`/products/${product.id}`}
             />
           ))}
         </div>
