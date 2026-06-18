@@ -73,7 +73,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 'delighted-dior',
     name: 'delighted dior',
-    image: '/products/delighted_dior.png',
+    image: '/products/delighted_dior_v2.png',
     description: 'An elegant and light floral fragrance inspired by Dior, balancing sweetness and freshness.',
     perfumePrice50ml: 2690,
     perfumePrice100ml: 3990,

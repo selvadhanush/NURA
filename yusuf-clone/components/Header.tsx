@@ -58,7 +58,9 @@ export default function Header() {
           
           <div className={styles.logo}>
             <Link href="/" onClick={() => setIsMenuOpen(false)} className={styles.logoLink}>
-              <span className={styles.brandTitle}>NURA</span>
+              <span className={styles.brandTitle}>
+                NURΛ
+              </span>
               <span className={styles.brandSubtitle}>BY BIN SADHIK</span>
             </Link>
           </div>
