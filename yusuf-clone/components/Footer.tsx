@@ -20,6 +20,7 @@ export default function Footer() {
             <ul>
               <li><Link href="/faq">FAQ</Link></li>
               <li><Link href="/contact">Contact Us</Link></li>
+              <li><Link href="/circle-of-light">Circle of Light</Link></li>
               <li><Link href="/shipping-returns">Return and Refund Policy</Link></li>
               <li><Link href="/terms">Terms & Conditions</Link></li>
               <li><Link href="/privacy">Privacy Policy</Link></li>
@@ -44,7 +45,7 @@ export default function Footer() {
         </div>
 
         <div className={styles.bottomBar}>
-          <p>© 2026 - NURA INDIA</p>
+          <p>© 2026 - NURA by Bin Sadhik. All rights reserved.</p>
         </div>
       </div>
     </footer>

@@ -1,5 +1,5 @@
 .header {
-  background-color: #27372b;
+  background-color: var(--color-primary-dark);
   color: #d1c8b8;
   width: 100%;
   position: sticky;
@@ -79,6 +79,7 @@
   text-transform: uppercase;
   background: linear-gradient(to bottom, #d4af37 0%, #f7ef8a 50%, #d4af37 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
   color: var(--color-gold);
@@ -183,7 +184,7 @@
     width: 85%;
     max-width: 350px;
     height: 100vh;
-    background-color: #27372b;
+    background-color: var(--color-primary-dark);
     display: flex;
     flex-direction: column;
     transform: translateX(-100%);

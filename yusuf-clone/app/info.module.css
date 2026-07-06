@@ -1,0 +1,188 @@
+.page {
+  min-height: 100vh;
+  background-color: #0a0e0b;
+  color: var(--color-gold);
+  padding-bottom: 6rem;
+  font-family: var(--font-body), sans-serif;
+}
+
+.hero {
+  position: relative;
+  height: 35vh;
+  min-height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-image: linear-gradient(rgba(10, 14, 11, 0.75), rgba(10, 14, 11, 0.95)), url('/hero-desktop-green.png');
+  background-size: cover;
+  background-position: center;
+  border-bottom: 1px solid rgba(194, 167, 122, 0.2);
+}
+
+.heroContent {
+  animation: fadeIn 1.2s ease-out;
+}
+
+.heroContent h1 {
+  font-family: var(--font-display), serif;
+  font-size: 3rem;
+  font-weight: 300;
+  letter-spacing: 0.3rem;
+  margin-bottom: 0.8rem;
+  color: var(--color-gold);
+  text-shadow: 0 0 20px rgba(194, 167, 122, 0.4);
+}
+
+.heroContent p {
+  font-size: 1rem;
+  letter-spacing: 3px;
+  color: #ffffff;
+  opacity: 0.8;
+  text-transform: uppercase;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 4rem 2rem 0;
+  animation: slideUp 1s ease-out;
+}
+
+.contentSection {
+  margin-bottom: 4rem;
+}
+
+.contentSection h2 {
+  font-family: var(--font-display), serif;
+  font-size: 1.8rem;
+  font-weight: 400;
+  letter-spacing: 2px;
+  margin-bottom: 1.5rem;
+  color: var(--color-gold);
+  border-bottom: 1px solid rgba(194, 167, 122, 0.2);
+  padding-bottom: 0.5rem;
+}
+
+.contentSection h3 {
+  font-family: var(--font-display), serif;
+  font-size: 1.3rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+.contentSection p {
+  color: #d1d9d4;
+  line-height: 1.8;
+  font-size: 1.05rem;
+  font-weight: 300;
+  margin-bottom: 1.5rem;
+  text-align: justify;
+}
+
+.contentSection ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 1.5rem;
+}
+
+.contentSection li {
+  color: #d1d9d4;
+  line-height: 1.8;
+  font-size: 1.05rem;
+  font-weight: 300;
+  margin-bottom: 0.8rem;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.contentSection li::before {
+  content: "•";
+  color: var(--color-gold);
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+}
+
+/* Specific styling for accordions or grids on FAQ/Private label pages */
+.faqItem {
+  background: rgba(26, 36, 29, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(194, 167, 122, 0.15);
+  border-radius: 8px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  transition: all 0.3s ease;
+}
+
+.faqItem:hover {
+  border-color: var(--color-gold);
+  box-shadow: 0 0 20px rgba(194, 167, 122, 0.15);
+}
+
+.faqItem h3 {
+  font-family: var(--font-display), serif;
+  font-size: 1.2rem;
+  color: var(--color-gold);
+  margin-top: 0;
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+}
+
+.faqItem p {
+  margin-bottom: 0;
+  color: #d1d9d4;
+}
+
+.highlightBox {
+  background: rgba(194, 167, 122, 0.05);
+  border-left: 3px solid var(--color-gold);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  border-radius: 0 8px 8px 0;
+}
+
+.highlightBox p {
+  margin-bottom: 0;
+  font-style: italic;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .heroContent h1 {
+    font-size: 2.2rem;
+    letter-spacing: 0.2rem;
+  }
+  
+  .container {
+    padding: 3rem 1.5rem 0;
+  }
+  
+  .contentSection h2 {
+    font-size: 1.5rem;
+  }
+  
+  .contentSection p, .contentSection li {
+    font-size: 1rem;
+    text-align: left;
+  }
+}

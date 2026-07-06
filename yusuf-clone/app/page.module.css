@@ -556,3 +556,448 @@
     transform: translateX(-50%) translateY(0);
   }
 }
+
+/* Showcase grid, charity section, and newsletter card */
+.showcaseGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  align-items: center;
+}
+
+.storytellingColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.showcaseTag {
+  font-size: 0.85rem;
+  letter-spacing: 3px;
+  color: var(--color-gold);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.craftStory {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #a4b3a9;
+  margin-bottom: 2rem;
+  font-family: var(--font-body);
+}
+
+.videoPlayerPlaceholder {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(194, 167, 122, 0.2);
+  cursor: pointer;
+}
+
+.videoThumbnailWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.videoThumbnail {
+  object-fit: cover;
+  transition: transform 0.8s ease;
+  filter: brightness(0.6) contrast(1.1);
+}
+
+.videoPlayerPlaceholder:hover .videoThumbnail {
+  transform: scale(1.05);
+}
+
+.playOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background: rgba(18, 25, 20, 0.3);
+  z-index: 2;
+  transition: background 0.3s ease;
+}
+
+.videoPlayerPlaceholder:hover .playOverlay {
+  background: rgba(18, 25, 20, 0.5);
+}
+
+.playButtonIcon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(194, 167, 122, 0.9);
+  color: #121914;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 20px rgba(194, 167, 122, 0.4);
+}
+
+.playButtonIcon svg {
+  margin-left: 2px;
+}
+
+.videoPlayerPlaceholder:hover .playButtonIcon {
+  transform: scale(1.1);
+  background: #fff;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.6);
+}
+
+.playOverlay span {
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  color: #fdfbf7;
+  font-weight: 600;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.interactiveColumn {
+  width: 100%;
+}
+
+/* Charity Section styling */
+.charitySection {
+  background-color: #0b0f0c;
+  padding: 6rem 2rem;
+  border-top: 1px solid rgba(194, 167, 122, 0.1);
+  border-bottom: 1px solid rgba(194, 167, 122, 0.1);
+  width: 100%;
+  margin: 4rem 0;
+}
+
+.charityContainer {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.charityContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.charityTag {
+  font-size: 0.85rem;
+  letter-spacing: 3px;
+  color: var(--color-gold);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.charityContent h2 {
+  font-size: 2.8rem;
+  font-weight: 300;
+  letter-spacing: 4px;
+  color: var(--color-gold);
+  margin-bottom: 1.5rem;
+}
+
+.charityText {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #a4b3a9;
+  margin-bottom: 1.5rem;
+}
+
+.charityText strong {
+  color: var(--color-gold);
+}
+
+.charityActions {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.charityBtn {
+  display: inline-block;
+  background-color: var(--color-gold);
+  color: #121914;
+  padding: 0.8rem 2rem;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.charityBtn:hover {
+  background-color: #fdfbf7;
+  transform: translateY(-2px);
+}
+
+.charityBtnSecondary {
+  display: inline-block;
+  background-color: transparent;
+  border: 1px solid var(--color-gold);
+  color: var(--color-gold);
+  padding: 0.8rem 2rem;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.charityBtnSecondary:hover {
+  background-color: var(--color-gold);
+  color: #121914;
+  transform: translateY(-2px);
+}
+
+.charityVisual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circleGraphic {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  border: 1px dashed rgba(194, 167, 122, 0.4);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: rotateCircle 30s linear infinite;
+}
+
+@keyframes rotateCircle {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.innerCircle {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  background: radial-gradient(circle, #1c2e22 0%, #0b0f0c 100%);
+  border: 2px solid var(--color-gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 30px rgba(194, 167, 122, 0.15);
+  animation: antiRotate 30s linear infinite;
+}
+
+@keyframes antiRotate {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+.innerCircleText {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 500;
+  letter-spacing: 3px;
+  color: var(--color-gold);
+}
+
+.orbitingTextContainer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.orbitingText {
+  font-size: 0.75rem;
+  letter-spacing: 5px;
+  color: var(--color-gold);
+  opacity: 0.8;
+  font-weight: 600;
+}
+
+/* Newsletter Section styling */
+.newsletterSection {
+  padding: 4rem 2rem;
+  max-width: 1000px;
+  margin: 4rem auto;
+}
+
+.newsletterCard {
+  background: linear-gradient(135deg, #16221a 0%, #0c120e 100%);
+  border: 1px solid rgba(194, 167, 122, 0.2);
+  border-radius: 12px;
+  padding: 4rem 3rem;
+  text-align: center;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+.newsletterTag {
+  font-size: 0.8rem;
+  letter-spacing: 3px;
+  color: var(--color-gold);
+  text-transform: uppercase;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.8rem;
+}
+
+.newsletterCard h2 {
+  font-family: var(--font-display);
+  font-size: 2.8rem;
+  font-weight: 300;
+  letter-spacing: 4px;
+  color: var(--color-gold);
+  margin-bottom: 1rem;
+}
+
+.newsletterSubtitle {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #a4b3a9;
+  max-width: 600px;
+  margin: 0 auto 2.5rem;
+}
+
+.newsletterSubtitle strong {
+  color: #fff;
+}
+
+.benefitsGrid {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+
+.benefitItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: #d1d9d4;
+  letter-spacing: 1px;
+}
+
+.benefitIcon {
+  color: var(--color-gold);
+  font-size: 1rem;
+}
+
+.newsletterForm {
+  display: flex;
+  max-width: 600px;
+  margin: 0 auto;
+  gap: 0.5rem;
+  border-bottom: 1px solid rgba(194, 167, 122, 0.4);
+  padding-bottom: 0.5rem;
+}
+
+.newsletterInput {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #fff;
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+  outline: none;
+  font-family: var(--font-body);
+}
+
+.newsletterInput::placeholder {
+  color: rgba(164, 179, 169, 0.5);
+}
+
+.newsletterSubmit {
+  background: transparent;
+  color: var(--color-gold);
+  border: none;
+  padding: 0.8rem 2rem;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.newsletterSubmit:hover {
+  color: #fff;
+}
+
+/* Responsive updates for new sections */
+@media (max-width: 1024px) {
+  .showcaseGrid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .charityContainer {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    text-align: center;
+  }
+  .charityActions {
+    justify-content: center;
+  }
+  .charityContent h2 {
+    font-size: 2.2rem;
+  }
+  .newsletterCard {
+    padding: 3rem 2rem;
+  }
+  .newsletterCard h2 {
+    font-size: 2.2rem;
+  }
+  .benefitsGrid {
+    gap: 1.5rem;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .charitySection {
+    padding: 4rem 1.25rem;
+  }
+  .newsletterSection {
+    padding: 2rem 1.25rem;
+    margin: 2rem auto;
+  }
+  .newsletterForm {
+    flex-direction: column;
+    border: none;
+    gap: 1rem;
+  }
+  .newsletterInput {
+    border-bottom: 1px solid rgba(194, 167, 122, 0.4);
+    width: 100%;
+    text-align: center;
+  }
+  .newsletterSubmit {
+    background: var(--color-gold);
+    color: #121914;
+    width: 100%;
+    border-radius: 4px;
+    padding: 1rem;
+  }
+  .newsletterSubmit:hover {
+    background: #fff;
+    color: #121914;
+  }
+}

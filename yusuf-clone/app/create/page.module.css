@@ -1,27 +1,24 @@
 .page {
   width: 100%;
-  min-height: 60vh;
+  min-height: 80vh;
+  background-color: var(--color-primary-dark);
+  color: #fff;
 }
 
 .header {
-  background-color: var(--color-primary-dark);
+  background-color: #0b0f0c;
   color: var(--color-gold);
   text-align: center;
-  padding: 4rem 2rem;
-  margin-bottom: 4rem;
+  padding: 5rem 2rem 4rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid rgba(194, 167, 122, 0.1);
 }
 
 .header h1 {
-  font-size: 2.5rem;
+  font-family: var(--font-display);
+  font-size: 2.8rem;
   font-weight: 300;
   letter-spacing: 4px;
-}
-
-.contentContainer {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 0 2rem 6rem;
-  text-align: center;
 }
 
 .subtitle {
@@ -30,99 +27,387 @@
   margin-top: 1rem;
   opacity: 0.8;
   text-transform: uppercase;
+  font-family: var(--font-body);
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 0 2rem 6rem;
-  text-align: center;
+}
+
+.progressBar {
+  width: 100%;
+  height: 4px;
+  background: rgba(194, 167, 122, 0.1);
+  margin-bottom: 4rem;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progressFilled {
+  height: 100%;
+  background: var(--color-gold);
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .quizStep {
-  animation: fadeIn 0.5s ease;
+  animation: fadeIn 0.4s ease-out;
+  text-align: center;
 }
 
 .quizStep h2 {
-  font-size: 2rem;
+  font-family: var(--font-display);
+  font-size: 2.2rem;
   font-weight: 300;
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
   letter-spacing: 2px;
   color: var(--color-gold);
+}
+
+.quizStepSubtitle {
+  font-size: 0.95rem;
+  color: #a4b3a9;
+  margin-bottom: 3.5rem;
+  font-family: var(--font-body);
 }
 
 .optionsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  max-width: 900px;
   margin: 0 auto;
 }
 
 .optionButton {
-  background: white;
-  border: 1px solid #ddd;
-  padding: 2rem 1rem;
-  font-size: 1.1rem;
-  font-weight: 400;
+  background: rgba(194, 167, 122, 0.03);
+  border: 1px solid rgba(194, 167, 122, 0.15);
+  padding: 2.5rem 1.5rem;
+  font-size: 1.05rem;
+  font-weight: 500;
   letter-spacing: 2px;
   cursor: pointer;
   transition: all 0.3s ease;
   text-transform: uppercase;
-  color: var(--color-primary-dark);
+  color: #fff;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
 }
 
 .optionButton:hover {
-  background: var(--color-primary-dark);
+  background: rgba(194, 167, 122, 0.08);
   color: var(--color-gold);
-  border-color: var(--color-primary-dark);
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  border-color: var(--color-gold);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
 }
 
+.optionDesc {
+  font-size: 0.8rem;
+  text-transform: none;
+  color: #a4b3a9;
+  font-weight: 400;
+  line-height: 1.4;
+  margin-top: 0.25rem;
+}
+
+/* Results Section styling */
 .resultsContainer {
-  animation: fadeIn 0.8s ease;
+  animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  text-align: center;
 }
 
 .resultsContainer h2 {
-  font-size: 2rem;
+  font-family: var(--font-display);
+  font-size: 2.5rem;
   font-weight: 300;
-  margin-bottom: 4rem;
+  margin-bottom: 0.5rem;
   letter-spacing: 4px;
   color: var(--color-gold);
 }
 
+.resultsSubtitle {
+  font-size: 1.05rem;
+  color: #a4b3a9;
+  margin-bottom: 4rem;
+}
+
 .resultsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 3rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2.5rem;
   margin-bottom: 4rem;
+  text-align: left;
+}
+
+.recommendedCard {
+  background: linear-gradient(180deg, rgba(194, 167, 122, 0.05) 0%, rgba(194, 167, 122, 0.01) 100%);
+  border: 1px solid rgba(194, 167, 122, 0.2);
+  border-radius: 8px;
+  padding: 2rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+
+.recommendedCard:hover {
+  border-color: var(--color-gold);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+}
+
+.matchScoreBadge {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: var(--color-gold);
+  color: var(--color-primary-dark);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  letter-spacing: 1px;
+}
+
+.productImageWrapper {
+  width: 100%;
+  height: 200px;
+  position: relative;
+  margin-bottom: 1.5rem;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.productImg {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.recommendedCard h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: #fff;
+  margin-bottom: 0.25rem;
+  font-weight: 500;
+}
+
+.recommendedFamily {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  letter-spacing: 1.5px;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.recommendedDesc {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #a4b3a9;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+.notesWrapper {
+  border-top: 1px solid rgba(194, 167, 122, 0.15);
+  padding: 1rem 0;
+  margin-bottom: 1.5rem;
+  font-size: 0.85rem;
+}
+
+.noteItem {
+  margin-bottom: 0.4rem;
+  line-height: 1.4;
+}
+
+.noteLabel {
+  color: var(--color-gold);
+  font-weight: 600;
+  margin-right: 0.25rem;
+}
+
+.formatSelector {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.formatBtn {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(194, 167, 122, 0.2);
+  color: rgba(255, 255, 255, 0.7);
+  padding: 0.5rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-radius: 4px;
+}
+
+.formatBtnActive {
+  background: var(--color-gold);
+  color: var(--color-primary-dark);
+  border-color: var(--color-gold);
+  font-weight: 600;
+}
+
+.addToCartBtn {
+  background: var(--color-gold);
+  color: var(--color-primary-dark);
+  border: none;
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-transform: uppercase;
+  border-radius: 4px;
+  display: block;
+  text-align: center;
+}
+
+.addToCartBtn:hover {
+  background: #fff;
+}
+
+.exploreLink {
+  display: block;
+  text-align: center;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 0.8rem;
+  text-decoration: underline;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.exploreLink:hover {
+  color: var(--color-gold);
 }
 
 .noResults {
-  margin-bottom: 4rem;
+  max-width: 600px;
+  margin: 4rem auto;
+  background: rgba(194, 167, 122, 0.03);
+  border: 1px dashed rgba(194, 167, 122, 0.2);
+  border-radius: 8px;
+  padding: 3rem 2rem;
 }
 
 .noResults p {
-  font-size: 1.2rem;
-  color: #666;
+  font-size: 1.1rem;
+  color: #a4b3a9;
   margin-bottom: 2rem;
 }
 
 .resetButton {
-  background: var(--color-primary-dark);
+  background: transparent;
+  border: 1px solid var(--color-gold);
   color: var(--color-gold);
-  border: none;
   padding: 1rem 3rem;
-  font-size: 1rem;
+  font-size: 0.95rem;
   letter-spacing: 3px;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin-top: 2rem;
+  text-transform: uppercase;
 }
 
 .resetButton:hover {
-  opacity: 0.9;
-  transform: scale(1.05);
+  background: var(--color-gold);
+  color: var(--color-primary-dark);
+  transform: translateY(-2px);
+}
+
+/* Toast Add-To-Cart Notification styling */
+.toastContainer {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 1000;
+  animation: slideInRight 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(110%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.toastCard {
+  background: rgba(18, 25, 20, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--color-gold);
+  border-radius: 8px;
+  padding: 1.25rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  display: flex;
+  gap: 1rem;
+  width: 380px;
+  color: #fff;
+  align-items: center;
+}
+
+.toastImage {
+  width: 60px;
+  height: 60px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  object-fit: contain;
+  padding: 0.25rem;
+}
+
+.toastInfo {
+  flex: 1;
+}
+
+.toastTitle {
+  font-size: 0.8rem;
+  color: var(--color-gold);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.2rem;
+  font-weight: 600;
+}
+
+.toastName {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.toastMeta {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.toastCloseBtn {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 0.25rem;
+  line-height: 1;
+}
+
+.toastCloseBtn:hover {
+  color: #fff;
 }
 
 @keyframes fadeIn {
@@ -131,14 +416,37 @@
 }
 
 @media (max-width: 768px) {
+  .header {
+    padding: 4rem 1rem 3rem;
+  }
   .header h1 {
-    font-size: 1.8rem;
+    font-size: 2rem;
   }
   .quizStep h2 {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
   }
   .optionsGrid {
     grid-template-columns: 1fr;
     gap: 1rem;
+  }
+  .optionButton {
+    padding: 2rem 1rem;
+  }
+  .resultsContainer h2 {
+    font-size: 1.8rem;
+  }
+  .resultsGrid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .toastContainer {
+    top: auto;
+    bottom: 24px;
+    right: 12px;
+    left: 12px;
+    width: calc(100% - 24px);
+  }
+  .toastCard {
+    width: 100%;
   }
 }

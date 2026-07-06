@@ -95,9 +95,9 @@ export default function Header() {
         <ul className={styles.navList}>
           <li><Link href="/" onClick={() => setIsMenuOpen(false)}>HOME</Link></li>
           <li><Link href="/perfume" onClick={() => setIsMenuOpen(false)}>PERFUMES</Link></li>
-          <li><Link href="/perfume-oil" onClick={() => setIsMenuOpen(false)}>OIL</Link></li>
-          <li><Link href="/circle-of-light" onClick={() => setIsMenuOpen(false)}>CIRCLE OF LIGHT</Link></li>
-          <li><Link href="/create" onClick={() => setIsMenuOpen(false)}>CHOOSE YOUR FRAGRANCE</Link></li>
+          <li><Link href="/perfume-oil" onClick={() => setIsMenuOpen(false)}>PERFUME OILS</Link></li>
+          <li><Link href="/create" onClick={() => setIsMenuOpen(false)}>FRAGRANCE FINDER</Link></li>
+          <li><Link href="/contact" onClick={() => setIsMenuOpen(false)}>CONTACT US</Link></li>
           <li><Link href="/about" onClick={() => setIsMenuOpen(false)}>ABOUT US</Link></li>
         </ul>
       </nav>
