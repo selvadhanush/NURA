@@ -87,6 +87,18 @@
   letter-spacing: 2px;
 }
 
+.flippedV {
+  display: inline-block;
+  transform: rotate(180deg);
+  transform-origin: center center;
+  background: linear-gradient(to bottom, #d4af37 0%, #f7ef8a 50%, #d4af37 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-left: 0.03em;
+  margin-right: 0.05em;
+}
+
 .brandSubtitle {
   font-family: var(--font-body), sans-serif;
   font-size: 0.75rem;

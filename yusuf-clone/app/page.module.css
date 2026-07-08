@@ -16,14 +16,12 @@
   overflow: hidden;
 }
 
-.heroImageDesktop {
-  object-fit: cover;
-  object-position: center center;
-  z-index: 0;
-}
-
-.heroImageMobile {
-  display: none;
+.heroVideo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   object-position: center center;
   z-index: 0;
@@ -195,12 +193,6 @@
   .hero {
     height: 60vh;
     padding-bottom: 3rem;
-  }
-  .heroImageDesktop {
-    display: none;
-  }
-  .heroImageMobile {
-    display: block;
   }
   .section {
     padding: 2rem 1.25rem;

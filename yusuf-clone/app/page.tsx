@@ -33,22 +33,16 @@ export default function Home() {
     <div className={styles.page}>
       {/* Hero Section */}
       <section className={styles.hero}>
-        <Image 
-          src="/hero-desktop-wide.jpg" 
-          alt="NURA by Bin Sadhik Luxury Perfume Banner" 
-          fill
-          priority
-          quality={100}
-          className={styles.heroImageDesktop}
-        />
-        <Image 
-          src="/hero-desktop-green.png" 
-          alt="NURA by Bin Sadhik Luxury Perfume Banner Mobile" 
-          fill
-          priority
-          quality={100}
-          className={styles.heroImageMobile}
-        />
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className={styles.heroVideo}
+        >
+          <source src="/hero-video.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
         <div className={styles.heroContent}>
           <Link href="/collections" className={styles.primaryButton}>EXPLORE COLLECTION</Link>
         </div>
