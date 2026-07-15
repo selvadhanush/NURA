@@ -54,10 +54,10 @@ export default function Home() {
           <h2>BEST SELLERS</h2>
           <h3>Our Most Coveted Signatures</h3>
         </div>
-        
+
         <div className={styles.productGrid}>
           {bestSellers.map(product => (
-            <ProductCard 
+            <ProductCard
               key={product.id}
               name={product.name}
               price={formatCurrency(product.oilPrice6ml)}
@@ -66,7 +66,7 @@ export default function Home() {
             />
           ))}
         </div>
-        
+
         <div className={styles.centerButtonContainer}>
           <Link href="/collections" className={styles.secondaryButton}>VIEW ALL COVETED SCENTS</Link>
         </div>
@@ -83,9 +83,9 @@ export default function Home() {
             </p>
             <div className={styles.videoPlayerPlaceholder}>
               <div className={styles.videoThumbnailWrapper}>
-                <Image 
-                  src="/hero-desktop-wide.jpg" 
-                  alt="Cinematic Perfume Crafting" 
+                <Image
+                  src="/hero-desktop-wide.jpg"
+                  alt="Cinematic Perfume Crafting"
                   fill
                   className={styles.videoThumbnail}
                 />
@@ -100,19 +100,19 @@ export default function Home() {
               </div>
             </div>
           </div>
-          
+
           <div className={styles.interactiveColumn}>
             <div className={styles.showcaseContainer}>
               <div className={styles.imageWrapper}>
-                <Image 
-                  src="/showcase-bottles.png" 
-                  alt="NURA Bottles Showcase" 
+                <Image
+                  src="/showcase-bottles.png"
+                  alt="NURA Bottles Showcase"
                   width={1200}
                   height={1200}
                   className={styles.showcaseImage}
                   priority
                 />
-                
+
                 {hotspots.map((spot) => (
                   <button
                     key={spot.id}
@@ -129,15 +129,15 @@ export default function Home() {
                 ))}
 
                 {activeHotspot && (
-                  <div 
+                  <div
                     className={styles.hotspotCard}
                     style={{
                       left: `${activeHotspot.x}%`,
                       top: `${activeHotspot.y + 5}%`,
                     }}
                   >
-                    <button 
-                      className={styles.cardClose} 
+                    <button
+                      className={styles.cardClose}
                       onClick={() => setActiveHotspot(null)}
                       aria-label="Close details"
                     >
@@ -164,10 +164,10 @@ export default function Home() {
           <h2>NEW ARRIVALS</h2>
           <h3>Freshly Poured Creations</h3>
         </div>
-        
+
         <div className={styles.productGrid}>
           {newArrivals.map(product => (
-            <ProductCard 
+            <ProductCard
               key={product.id}
               name={product.name}
               price={formatCurrency(product.oilPrice6ml)}
@@ -176,7 +176,7 @@ export default function Home() {
             />
           ))}
         </div>
-        
+
         <div className={styles.centerButtonContainer}>
           <Link href="/collections" className={styles.secondaryButton}>EXPLORE RECENT POURS</Link>
         </div>
@@ -199,7 +199,7 @@ export default function Home() {
               <Link href="/about" className={styles.charityBtnSecondary}>ABOUT US</Link>
             </div>
           </div>
-          
+
           <div className={styles.charityVisual}>
             <div className={styles.circleGraphic}>
               <div className={styles.innerCircle}>
@@ -219,10 +219,10 @@ export default function Home() {
           <h2>THE SIGNATURE SERIES</h2>
           <h3>Curated Masterpieces by Bin Sadhik</h3>
         </div>
-        
+
         <div className={styles.productGrid}>
           {signatureCollection.map(product => (
-            <ProductCard 
+            <ProductCard
               key={product.id}
               name={product.name}
               price={formatCurrency(product.oilPrice6ml)}
@@ -240,7 +240,7 @@ export default function Home() {
             <h2>EXPLORE THE FORMATS</h2>
             <h3>Concentrates & Diffusers</h3>
           </div>
-          
+
           <div className={styles.categoriesGrid2}>
             <Link href="/perfume" className={styles.categoryCard}>
               <div className={styles.categoryImageContainer}>
@@ -266,7 +266,7 @@ export default function Home() {
           <p className={styles.newsletterSubtitle}>
             Subscribe for exclusive early access to product launches, seasonal scent guides, and members-only rewards. Receive a <strong>10% Welcome Reward</strong> on your first order.
           </p>
-          
+
           <div className={styles.benefitsGrid}>
             <div className={styles.benefitItem}>
               <span className={styles.benefitIcon}>✦</span>
@@ -282,18 +282,18 @@ export default function Home() {
             </div>
           </div>
 
-          <form 
-            onSubmit={(e) => { 
-              e.preventDefault(); 
-              alert('Welcome to the NURA Circle! Use code NURA10 at checkout to redeem your 10% discount.'); 
-            }} 
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              alert('Welcome to the NURA Circle! Use code NURA10 at checkout to redeem your 10% discount.');
+            }}
             className={styles.newsletterForm}
           >
-            <input 
-              type="email" 
-              required 
-              placeholder="Enter your email address" 
-              className={styles.newsletterInput} 
+            <input
+              type="email"
+              required
+              placeholder="Enter your email address"
+              className={styles.newsletterInput}
             />
             <button type="submit" className={styles.newsletterSubmit}>SUBSCRIBE</button>
           </form>
@@ -306,7 +306,7 @@ export default function Home() {
           <h2>WHAT OUR CLIENTS SAY</h2>
           <h3>CUSTOMER REVIEWS</h3>
         </div>
-        
+
         <div className={styles.reviewsGrid}>
           <div className={styles.reviewCard}>
             <div className={styles.stars}>★★★★★</div>
@@ -316,7 +316,7 @@ export default function Home() {
             <h4 className={styles.reviewerName}>Dhanush M.</h4>
             <span className={styles.verifiedBuyer}>Verified Buyer</span>
           </div>
-          
+
           <div className={styles.reviewCard}>
             <div className={styles.stars}>★★★★★</div>
             <p className={styles.reviewText}>
@@ -325,7 +325,7 @@ export default function Home() {
             <h4 className={styles.reviewerName}>Rahul K.</h4>
             <span className={styles.verifiedBuyer}>Verified Buyer</span>
           </div>
-          
+
           <div className={styles.reviewCard}>
             <div className={styles.stars}>★★★★★</div>
             <p className={styles.reviewText}>

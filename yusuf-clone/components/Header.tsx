@@ -1,19 +1,23 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import styles from './Header.module.css';
 import Link from 'next/link';
 import { useCart } from './CartContext';
 
 export default function Header() {
+  const pathname = usePathname();
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { setIsCartOpen, totalItems } = useCart();
 
   useEffect(() => {
     const controlHeader = () => {
       if (typeof window !== 'undefined') {
+        setIsScrolled(window.scrollY > 50);
         if (window.scrollY > lastScrollY && window.scrollY > 100) {
           setIsVisible(false);
           setIsMenuOpen(false); // Close menu on scroll down
@@ -42,8 +46,16 @@ export default function Header() {
     };
   }, [isMenuOpen]);
 
+  const isHome = pathname === '/';
+  const headerClasses = [
+    styles.header,
+    !isVisible ? styles.headerHidden : '',
+    isHome ? styles.headerHome : '',
+    isHome && !isScrolled ? styles.headerTransparent : ''
+  ].filter(Boolean).join(' ');
+
   return (
-    <header className={`${styles.header} ${!isVisible ? styles.headerHidden : ''}`}>
+    <header className={headerClasses}>
       <div className={styles.topBar}>
         <div className={styles.container}>
           <button 
