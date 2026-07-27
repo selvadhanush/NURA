@@ -1,0 +1,222 @@
+.arcContainer {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  height: 240px;
+  margin: 0 auto;
+  user-select: none;
+}
+
+.arcSvg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ══════════════════════════════════════
+   CIRCULAR ORB BUTTON BASE
+══════════════════════════════════════ */
+.beanOrbButton {
+  position: absolute;
+  z-index: 10;
+  transform: translate(-50%, -50%);
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Smooth carousel sliding animation along the U-arc */
+  transition:
+    left 0.75s cubic-bezier(0.34, 1.2, 0.64, 1),
+    top 0.75s cubic-bezier(0.34, 1.2, 0.64, 1),
+    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.4s ease,
+    opacity 0.4s ease;
+}
+
+/* ══════════════════════════════════════
+   5 DOWNWARD U-CURVE ARC SLOTS
+══════════════════════════════════════ */
+.slot_outerLeft  { left: 18%; top: 22%; }
+.slot_innerLeft  { left: 33%; top: 46%; }
+.slot_center     { left: 50%; top: 66%; } /* Center lowest position (Spotlight Apex) */
+.slot_innerRight { left: 67%; top: 46%; }
+.slot_outerRight { left: 82%; top: 22%; }
+
+/* ══════════════════════════════════════
+   SLEEK CIRCULAR GLASS ORB DISC (~58px)
+══════════════════════════════════════ */
+.glassOrbDisc {
+  position: relative;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #224332 0%, #142a1f 65%, #0d1c14 100%);
+  backdrop-filter: blur(14px) saturate(130%);
+  -webkit-backdrop-filter: blur(14px) saturate(130%);
+  border: 1px solid rgba(175, 220, 195, 0.35);
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.75),
+    inset 0 2px 4px rgba(255, 255, 255, 0.2),
+    0 0 14px rgba(160, 215, 185, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.starLogoInactive {
+  color: #e8d8a0;
+  filter: drop-shadow(0 0 3px rgba(232, 216, 160, 0.5));
+  transition: all 0.35s ease;
+}
+
+.starLogoActive {
+  color: #e8d8a0;
+  filter: drop-shadow(0 0 8px rgba(232, 216, 160, 0.9));
+  transition: all 0.35s ease;
+}
+
+/* ══════════════════════════════════════
+   STAGGERED LIVING FLOATING
+══════════════════════════════════════ */
+.float_0 { animation: orbFloat 4.8s ease-in-out infinite alternate 0s; }
+.float_1 { animation: orbFloat 5.4s ease-in-out infinite alternate -1.2s; }
+.float_2 { animation: orbFloat 4.2s ease-in-out infinite alternate -2.5s; }
+.float_3 { animation: orbFloat 5.0s ease-in-out infinite alternate -0.8s; }
+.float_4 { animation: orbFloat 4.6s ease-in-out infinite alternate -3.1s; }
+
+@keyframes orbFloat {
+  0%   { transform: translate(-50%, -50%) translateY(0px); }
+  50%  { transform: translate(-50%, -50%) translateY(-5px); }
+  100% { transform: translate(-50%, -50%) translateY(3px); }
+}
+
+/* ══════════════════════════════════════
+   HOVER INTERACTION — SCALE TO 110%
+══════════════════════════════════════ */
+.beanOrbButton:hover {
+  z-index: 30;
+}
+
+.beanOrbButton:hover .glassOrbDisc {
+  transform: scale(1.1);
+  background: radial-gradient(circle at 35% 35%, #355e48 0%, #1e3d2c 60%, #12261b 100%);
+  border-color: rgba(255, 248, 180, 0.85);
+  box-shadow:
+    0 12px 28px rgba(0, 0, 0, 0.8),
+    0 0 26px rgba(255, 245, 170, 0.45),
+    inset 0 2px 6px rgba(255, 255, 255, 0.35);
+}
+
+.beanOrbButton:hover .starLogoInactive {
+  color: #ffffff;
+  transform: scale(1.08);
+  filter: drop-shadow(0 0 8px rgba(255, 248, 200, 0.95));
+}
+
+/* Hover Tooltip */
+.hoverTooltip {
+  position: absolute;
+  top: -42px;
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  background: rgba(8, 18, 12, 0.94);
+  border: 1px solid rgba(232, 216, 160, 0.45);
+  backdrop-filter: blur(10px);
+  padding: 0.3rem 0.75rem;
+  border-radius: 20px;
+  pointer-events: none;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  white-space: nowrap;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.75);
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  z-index: 35;
+}
+
+.tooltipCategory {
+  font-size: 0.58rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #c2a77a;
+}
+
+.tooltipTitle {
+  font-size: 0.72rem;
+  font-family: var(--font-display, serif);
+  color: #ffffff;
+}
+
+.beanOrbButton:hover .hoverTooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0px);
+}
+
+/* ══════════════════════════════════════
+   ACTIVE CENTER BEAN — EMERALD GLASS WITH LUXURY GOLD GLOW (NO WHITE BULB FILL)
+══════════════════════════════════════ */
+.beanActive {
+  z-index: 25 !important;
+  opacity: 1 !important;
+}
+
+.beanActive .glassOrbDisc {
+  width: 68px !important;
+  height: 68px !important;
+  background: radial-gradient(circle at 35% 35%, #2a523e 0%, #173325 65%, #0f2218 100%) !important;
+  border: 1.5px solid #e8d8a0 !important;
+  box-shadow:
+    0 0 20px rgba(232, 216, 160, 0.4),
+    0 0 40px rgba(194, 167, 122, 0.2),
+    0 12px 28px rgba(0, 0, 0, 0.85),
+    inset 0 2px 6px rgba(255, 255, 255, 0.3) !important;
+  transform: scale(1.05);
+}
+
+.clickRipple {
+  position: absolute;
+  inset: -15px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(232, 216, 160, 0.8);
+  animation: rippleExpand 0.8s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes rippleExpand {
+  0%   { transform: scale(0.5); opacity: 1; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+/* Inactive dimming */
+.beanInactive {
+  opacity: 0.8;
+}
+
+.beanInactive:hover {
+  opacity: 1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .arcContainer {
+    height: 200px;
+  }
+  .glassOrbDisc {
+    width: 48px;
+    height: 48px;
+  }
+  .beanActive .glassOrbDisc {
+    width: 58px !important;
+    height: 58px !important;
+  }
+}

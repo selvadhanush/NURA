@@ -1,0 +1,207 @@
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(4, 10, 6, 0.85);
+  backdrop-filter: blur(14px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  animation: fadeIn 0.35s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modalContent {
+  position: relative;
+  width: 100%;
+  max-width: 740px;
+  max-height: 88vh;
+  overflow-y: auto;
+  background: linear-gradient(160deg, #122117 0%, #0a140d 100%);
+  border: 1px solid rgba(194, 167, 122, 0.3);
+  border-radius: 20px;
+  padding: 3rem 2.8rem;
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.95),
+    0 0 50px rgba(194, 167, 122, 0.15);
+  animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(30px) scale(0.96); opacity: 0; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.closeBtn {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: rgba(194, 167, 122, 0.1);
+  border: 1px solid rgba(194, 167, 122, 0.25);
+  color: #e8d8a0;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  transition: all 0.25s ease;
+}
+
+.closeBtn:hover {
+  background: rgba(194, 167, 122, 0.3);
+  color: #fff;
+  transform: rotate(90deg);
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-bottom: 1.8rem;
+}
+
+.modalEmblem {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(194, 167, 122, 0.1);
+  border: 1px solid rgba(232, 216, 160, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+}
+
+.modalCategory {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  color: #c2a77a;
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.modalTitle {
+  font-family: var(--font-display, serif);
+  font-size: 2.2rem;
+  font-weight: 400;
+  color: #ffffff;
+  margin: 0 0 0.3rem;
+  letter-spacing: 1.5px;
+}
+
+.modalTagline {
+  font-size: 0.92rem;
+  font-style: italic;
+  color: rgba(232, 216, 160, 0.85);
+  margin: 0;
+}
+
+.heroQuote {
+  background: rgba(194, 167, 122, 0.06);
+  border-left: 3px solid #e8d8a0;
+  padding: 1.25rem 1.75rem;
+  margin: 0 0 2rem;
+  border-radius: 0 12px 12px 0;
+  font-size: 1.05rem;
+  font-style: italic;
+  line-height: 1.6;
+  color: #e8d8a0;
+}
+
+.sectionsList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  margin-bottom: 2rem;
+}
+
+.storyBlock h3 {
+  font-family: var(--font-display, serif);
+  font-size: 1.25rem;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+  font-weight: 400;
+}
+
+.storyBlock p {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: #b5c7bc;
+  margin: 0;
+}
+
+.modalNotesBlock {
+  background: rgba(8, 16, 11, 0.6);
+  border: 1px solid rgba(194, 167, 122, 0.2);
+  border-radius: 12px;
+  padding: 1.2rem 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.modalNotesBlock h3 {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #e8d8a0;
+  margin: 0 0 0.8rem;
+}
+
+.notesRow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.88rem;
+  color: #d6e4db;
+}
+
+.notesRow strong {
+  color: #c2a77a;
+  margin-right: 0.5rem;
+}
+
+.modalFooter {
+  border-top: 1px solid rgba(194, 167, 122, 0.2);
+  padding-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.closeCtaBtn {
+  background: #c2a77a;
+  color: #0c1710;
+  border: none;
+  padding: 0.9rem 2.5rem;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(194, 167, 122, 0.3);
+}
+
+.closeCtaBtn:hover {
+  background: #e8d8a0;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(232, 216, 160, 0.4);
+}
+
+@media (max-width: 640px) {
+  .modalContent {
+    padding: 2rem 1.5rem;
+  }
+  .modalTitle {
+    font-size: 1.8rem;
+  }
+}

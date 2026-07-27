@@ -1,0 +1,339 @@
+.cardContainer {
+  position: relative;
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  background: rgba(12, 24, 16, 0.84);
+  border: 1px solid rgba(232, 216, 160, 0.3);
+  border-radius: 20px;
+  padding: 2.2rem 2.4rem;
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.85),
+    0 0 35px rgba(194, 167, 122, 0.12),
+    inset 0 1px 2px rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  overflow: hidden;
+  transition:
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.4s ease,
+    border-color 0.4s ease;
+}
+
+.lightReceiverGlow {
+  position: absolute;
+  top: 0;
+  left: 15%;
+  right: 15%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 248, 200, 0.95) 50%,
+    transparent 100%
+  );
+  box-shadow:
+    0 0 12px rgba(255, 248, 200, 0.9),
+    0 0 30px rgba(232, 216, 160, 0.7);
+}
+
+.cardEmerging {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  animation: cardReveal 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.cardExiting {
+  opacity: 0;
+  transform: translateY(24px) scale(0.96);
+  pointer-events: none;
+}
+
+@keyframes cardReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(32px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.2rem;
+}
+
+.categoryBadge {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  color: #e8d8a0;
+  font-weight: 600;
+}
+
+.counterBadge {
+  font-size: 0.75rem;
+  font-family: var(--font-display, serif);
+  color: rgba(232, 216, 160, 0.65);
+  letter-spacing: 1.5px;
+}
+
+.titleGroup {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-bottom: 1.1rem;
+}
+
+.emblemBadge {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: rgba(194, 167, 122, 0.08);
+  border: 1px solid rgba(232, 216, 160, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+}
+
+.brandTitle {
+  font-family: var(--font-display, serif);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 400;
+  letter-spacing: 2px;
+  color: #ffffff;
+  margin: 0 0 0.25rem;
+}
+
+.brandTagline {
+  font-size: 0.9rem;
+  color: rgba(232, 216, 160, 0.85);
+  font-style: italic;
+  margin: 0;
+}
+
+.brandDescription {
+  font-size: 0.96rem;
+  line-height: 1.7;
+  color: #b0c4b6;
+  margin-bottom: 1.5rem;
+}
+
+/* ══════════════════════════════════════
+   FRAGRANCE PYRAMID NOTES GRID
+══════════════════════════════════════ */
+.notesSection {
+  margin-bottom: 1.5rem;
+}
+
+.sectionLabel {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  color: #e8d8a0;
+  margin: 0 0 0.8rem;
+  font-weight: 600;
+}
+
+.notesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.8rem;
+}
+
+.noteCard {
+  background: rgba(194, 167, 122, 0.05);
+  border: 1px solid rgba(194, 167, 122, 0.18);
+  border-radius: 10px;
+  padding: 0.85rem 0.95rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.noteType {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #c2a77a;
+  font-weight: 700;
+}
+
+.noteText {
+  font-size: 0.82rem;
+  color: #ffffff;
+  line-height: 1.4;
+}
+
+/* Highlights */
+.highlightsSection {
+  margin-bottom: 1.5rem;
+}
+
+.highlightsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.highlightsList li {
+  font-size: 0.88rem;
+  color: #d4e2d8;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.bulletSparkle {
+  color: #e8d8a0;
+  font-size: 0.8rem;
+}
+
+/* Metrics Bar */
+.metricsBar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  background: rgba(8, 16, 11, 0.6);
+  border: 1px solid rgba(194, 167, 122, 0.16);
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1.6rem;
+  text-align: center;
+}
+
+.metricValue {
+  display: block;
+  font-family: var(--font-display, serif);
+  font-size: 1.8rem;
+  color: #e8d8a0;
+  font-weight: 400;
+}
+
+.metricLabel {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Footer & Action Button */
+.cardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(194, 167, 122, 0.15);
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.navControls {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.navArrowBtn {
+  background: rgba(194, 167, 122, 0.08);
+  border: 1px solid rgba(194, 167, 122, 0.25);
+  color: #e8d8a0;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.navArrowBtn:hover {
+  background: rgba(232, 216, 160, 0.2);
+  color: #ffffff;
+  transform: scale(1.08);
+}
+
+.dotTracker {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(194, 167, 122, 0.3);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.activeDot {
+  width: 22px;
+  border-radius: 10px;
+  background: #e8d8a0;
+  box-shadow: 0 0 10px rgba(232, 216, 160, 0.8);
+}
+
+.detailCtaBtn {
+  background: linear-gradient(135deg, #c2a77a 0%, #a68426 100%);
+  color: #08110b;
+  border: none;
+  padding: 0.85rem 1.6rem;
+  border-radius: 8px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  box-shadow: 0 6px 20px rgba(194, 167, 122, 0.35);
+  transition: all 0.35s ease;
+}
+
+.detailCtaBtn:hover {
+  background: linear-gradient(135deg, #e8d8a0 0%, #c2a020 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(232, 216, 160, 0.5);
+}
+
+.btnArrow {
+  font-size: 1.1rem;
+  transition: transform 0.3s ease;
+}
+
+.detailCtaBtn:hover .btnArrow {
+  transform: translateX(4px);
+}
+
+@media (max-width: 680px) {
+  .cardContainer {
+    padding: 1.6rem 1.4rem;
+  }
+  .notesGrid {
+    grid-template-columns: 1fr;
+  }
+  .cardFooter {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .detailCtaBtn {
+    width: 100%;
+    justify-content: center;
+  }
+}
