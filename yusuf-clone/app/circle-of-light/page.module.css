@@ -1,52 +1,371 @@
 .page {
   width: 100%;
   min-height: 100vh;
-  background-color: var(--color-primary-dark);
+  background: #0e1a12;
   color: #fff;
   padding-bottom: 6rem;
 }
 
-.header {
-  background-color: #0b0f0c;
-  color: var(--color-gold);
-  text-align: center;
-  padding: 6rem 2rem 5rem;
-  margin-bottom: 4rem;
-  border-bottom: 1px solid rgba(194, 167, 122, 0.1);
+/* ══════════════════════════════════════
+   ARC HERO — matches reference image
+══════════════════════════════════════ */
+.arcHero {
+  position: relative;
+  width: 100%;
+  height: 68vh;
+  min-height: 460px;
+  max-height: 640px;
+  overflow: hidden;
+  background: radial-gradient(ellipse 90% 60% at 50% -5%, #1a3520 0%, #0e1a12 65%);
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.tag {
-  font-size: 0.8rem;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
+.arcBg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 30% at 50% 50%, rgba(255,255,220,0.04) 0%, transparent 70%);
+  pointer-events: none;
 }
 
-.header h1 {
+/* Title */
+.arcTitle {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  padding: 3rem 2rem 0;
+}
+
+.arcTitle h1 {
   font-family: var(--font-display);
-  font-size: 3rem;
-  font-weight: 300;
-  letter-spacing: 5px;
+  font-size: clamp(1.8rem, 4.5vw, 3rem);
+  font-weight: 400;
+  letter-spacing: 8px;
+  color: #e8d8a0;
+  margin: 0 0 0.5rem;
 }
 
-.subtitle {
-  font-size: 1.1rem;
-  letter-spacing: 2px;
-  margin-top: 1rem;
-  opacity: 0.9;
-  text-transform: uppercase;
+.arcSubtitle {
+  font-size: 0.95rem;
+  letter-spacing: 1.5px;
+  color: rgba(232, 216, 160, 0.6);
   font-style: italic;
+  margin: 0;
 }
 
+/* ── Spotlight SVG ── */
+.spotlightSvg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 90%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.spotBeam {
+  animation: beamBreath 3s ease-in-out infinite alternate;
+  transform-origin: 500px 360px;
+}
+
+@keyframes beamBreath {
+  from { opacity: 0.85; transform: scaleX(0.97); }
+  to   { opacity: 1;    transform: scaleX(1.03); }
+}
+
+.spotBeamCore {
+  animation: coreBreath 3s ease-in-out infinite alternate;
+  transform-origin: 500px 360px;
+}
+
+@keyframes coreBreath {
+  from { opacity: 0.18; }
+  to   { opacity: 0.35; }
+}
+
+/* ══════════════════════════════════════
+   5-PEBBLE SEMI-ARC POSITIONS
+   Reference layout (approx % of arcHero):
+     outerLeft  : left 8%,  bottom 38%
+     innerLeft  : left 28%, bottom 18%
+     center     : left 50%, bottom 5%   ← active/bright
+     innerRight : left 72%, bottom 18%
+     outerRight : left 92%, bottom 38%
+══════════════════════════════════════ */
+.pebble {
+  position: absolute;
+  z-index: 20;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition:
+    left 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
+    bottom 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
+    width 0.4s ease,
+    height 0.4s ease,
+    background 0.4s ease,
+    box-shadow 0.4s ease;
+  transform: translate(-50%, 50%);
+}
+
+/* Dark green pebble base (non-active) */
+.pebble {
+  width: 62px;
+  height: 62px;
+  background: radial-gradient(circle at 35% 30%, #2a4433 0%, #1a2e22 50%, #111f17 100%);
+  box-shadow:
+    0 6px 18px rgba(0,0,0,0.7),
+    inset 0 1px 4px rgba(255,255,255,0.08),
+    0 0 0 1px rgba(194,167,122,0.15);
+}
+
+/* Slot positions */
+.slot_outerLeft  { left: 8%;  bottom: 38%; }
+.slot_innerLeft  { left: 28%; bottom: 18%; }
+.slot_center     { left: 50%; bottom: 5%;  }
+.slot_innerRight { left: 72%; bottom: 18%; }
+.slot_outerRight { left: 92%; bottom: 38%; }
+
+/* Outer pebbles: slightly smaller */
+.slot_outerLeft,
+.slot_outerRight {
+  width: 54px;
+  height: 54px;
+}
+
+/* Inner pebbles: medium */
+.slot_innerLeft,
+.slot_innerRight {
+  width: 60px;
+  height: 60px;
+}
+
+/* ── ACTIVE / CENTER PEBBLE — bright white orb ── */
+.pebbleCenter {
+  width: 82px !important;
+  height: 82px !important;
+  background: radial-gradient(circle at 38% 32%, #ffffff 0%, #fffbe8 30%, #f0d88a 65%, #c2a020 100%) !important;
+  box-shadow:
+    0 0 0 6px rgba(255, 255, 200, 0.15),
+    0 0 0 14px rgba(255, 255, 180, 0.07),
+    0 0 55px rgba(255, 248, 180, 0.7),
+    0 0 100px rgba(194, 167, 50, 0.35),
+    0 12px 30px rgba(0,0,0,0.8),
+    inset 0 4px 10px rgba(255, 255, 255, 0.7) !important;
+  animation: pebbleGlow 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes pebbleGlow {
+  from {
+    box-shadow:
+      0 0 0 6px rgba(255,255,200,0.12),
+      0 0 0 14px rgba(255,255,180,0.06),
+      0 0 45px rgba(255,248,180,0.6),
+      0 0 80px rgba(194,167,50,0.28),
+      0 12px 30px rgba(0,0,0,0.8),
+      inset 0 4px 10px rgba(255,255,255,0.65);
+  }
+  to {
+    box-shadow:
+      0 0 0 8px rgba(255,255,200,0.18),
+      0 0 0 18px rgba(255,255,180,0.09),
+      0 0 65px rgba(255,248,180,0.8),
+      0 0 120px rgba(194,167,50,0.42),
+      0 12px 30px rgba(0,0,0,0.8),
+      inset 0 4px 10px rgba(255,255,255,0.75);
+  }
+}
+
+/* Pebble icon color */
+.pebbleIcon {
+  width: 50%;
+  height: 50%;
+  color: rgba(194,167,122,0.6);
+  transition: color 0.4s ease;
+  flex-shrink: 0;
+}
+
+.pebbleCenter .pebbleIcon {
+  color: rgba(100, 70, 0, 0.85);
+}
+
+/* Glow ring pulse around center */
+.pebbleRing {
+  position: absolute;
+  inset: -12px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 248, 180, 0.3);
+  animation: ringPulse 2.5s ease-out infinite;
+  pointer-events: none;
+}
+
+@keyframes ringPulse {
+  0%   { transform: scale(1);   opacity: 0.5; }
+  60%  { transform: scale(1.4); opacity: 0.15; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+/* ══════════════════════════════════════
+   CARD SECTION — directly below arc
+══════════════════════════════════════ */
+.cardSection {
+  background: #0e1a12;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 2rem 4rem;
+  position: relative;
+}
+
+/* Seamless fade bridge from spotlight */
+.cardBridge {
+  width: 100%;
+  height: 60px;
+  background: linear-gradient(180deg, rgba(255,248,180,0.04) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.cardInner {
+  max-width: 660px;
+  width: 100%;
+  background: linear-gradient(160deg, #131f17 0%, #0e1812 100%);
+  border: 1px solid rgba(194,167,122,0.18);
+  border-radius: 12px;
+  padding: 3rem 2.8rem;
+  position: relative;
+  overflow: hidden;
+  animation: cardReveal 0.5s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+/* Glowing top edge matching spotlight */
+.cardInner::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 15%; right: 15%; height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255,248,150,0.6), transparent);
+  border-radius: 2px;
+}
+
+@keyframes cardReveal {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.cardTitle {
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  color: #e8d8a0;
+  font-weight: 400;
+  letter-spacing: 2px;
+  margin: 0 0 1.2rem;
+}
+
+.cardDesc {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: #b0c4b6;
+  margin-bottom: 1.8rem;
+}
+
+.cardDetails {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2.2rem;
+  border-top: 1px solid rgba(194,167,122,0.1);
+  padding-top: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.cardDetails li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.88rem;
+  color: #8fa094;
+}
+
+.bullet {
+  color: #c2a77a;
+  font-size: 0.6rem;
+  flex-shrink: 0;
+}
+
+/* Navigation row */
+.dotsRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+}
+
+.navArrow {
+  background: none;
+  border: 1px solid rgba(194,167,122,0.25);
+  color: #c2a77a;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.25s;
+}
+.navArrow:hover { background: rgba(194,167,122,0.1); border-color: #c2a77a; }
+
+.dots { display: flex; gap: 0.45rem; align-items: center; }
+
+.dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  border: 1px solid rgba(194,167,122,0.35);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s;
+  padding: 0;
+}
+.dotActive {
+  background: #c2a77a;
+  border-color: #c2a77a;
+  transform: scale(1.4);
+}
+
+/* ══════════════════════════════════════
+   BELOW CONTENT
+══════════════════════════════════════ */
 .container {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 5rem 2rem 0;
 }
+
+.statsSection {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 2rem;
+  margin-bottom: 5rem;
+  text-align: center;
+}
+.statCard {
+  border-top: 1px solid rgba(194,167,122,0.25);
+  padding-top: 2rem;
+}
+.statNumber {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 3.2rem;
+  color: #e8d8a0;
+  font-weight: 400;
+  letter-spacing: 1px;
+  margin-bottom: 0.4rem;
+}
+.statLabel { font-size: 0.82rem; text-transform: uppercase; letter-spacing: 2px; color: #8fa094; }
 
 .storySection {
   display: grid;
@@ -54,230 +373,105 @@
   gap: 3rem;
   margin-bottom: 5rem;
 }
-
 .storyCard {
-  background: rgba(194, 167, 122, 0.02);
-  border: 1px solid rgba(194, 167, 122, 0.15);
-  padding: 3rem 2.5rem;
+  background: rgba(194,167,122,0.02);
+  border: 1px solid rgba(194,167,122,0.1);
+  padding: 2.5rem;
   border-radius: 8px;
-  transition: all 0.3s ease;
+  transition: border-color 0.3s;
 }
-
-.storyCard:hover {
-  border-color: var(--color-gold);
-  background: rgba(194, 167, 122, 0.04);
-}
-
+.storyCard:hover { border-color: rgba(194,167,122,0.25); }
 .storyCard h2 {
   font-family: var(--font-display);
-  font-size: 1.8rem;
-  color: var(--color-gold);
-  margin-bottom: 1.5rem;
-  font-weight: 450;
+  font-size: 1.55rem;
+  color: #e8d8a0;
+  margin-bottom: 1.2rem;
+  font-weight: 400;
   letter-spacing: 1px;
 }
-
-.storyCard p {
-  font-size: 1.05rem;
-  line-height: 1.8;
-  color: #d1d9d4;
-  margin-bottom: 1.25rem;
-}
-
-.storyCard p strong {
-  color: var(--color-gold);
-}
-
-.statsSection {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  margin-bottom: 5rem;
-  text-align: center;
-}
-
-.statCard {
-  border-top: 1px solid rgba(194, 167, 122, 0.3);
-  padding-top: 2rem;
-}
-
-.statNumber {
-  display: block;
-  font-family: var(--font-display);
-  font-size: 3.5rem;
-  color: var(--color-gold);
-  font-weight: 300;
-  margin-bottom: 0.5rem;
-  letter-spacing: 1px;
-}
-
-.statLabel {
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  color: #a4b3a9;
-  font-weight: 500;
-}
-
-.initiativesSection {
-  margin-bottom: 6rem;
-  text-align: center;
-}
-
-.initiativesSection h2 {
-  font-family: var(--font-display);
-  font-size: 2.2rem;
-  color: var(--color-gold);
-  margin-bottom: 3.5rem;
-  font-weight: 300;
-  letter-spacing: 2px;
-}
-
-.initiativesGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  text-align: left;
-}
-
-.initCard {
-  background: rgba(194, 167, 122, 0.02);
-  border: 1px solid rgba(194, 167, 122, 0.1);
-  padding: 2.5rem 2rem;
-  border-radius: 6px;
-  transition: all 0.3s;
-}
-
-.initCard:hover {
-  transform: translateY(-4px);
-  border-color: rgba(194, 167, 122, 0.3);
-}
-
-.initIcon {
-  color: var(--color-gold);
-  font-size: 1.5rem;
-  display: block;
-  margin-bottom: 1rem;
-}
-
-.initCard h3 {
-  font-family: var(--font-display);
-  font-size: 1.3rem;
-  color: #fff;
-  margin-bottom: 1rem;
-  letter-spacing: 1px;
-}
-
-.initCard p {
-  font-size: 0.95rem;
-  line-height: 1.6;
-  color: #a4b3a9;
-}
+.storyCard p { font-size: 0.97rem; line-height: 1.8; color: #b0c4b6; margin-bottom: 1rem; }
+.storyCard p strong { color: #e8d8a0; }
+.storyCard p em { color: #c2a77a; }
 
 .closingCall {
-  background: linear-gradient(180deg, rgba(194, 167, 122, 0.05) 0%, rgba(0,0,0,0) 100%);
-  border: 1px solid rgba(194, 167, 122, 0.2);
+  border: 1px solid rgba(194,167,122,0.15);
   border-radius: 12px;
   padding: 4rem 2rem;
   text-align: center;
-  max-width: 800px;
-  margin: 0 auto;
+  max-width: 780px;
+  margin: 0 auto 2rem;
+  background: linear-gradient(180deg, rgba(194,167,122,0.03) 0%, transparent 100%);
 }
-
 .closingCall h2 {
   font-family: var(--font-display);
-  font-size: 2.2rem;
-  color: var(--color-gold);
+  font-size: 2.1rem;
+  color: #e8d8a0;
   margin-bottom: 1rem;
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: 2px;
 }
-
 .closingCall p {
-  font-size: 1.1rem;
+  font-size: 1rem;
   line-height: 1.8;
-  color: #d1d9d4;
-  max-width: 600px;
+  color: #b0c4b6;
+  max-width: 540px;
   margin: 0 auto 2.5rem;
 }
 
-.btnRow {
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-}
+.btnRow { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
 
 .primaryBtn {
   display: inline-block;
-  background-color: var(--color-gold);
-  color: var(--color-primary-dark);
+  background: #c2a77a;
+  color: #0e1a12;
   padding: 0.9rem 2rem;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
   transition: all 0.3s;
 }
-
-.primaryBtn:hover {
-  background-color: #fff;
-  transform: translateY(-2px);
-}
+.primaryBtn:hover { background: #e8d8a0; transform: translateY(-2px); }
 
 .secondaryBtn {
   display: inline-block;
-  background-color: transparent;
-  border: 1px solid var(--color-gold);
-  color: var(--color-gold);
+  background: transparent;
+  border: 1px solid #c2a77a;
+  color: #c2a77a;
   padding: 0.9rem 2rem;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
   transition: all 0.3s;
 }
+.secondaryBtn:hover { background: #c2a77a; color: #0e1a12; transform: translateY(-2px); }
 
-.secondaryBtn:hover {
-  background-color: var(--color-gold);
-  color: var(--color-primary-dark);
-  transform: translateY(-2px);
+/* ══════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════ */
+@media (max-width: 900px) {
+  .storySection { grid-template-columns: 1fr; gap: 1.5rem; }
+  .statsSection { grid-template-columns: 1fr; gap: 2rem; }
 }
 
-@media (max-width: 992px) {
-  .storySection {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-  .initiativesGrid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-}
+@media (max-width: 640px) {
+  .arcHero { height: 60vh; min-height: 400px; }
+  .arcTitle h1 { font-size: 1.7rem; letter-spacing: 5px; }
 
-@media (max-width: 768px) {
-  .header h1 {
-    font-size: 2.2rem;
-  }
-  .header {
-    padding: 4rem 1rem 3rem;
-  }
-  .storyCard {
-    padding: 2rem 1.5rem;
-  }
-  .statsSection {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-  }
-  .closingCall {
-    padding: 3rem 1.5rem;
-  }
-  .btnRow {
-    flex-direction: column;
-    gap: 1rem;
-  }
-  .primaryBtn, .secondaryBtn {
-    width: 100%;
-    text-align: center;
-  }
+  /* Compress arc horizontally for narrow screens */
+  .slot_outerLeft  { left: 5%;  bottom: 40%; }
+  .slot_innerLeft  { left: 24%; bottom: 18%; }
+  .slot_center     { left: 50%; bottom: 4%; }
+  .slot_innerRight { left: 76%; bottom: 18%; }
+  .slot_outerRight { left: 95%; bottom: 40%; }
+
+  .pebble { width: 46px !important; height: 46px !important; }
+  .pebbleCenter { width: 66px !important; height: 66px !important; }
+  .slot_outerLeft, .slot_outerRight { width: 38px !important; height: 38px !important; }
+
+  .cardInner { padding: 2rem 1.5rem; }
+  .cardTitle { font-size: 1.4rem; }
+  .btnRow { flex-direction: column; }
+  .primaryBtn, .secondaryBtn { text-align: center; }
 }

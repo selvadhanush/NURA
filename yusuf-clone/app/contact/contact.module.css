@@ -28,7 +28,7 @@
 .heroContent h1 {
   font-family: var(--font-display), serif;
   font-size: 3.5rem;
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: 0.4rem;
   margin-bottom: 1rem;
   color: var(--color-gold);
@@ -83,7 +83,7 @@
   color: #a3b2a8;
   font-size: 1.1rem;
   line-height: 1.8;
-  font-weight: 300;
+  font-weight: 400;
   margin-bottom: 1rem;
 }
 

@@ -1,48 +1,78 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import styles from './page.module.css';
 import ProductCard from '../components/ProductCard';
 import Link from 'next/link';
 import { PRODUCTS } from '../data/products';
+import { useCurrency } from '../components/CurrencyContext';
+
+// Global variable to track if the video has played in the current browser session
+let hasPlayedVideoGlobal = false;
 
 export default function Home() {
+  const { fmt } = useCurrency();
   // Filter products by their tags
   const bestSellers = PRODUCTS.filter(product => product.tags.includes('Best Seller')).slice(0, 4);
   const newArrivals = PRODUCTS.filter(product => product.tags.includes('New Arrival')).slice(0, 4);
   const signatureCollection = PRODUCTS.filter(product => product.tags.includes('Signature')).slice(0, 4);
 
   const hotspots = [
-    { id: 1, name: 'Jasmine Signature', price: '569', description: 'A beautiful and natural floral aroma that feels fresh and elegant. The fragrance lasts for hours without being overpowering.', sizeInfo: '6ml & 12ml Oil | 50ml & 100ml Perfume', x: 17.5, y: 65.0, link: '/products/jasmine' },
-    { id: 2, name: 'Al-Zaf Royal', price: '520', description: 'Deep, rich woody notes combined with amber and sweet musk. A truly mesmerizing experience.', sizeInfo: '6ml & 12ml Oil | 50ml & 100ml Perfume', x: 35.0, y: 46.5, link: '/products/al-zaf' },
-    { id: 3, name: 'Al Harun Signature Edition', price: '710', description: 'An exotic, spicy blend with hints of saffron, precious oud, and warm vanilla.', sizeInfo: '6ml & 12ml Oil | 50ml & 100ml Perfume', x: 52.0, y: 34.0, link: '/products/al-haroon' },
-    { id: 4, name: 'Khamrah Collection', price: '729', description: 'Warm, sweet, and comforting with cinnamon, praline, dates, and rich wood tones.', sizeInfo: '6ml & 12ml Oil | 50ml & 100ml Perfume', x: 68.5, y: 43.5, link: '/products/latafa-khamrah' },
-    { id: 5, name: 'Al Marziyah', price: '680', description: 'A sophisticated combination of rich floral scents, warm vanilla, and smooth white musk.', sizeInfo: '6ml & 12ml Oil | 50ml & 100ml Perfume', x: 84.5, y: 55.0, link: '/products/almarziyah' },
+    { id: 1, name: 'Jasmine Signature', price: 569, description: 'A beautiful and natural floral aroma that feels fresh and elegant. The fragrance lasts for hours without being overpowering.', sizeInfo: '6ml & 12ml Oil | 50ml & 100ml Perfume', x: 17.5, y: 65.0, link: '/products/jasmine' },
+    { id: 2, name: 'Al-Zaf Royal', price: 520, description: 'Deep, rich woody notes combined with amber and sweet musk. A truly mesmerizing experience.', sizeInfo: '6ml & 12ml Oil | 50ml & 100ml Perfume', x: 35.0, y: 46.5, link: '/products/al-zaf' },
+    { id: 3, name: 'Al Harun Signature Edition', price: 710, description: 'An exotic, spicy blend with hints of saffron, precious oud, and warm vanilla.', sizeInfo: '6ml & 12ml Oil | 50ml & 100ml Perfume', x: 52.0, y: 34.0, link: '/products/al-haroon' },
+    { id: 4, name: 'Khamrah Collection', price: 729, description: 'Warm, sweet, and comforting with cinnamon, praline, dates, and rich wood tones.', sizeInfo: '6ml & 12ml Oil | 50ml & 100ml Perfume', x: 68.5, y: 43.5, link: '/products/latafa-khamrah' },
+    { id: 5, name: 'Al Marziyah', price: 680, description: 'A sophisticated combination of rich floral scents, warm vanilla, and smooth white musk.', sizeInfo: '6ml & 12ml Oil | 50ml & 100ml Perfume', x: 84.5, y: 55.0, link: '/products/almarziyah' },
   ];
 
   const [activeHotspot, setActiveHotspot] = useState<any>(null);
+  const [videoEnded, setVideoEnded] = useState(() => hasPlayedVideoGlobal);
+  const [shouldRenderVideo] = useState(() => !hasPlayedVideoGlobal);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
-  const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat('en-IN', {
-      maximumFractionDigits: 0
-    }).format(amount);
+
+
+  useEffect(() => {
+    if (shouldRenderVideo && videoRef.current) {
+      videoRef.current.play().catch(err => {
+        console.log("Autoplay check:", err);
+      });
+    }
+  }, [shouldRenderVideo]);
+
+  const handleVideoEnded = () => {
+    setVideoEnded(true);
+    hasPlayedVideoGlobal = true;
   };
 
   return (
     <div className={styles.page}>
       {/* Hero Section */}
       <section className={styles.hero}>
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className={styles.heroVideo}
-        >
-          <source src="/hero-video.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        <div className={`${styles.heroImage} ${videoEnded ? styles.heroImageVisible : ''}`}>
+          <Image
+            src="/hero-new.jpg"
+            alt="NURA Perfume Collection"
+            fill
+            priority
+            unoptimized
+            className={styles.fallbackImage}
+          />
+        </div>
+        {shouldRenderVideo && (
+          <video
+            ref={videoRef}
+            autoPlay
+            muted
+            playsInline
+            onEnded={handleVideoEnded}
+            className={`${styles.heroVideo} ${videoEnded ? styles.heroVideoHidden : ''}`}
+          >
+            <source src="/hero-video.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        )}
         <div className={styles.heroContent}>
           <Link href="/collections" className={styles.primaryButton}>EXPLORE COLLECTION</Link>
         </div>
@@ -60,7 +90,7 @@ export default function Home() {
             <ProductCard
               key={product.id}
               name={product.name}
-              price={formatCurrency(product.oilPrice6ml)}
+              basePrice={product.oilPrice6ml}
               imageUrl={product.image}
               link={`/products/${product.id}`}
             />
@@ -147,7 +177,7 @@ export default function Home() {
                     <span className={styles.cardSizes}>{activeHotspot.sizeInfo}</span>
                     <p>{activeHotspot.description}</p>
                     <div className={styles.cardFooter}>
-                      <span className={styles.cardPrice}>FROM ₹{activeHotspot.price}</span>
+                      <span className={styles.cardPrice}>FROM {fmt(activeHotspot.price)}</span>
                       <Link href={activeHotspot.link} className={styles.cardBtn}>EXPLORE</Link>
                     </div>
                   </div>
@@ -170,7 +200,7 @@ export default function Home() {
             <ProductCard
               key={product.id}
               name={product.name}
-              price={formatCurrency(product.oilPrice6ml)}
+              basePrice={product.oilPrice6ml}
               imageUrl={product.image}
               link={`/products/${product.id}`}
             />
@@ -225,7 +255,7 @@ export default function Home() {
             <ProductCard
               key={product.id}
               name={product.name}
-              price={formatCurrency(product.oilPrice6ml)}
+              basePrice={product.oilPrice6ml}
               imageUrl={product.image}
               link={`/products/${product.id}`}
             />

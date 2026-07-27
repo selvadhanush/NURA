@@ -21,7 +21,7 @@
 
 .heroContent h1 {
   font-size: 3rem;
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: 0.4rem;
   margin-bottom: 1rem;
   text-shadow: 0 0 20px rgba(194, 167, 122, 0.4);
@@ -71,7 +71,7 @@
   color: #e0e0e0;
   line-height: 1.9;
   font-size: 1.1rem;
-  font-weight: 300;
+  font-weight: 400;
   margin-bottom: 1.5rem;
   text-align: justify;
 }

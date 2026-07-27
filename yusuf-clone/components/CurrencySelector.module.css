@@ -1,0 +1,231 @@
+/* ================================================================
+   CURRENCY SELECTOR — Premium dropdown matching NURA design system
+   ================================================================ */
+
+/* ---- Wrapper ---- */
+.wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ---- Trigger button ---- */
+.trigger {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: transparent;
+  border: 1px solid rgba(194, 167, 122, 0.35);
+  color: var(--color-gold);
+  padding: 0.45rem 0.75rem 0.45rem 0.6rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  font-weight: 500;
+  text-transform: uppercase;
+  transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+  white-space: nowrap;
+  outline: none;
+  user-select: none;
+}
+
+.trigger:hover,
+.triggerOpen {
+  border-color: var(--color-gold);
+  background: rgba(194, 167, 122, 0.08);
+  box-shadow: 0 0 0 1px rgba(194, 167, 122, 0.2);
+}
+
+.trigger:focus-visible {
+  box-shadow: 0 0 0 2px rgba(194, 167, 122, 0.5);
+}
+
+.globeIcon {
+  font-size: 0.85rem;
+  line-height: 1;
+}
+
+.triggerCode {
+  font-size: 0.78rem;
+  letter-spacing: 1.5px;
+}
+
+.triggerSymbol {
+  font-size: 0.85rem;
+  opacity: 0.75;
+}
+
+/* ---- Chevron animation ---- */
+.chevron {
+  color: var(--color-gold);
+  opacity: 0.7;
+  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+
+/* ---- Dropdown panel ---- */
+.dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 260px;
+  background: linear-gradient(145deg, #16221a 0%, #0d1710 100%);
+  border: 1px solid rgba(194, 167, 122, 0.25);
+  border-radius: 8px;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.7),
+    0 0 0 1px rgba(194, 167, 122, 0.06) inset;
+  z-index: 500;
+  overflow: hidden;
+  animation: dropdownOpen 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes dropdownOpen {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scaleY(0.95);
+    transform-origin: top right;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scaleY(1);
+  }
+}
+
+/* ---- Dropdown header ---- */
+.dropdownHeader {
+  padding: 1rem 1.1rem 0.75rem;
+  border-bottom: 1px solid rgba(194, 167, 122, 0.12);
+}
+
+.dropdownTitle {
+  display: block;
+  font-size: 0.7rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.dropdownNotice {
+  font-size: 0.7rem;
+  line-height: 1.5;
+  color: #6b8070;
+  font-style: italic;
+  margin: 0;
+}
+
+/* ---- Options list ---- */
+.optionList {
+  list-style: none;
+  margin: 0;
+  padding: 0.4rem 0;
+}
+
+/* ---- Individual option ---- */
+.option {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.7rem 1.1rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-body), sans-serif;
+  transition: background 0.18s ease;
+  position: relative;
+}
+
+.option:hover {
+  background: rgba(194, 167, 122, 0.08);
+}
+
+.option:focus-visible {
+  outline: none;
+  background: rgba(194, 167, 122, 0.1);
+}
+
+.optionCode {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--color-gold);
+  min-width: 2.8rem;
+  text-transform: uppercase;
+}
+
+.optionName {
+  font-size: 0.78rem;
+  color: #8fa094;
+  flex: 1;
+  letter-spacing: 0.5px;
+}
+
+.optionSymbol {
+  font-size: 0.9rem;
+  color: #a4b3a9;
+  min-width: 1.8rem;
+  text-align: right;
+}
+
+/* Active state */
+.optionActive {
+  background: rgba(194, 167, 122, 0.1);
+}
+
+.optionActive .optionCode {
+  color: #f0d990;
+}
+
+.optionActive .optionName {
+  color: #c2a77a;
+}
+
+.optionActive .optionSymbol {
+  color: #f0d990;
+}
+
+.checkIcon {
+  color: var(--color-gold);
+  flex-shrink: 0;
+  margin-left: auto;
+  opacity: 0.9;
+}
+
+/* ================================================================
+   RESPONSIVE — Mobile adaptations
+   ================================================================ */
+
+@media (max-width: 768px) {
+  .trigger {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.72rem;
+    gap: 0.25rem;
+  }
+
+  .triggerSymbol {
+    display: none; /* show only code on very small screens */
+  }
+
+  .dropdown {
+    /* On mobile, align to the right edge of the screen with margin */
+    right: -0.5rem;
+    min-width: 240px;
+  }
+}
+
+@media (max-width: 400px) {
+  .globeIcon {
+    display: none;
+  }
+}

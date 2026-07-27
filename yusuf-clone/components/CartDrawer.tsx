@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { useCart } from './CartContext';
+import { useCurrency } from './CurrencyContext';
+import { CURRENCIES } from '../lib/currency';
 import styles from './CartDrawer.module.css';
 
 export default function CartDrawer() {
@@ -15,9 +17,12 @@ export default function CartDrawer() {
     clearCart
   } = useCart();
 
+  const { fmt, currency, symbol, currencyName } = useCurrency();
+
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
+    country: '',
     address: '',
     city: '',
     pincode: '',
@@ -53,59 +58,67 @@ export default function CartDrawer() {
     if (!formData.name.trim()) newErrors.name = 'Name is required';
     if (!formData.phone.trim()) {
       newErrors.phone = 'Phone number is required';
-    } else if (!/^\+?[0-9\s-]{10,14}$/.test(formData.phone.trim())) {
+    } else if (!/^\+?[0-9\s-]{7,15}$/.test(formData.phone.trim())) {
       newErrors.phone = 'Please enter a valid phone number';
     }
+    if (!formData.country.trim()) newErrors.country = 'Country is required';
     if (!formData.address.trim()) newErrors.address = 'Delivery address is required';
     if (!formData.city.trim()) newErrors.city = 'City is required';
-    if (!formData.pincode.trim()) {
-      newErrors.pincode = 'Pincode is required';
-    } else if (!/^\d{6}$/.test(formData.pincode.trim())) {
-      newErrors.pincode = 'Please enter a valid 6-digit pincode';
-    }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
-  };
-
-  const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat('en-IN', {
-      style: 'currency',
-      currency: 'INR',
-      maximumFractionDigits: 0
-    }).format(amount);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateForm()) return;
 
-    // 1. Format order details
+    const currencyInfo = CURRENCIES[currency];
+
+    // 1. Format each order line item
     const orderItemsText = cart.map((item, idx) => {
-      return `${idx + 1}. *${item.name}* (${item.type === 'perfume' ? 'Perfume' : 'Perfume Oil'} - ${item.size})\n   Qty: ${item.quantity} x ${formatCurrency(item.price)} = ${formatCurrency(item.price * item.quantity)}`;
+      const displayedPrice = fmt(item.price);
+      const displayedLineTotal = fmt(item.price * item.quantity);
+      return (
+        `${idx + 1}. *${item.name}* (${item.type === 'perfume' ? 'Perfume' : 'Perfume Oil'} - ${item.size})\n` +
+        `   Qty: ${item.quantity}\n` +
+        `   Unit Price (${currency}): ${displayedPrice}\n` +
+        `   Line Total: ${displayedLineTotal}`
+      );
     }).join('\n\n');
 
-    // 2. Compile message
-    const message = `🛍️ *NEW ORDER - NURA BY BIN SADHIK*
+    const displayedTotal = fmt(totalPrice);
+
+    // 2. Compile the full WhatsApp message
+    const message =
+`Hello NURA by Bin Sadhik 👋
+
+I would like to place an order.
+
 ---------------------------------------
-*👤 CUSTOMER DETAILS:*
-• *Name:* ${formData.name.trim()}
-• *Phone:* ${formData.phone.trim()}
-• *Address:* ${formData.address.trim()}
-• *City:* ${formData.city.trim()}
-• *Pincode:* ${formData.pincode.trim()}
-${formData.notes.trim() ? `• *Notes:* ${formData.notes.trim()}\n` : ''}
+🛍️ *ORDER DETAILS:*
 ---------------------------------------
-*📦 ORDER ITEMS:*
 ${orderItemsText}
 
 ---------------------------------------
-💰 *TOTAL AMOUNT:* ${formatCurrency(totalPrice)}
+💰 *ORDER SUMMARY:*
+• Currency: *${currency} (${currencyInfo.name})*
+• Total Amount: *${displayedTotal}*
 ---------------------------------------
-_Thank you for ordering with NURA. Please confirm our payment details to proceed!_`;
+📌 *Note: Prices shown are approximate based on exchange rates. Final price will be confirmed via WhatsApp.*
+---------------------------------------
+
+👤 *CUSTOMER DETAILS:*
+• Name: ${formData.name.trim()}
+• Phone: ${formData.phone.trim()}
+• Country: ${formData.country.trim()}
+• City: ${formData.city.trim()}
+• Delivery Address: ${formData.address.trim()}${formData.pincode.trim() ? `\n• Pincode: ${formData.pincode.trim()}` : ''}${formData.notes.trim() ? `\n• Notes: ${formData.notes.trim()}` : ''}
+
+Thank you! 🌿`;
 
     // 3. Build WhatsApp URL
-    const whatsappNumber = '919003954228'; // Target WhatsApp number
+    const whatsappNumber = '919003954228';
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
 
@@ -173,7 +186,7 @@ _Thank you for ordering with NURA. Please confirm our payment details to proceed
                         <span>{item.quantity}</span>
                         <button onClick={() => updateQuantity(item.id, item.quantity + 1)}>+</button>
                       </div>
-                      <span className={styles.itemPrice}>{formatCurrency(item.price * item.quantity)}</span>
+                      <span className={styles.itemPrice}>{fmt(item.price * item.quantity)}</span>
                     </div>
                   </div>
                 </div>
@@ -183,8 +196,25 @@ _Thank you for ordering with NURA. Please confirm our payment details to proceed
             <div className={styles.summarySection}>
               <div className={styles.totalRow}>
                 <span>Subtotal</span>
-                <span className={styles.totalPrice}>{formatCurrency(totalPrice)}</span>
+                <div style={{ textAlign: 'right' }}>
+                  <span className={styles.totalPrice}>{fmt(totalPrice)}</span>
+                  <span style={{ display: 'block', fontSize: '0.65rem', color: 'rgba(194,167,122,0.5)', letterSpacing: '1px', marginTop: '2px' }}>
+                    {currency} {symbol}
+                  </span>
+                </div>
               </div>
+              {/* Exchange rate notice */}
+              <p style={{
+                fontSize: '0.68rem',
+                color: '#5a6e62',
+                fontStyle: 'italic',
+                marginTop: '0.5rem',
+                lineHeight: 1.5,
+                borderTop: '1px solid rgba(194,167,122,0.1)',
+                paddingTop: '0.5rem',
+              }}>
+                💱 Prices shown in {currencyName} are approximate based on exchange rates. Final price confirmed via WhatsApp.
+              </p>
             </div>
 
             <form onSubmit={handleSubmit} className={styles.checkoutForm}>
@@ -212,10 +242,24 @@ _Thank you for ordering with NURA. Please confirm our payment details to proceed
                   name="phone"
                   value={formData.phone}
                   onChange={handleInputChange}
-                  placeholder="e.g. 9003954228"
+                  placeholder="e.g. +91 90039 54228"
                   className={errors.phone ? styles.inputError : ''}
                 />
                 {errors.phone && <span className={styles.errorText}>{errors.phone}</span>}
+              </div>
+
+              <div className={styles.formGroup}>
+                <label htmlFor="country">Country *</label>
+                <input
+                  type="text"
+                  id="country"
+                  name="country"
+                  value={formData.country}
+                  onChange={handleInputChange}
+                  placeholder="e.g. United Arab Emirates"
+                  className={errors.country ? styles.inputError : ''}
+                />
+                {errors.country && <span className={styles.errorText}>{errors.country}</span>}
               </div>
 
               <div className={styles.formGroup}>
@@ -241,24 +285,22 @@ _Thank you for ordering with NURA. Please confirm our payment details to proceed
                     name="city"
                     value={formData.city}
                     onChange={handleInputChange}
-                    placeholder="e.g. Chennai"
+                    placeholder="e.g. Dubai"
                     className={errors.city ? styles.inputError : ''}
                   />
                   {errors.city && <span className={styles.errorText}>{errors.city}</span>}
                 </div>
                 <div className={styles.formGroup}>
-                  <label htmlFor="pincode">Pincode *</label>
+                  <label htmlFor="pincode">Pincode / ZIP (Optional)</label>
                   <input
                     type="text"
                     id="pincode"
                     name="pincode"
                     value={formData.pincode}
                     onChange={handleInputChange}
-                    placeholder="6-digit PIN"
-                    maxLength={6}
-                    className={errors.pincode ? styles.inputError : ''}
+                    placeholder="Postal code"
+                    maxLength={10}
                   />
-                  {errors.pincode && <span className={styles.errorText}>{errors.pincode}</span>}
                 </div>
               </div>
 

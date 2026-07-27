@@ -3,11 +3,13 @@
 import { useState, useEffect } from 'react';
 import { Product } from '../../../data/products';
 import { useCart } from '../../../components/CartContext';
+import { useCurrency } from '../../../components/CurrencyContext';
 import styles from './page.module.css';
 import Link from 'next/link';
 
 export default function ProductDetailClient({ product }: { product: Product | undefined }) {
   const { addToCart, setIsCartOpen } = useCart();
+  const { fmt, currency, symbol } = useCurrency();
 
   const [type, setType] = useState<'perfume' | 'oil'>('perfume');
   const [size, setSize] = useState<'50ml' | '100ml' | '6ml' | '12ml'>('50ml');
@@ -29,7 +31,7 @@ export default function ProductDetailClient({ product }: { product: Product | un
       <div className={styles.notFoundPage}>
         <div className={styles.notFoundContainer}>
           <h2 className={styles.notFoundTitle}>Fragrance Not Found</h2>
-          <p className={styles.notFoundText}>The signature fragrance you are looking for doesn't exist or has been archived.</p>
+          <p className={styles.notFoundText}>The signature fragrance you are looking for doesn&apos;t exist or has been archived.</p>
           <Link href="/collections" className={styles.backButton}>
             Return to Collections
           </Link>
@@ -38,21 +40,13 @@ export default function ProductDetailClient({ product }: { product: Product | un
     );
   }
 
-  // Determine pricing based on selections
-  let currentPrice = product.perfumePrice50ml;
+  // Determine pricing based on selections (always in base INR, fmt() converts)
+  let currentPriceINR = product.perfumePrice50ml;
   if (type === 'perfume') {
-    currentPrice = size === '100ml' ? product.perfumePrice100ml : product.perfumePrice50ml;
+    currentPriceINR = size === '100ml' ? product.perfumePrice100ml : product.perfumePrice50ml;
   } else {
-    currentPrice = size === '12ml' ? product.oilPrice12ml : product.oilPrice6ml;
+    currentPriceINR = size === '12ml' ? product.oilPrice12ml : product.oilPrice6ml;
   }
-
-  const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat('en-IN', {
-      style: 'currency',
-      currency: 'INR',
-      maximumFractionDigits: 0
-    }).format(amount);
-  };
 
   const handleAddToCart = () => {
     addToCart({
@@ -61,7 +55,7 @@ export default function ProductDetailClient({ product }: { product: Product | un
       image: product.image,
       type,
       size,
-      price: currentPrice
+      price: currentPriceINR, // Store base INR price in cart; display is handled by fmt()
     }, quantity);
 
     setShowToast(true);
@@ -100,7 +94,7 @@ export default function ProductDetailClient({ product }: { product: Product | un
                   textDecoration: 'underline'
                 }}
               >
-                VIEW CART & CHECKOUT
+                VIEW CART &amp; CHECKOUT
               </button>
             </div>
             <button 
@@ -145,7 +139,7 @@ export default function ProductDetailClient({ product }: { product: Product | un
                 
                 {activeImageTab === 'lifestyle' && (
                   <div className={styles.lifestyleOverlay}>
-                    <p className={styles.lifestyleText}>"A sensory journey of pure oils & botanical luxury."</p>
+                    <p className={styles.lifestyleText}>&quot;A sensory journey of pure oils &amp; botanical luxury.&quot;</p>
                     <span className={styles.lifestyleSub}>THE CIRCLE OF LIGHT COLLECTION</span>
                   </div>
                 )}
@@ -184,7 +178,22 @@ export default function ProductDetailClient({ product }: { product: Product | un
           <div className={styles.detailsColumn}>
             <span className={styles.brandTag}>NURA BY BIN SADHIK</span>
             <h1 className={styles.productName}>{product.name}</h1>
-            <p className={styles.productPrice}>{formatCurrency(currentPrice)}</p>
+
+            {/* Price display with currency badge */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
+              <p className={styles.productPrice}>{fmt(currentPriceINR)}</p>
+              <span style={{
+                fontSize: '0.65rem',
+                letterSpacing: '1.5px',
+                color: 'rgba(194, 167, 122, 0.6)',
+                border: '1px solid rgba(194, 167, 122, 0.2)',
+                padding: '0.2rem 0.5rem',
+                borderRadius: '3px',
+                fontFamily: 'var(--font-body)',
+              }}>
+                {currency} {symbol}
+              </span>
+            </div>
 
             <div className={styles.divider}></div>
 
@@ -220,13 +229,13 @@ export default function ProductDetailClient({ product }: { product: Product | un
                         className={`${styles.toggleBtn} ${size === '50ml' ? styles.toggleBtnActive : ''}`}
                         onClick={() => setSize('50ml')}
                       >
-                        50ml — {formatCurrency(product.perfumePrice50ml)}
+                        50ml — {fmt(product.perfumePrice50ml)}
                       </button>
                       <button
                         className={`${styles.toggleBtn} ${size === '100ml' ? styles.toggleBtnActive : ''}`}
                         onClick={() => setSize('100ml')}
                       >
-                        100ml — {formatCurrency(product.perfumePrice100ml)}
+                        100ml — {fmt(product.perfumePrice100ml)}
                       </button>
                     </>
                   ) : (
@@ -235,13 +244,13 @@ export default function ProductDetailClient({ product }: { product: Product | un
                         className={`${styles.toggleBtn} ${size === '6ml' ? styles.toggleBtnActive : ''}`}
                         onClick={() => setSize('6ml')}
                       >
-                        6ml — {formatCurrency(product.oilPrice6ml)}
+                        6ml — {fmt(product.oilPrice6ml)}
                       </button>
                       <button
                         className={`${styles.toggleBtn} ${size === '12ml' ? styles.toggleBtnActive : ''}`}
                         onClick={() => setSize('12ml')}
                       >
-                        12ml — {formatCurrency(product.oilPrice12ml)}
+                        12ml — {fmt(product.oilPrice12ml)}
                       </button>
                     </>
                   )}
@@ -258,7 +267,7 @@ export default function ProductDetailClient({ product }: { product: Product | un
                     <button onClick={() => setQuantity(q => q + 1)}>+</button>
                   </div>
                   <span className={styles.totalCalculation}>
-                    Total: {formatCurrency(currentPrice * quantity)}
+                    Total: {fmt(currentPriceINR * quantity)}
                   </span>
                 </div>
               </div>
@@ -291,7 +300,7 @@ export default function ProductDetailClient({ product }: { product: Product | un
 
             {/* Performance Sliders */}
             <div className={styles.performanceSection}>
-              <h3 className={styles.detailSectionTitle}>Performance & Longevity</h3>
+              <h3 className={styles.detailSectionTitle}>Performance &amp; Longevity</h3>
               <div className={styles.perfGrid}>
                 <div className={styles.perfItem}>
                   <div className={styles.perfLabelRow}>

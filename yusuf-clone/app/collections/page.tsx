@@ -4,10 +4,12 @@ import { useState, useMemo } from 'react';
 import styles from './page.module.css';
 import ProductCard from '../../components/ProductCard';
 import { PRODUCTS, Product } from '../../data/products';
+import { useCurrency } from '../../components/CurrencyContext';
 
 type SortOption = 'default' | 'price-asc' | 'price-desc' | 'name-asc' | 'name-desc';
 
 export default function Collections() {
+  const { fmt } = useCurrency();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedFamily, setSelectedFamily] = useState<string>('All');
   const [selectedGender, setSelectedGender] = useState<string>('All');
@@ -146,11 +148,11 @@ export default function Collections() {
               <div key={product.id} className={styles.productWrapper}>
                 <ProductCard 
                   name={product.name}
-                  price={new Intl.NumberFormat('en-IN').format(product.oilPrice6ml)}
+                  basePrice={product.oilPrice6ml}
                   imageUrl={product.image}
                   link={`/products/${product.id}`}
                 />
-                <span className={styles.sizeInfo}>From {new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(product.oilPrice6ml)}</span>
+                <span className={styles.sizeInfo}>From {fmt(product.oilPrice6ml)}</span>
               </div>
             ))}
           </div>

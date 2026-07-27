@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import styles from './Header.module.css';
 import Link from 'next/link';
 import { useCart } from './CartContext';
+import CurrencySelector from './CurrencySelector';
 
 export default function Header() {
   const pathname = usePathname();
@@ -20,7 +21,7 @@ export default function Header() {
         setIsScrolled(window.scrollY > 50);
         if (window.scrollY > lastScrollY && window.scrollY > 100) {
           setIsVisible(false);
-          setIsMenuOpen(false); // Close menu on scroll down
+          setIsMenuOpen(false);
         } else {
           setIsVisible(true);
         }
@@ -58,7 +59,7 @@ export default function Header() {
     <header className={headerClasses}>
       <div className={styles.topBar}>
         <div className={styles.container}>
-          <button 
+          <button
             className={`${styles.hamburger} ${isMenuOpen ? styles.hamburgerOpen : ''}`}
             onClick={toggleMenu}
             aria-label="Toggle Navigation"
@@ -67,7 +68,7 @@ export default function Header() {
             <span></span>
             <span></span>
           </button>
-          
+
           <div className={styles.logo}>
             <Link href="/" onClick={() => setIsMenuOpen(false)} className={styles.logoLink}>
               <span className={styles.brandTitle}>
@@ -77,25 +78,29 @@ export default function Header() {
             </Link>
           </div>
 
-          <button 
-            className={styles.cartButton}
-            onClick={() => setIsCartOpen(true)}
-            aria-label={`Open shopping cart. ${totalItems} items`}
-          >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="9" cy="21" r="1"></circle>
-              <circle cx="20" cy="21" r="1"></circle>
-              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-            </svg>
-            {totalItems > 0 && (
-              <span className={styles.cartBadge}>{totalItems}</span>
-            )}
-          </button>
+          {/* Right-side actions: currency + cart */}
+          <div className={styles.headerActions}>
+            <CurrencySelector />
+            <button
+              className={styles.cartButton}
+              onClick={() => setIsCartOpen(true)}
+              aria-label={`Open shopping cart. ${totalItems} items`}
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="9" cy="21" r="1"></circle>
+                <circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              {totalItems > 0 && (
+                <span className={styles.cartBadge}>{totalItems}</span>
+              )}
+            </button>
+          </div>
         </div>
       </div>
 
       {isMenuOpen && <div className={styles.overlay} onClick={() => setIsMenuOpen(false)}></div>}
-      
+
       <nav className={`${styles.nav} ${isMenuOpen ? styles.navOpen : ''}`}>
         <button className={styles.closeBtn} onClick={() => setIsMenuOpen(false)}>
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -109,9 +114,16 @@ export default function Header() {
           <li><Link href="/perfume" onClick={() => setIsMenuOpen(false)}>PERFUMES</Link></li>
           <li><Link href="/perfume-oil" onClick={() => setIsMenuOpen(false)}>PERFUME OILS</Link></li>
           <li><Link href="/create" onClick={() => setIsMenuOpen(false)}>FRAGRANCE FINDER</Link></li>
+          <li><Link href="/circle-of-light" onClick={() => setIsMenuOpen(false)}>CIRCLE OF LIGHT</Link></li>
           <li><Link href="/contact" onClick={() => setIsMenuOpen(false)}>CONTACT US</Link></li>
           <li><Link href="/about" onClick={() => setIsMenuOpen(false)}>ABOUT US</Link></li>
         </ul>
+
+        {/* Currency selector in mobile slide-in menu footer */}
+        <div className={styles.navFooter}>
+          <p className={styles.navFooterLabel}>SELECT CURRENCY</p>
+          <CurrencySelector />
+        </div>
       </nav>
     </header>
   );

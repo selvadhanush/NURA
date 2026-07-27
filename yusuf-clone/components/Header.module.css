@@ -37,6 +37,18 @@
   max-width: 100%;
 }
 
+/* Right-side actions group: currency selector + cart */
+.headerActions {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  z-index: 110;
+}
+
 .hamburger {
   display: none;
   flex-direction: column;
@@ -83,7 +95,7 @@
 }
 
 .brandTitle {
-  font-family: var(--font-display), serif;
+  font-family: 'Cormorant Garamond', serif;
   font-size: 3.2rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -133,10 +145,10 @@
 .navList a {
   font-family: var(--font-nav), sans-serif;
   font-size: 0.85rem;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--color-gold);
-  font-weight: 500;
+  font-weight: 400;
   transition: color 0.3s ease;
 }
 
@@ -292,11 +304,33 @@
     padding-right: 0.5rem;
   }
 
+  .cartButton {
+    position: relative;
+    top: auto;
+    right: auto;
+    transform: none;
+  }
+
+  .cartButton:hover {
+    color: var(--color-text-light);
+    transform: scale(1.05);
+  }
+
   .navFooter {
     display: block;
     margin-top: auto;
     padding: 2rem;
     width: 100%;
+    border-top: 1px solid rgba(194, 167, 122, 0.15);
+  }
+
+  .navFooterLabel {
+    font-size: 0.65rem;
+    letter-spacing: 2.5px;
+    color: rgba(194, 167, 122, 0.5);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    font-family: var(--font-body), sans-serif;
   }
 
   .loginLink {
@@ -311,10 +345,6 @@
 }
 
 .cartButton {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -323,11 +353,12 @@
   z-index: 110;
   transition: color 0.3s ease, transform 0.2s ease;
   padding: 0.5rem;
+  position: relative;
 }
 
 .cartButton:hover {
   color: var(--color-text-light);
-  transform: translateY(-50%) scale(1.05);
+  transform: scale(1.05);
 }
 
 .cartBadge {
@@ -351,7 +382,11 @@
 
 @media (max-width: 768px) {
   .cartButton {
-    right: 0.5rem;
+    /* position is already relative inside headerActions on mobile */
+  }
+
+  .headerActions {
+    gap: 0.5rem;
   }
 }
 

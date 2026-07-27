@@ -5,9 +5,9 @@
   --color-text-dark: #1c1c1c;
   --color-bg-light: #fdfbf7;
   --color-bg-dark: #0a0d0b;
-  --font-body: 'Inter', sans-serif;
-  --font-display: 'Cormorant Garamond', serif;
-  --font-nav: 'Inter', sans-serif;
+  --font-body: 'Instrument Sans', 'Inter', sans-serif;
+  --font-display: 'Instrument Sans', sans-serif;
+  --font-nav: 'Instrument Sans', sans-serif;
 }
 
 * {
@@ -27,6 +27,13 @@ body {
   font-size: 1rem;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
 }
 
 a {

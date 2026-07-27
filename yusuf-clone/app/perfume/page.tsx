@@ -1,3 +1,5 @@
+'use client';
+
 import styles from '../collections/page.module.css';
 import ProductCard from '../../components/ProductCard';
 import { PRODUCTS } from '../../data/products';
@@ -7,19 +9,19 @@ export default function Perfume() {
     <div className={styles.page}>
       <div className={styles.header}>
         <h1>EAUX DE PARFUM</h1>
-        <p className={styles.subtitle}>Exquisite Hand-Poured Perfumes in 50ml & 100ml</p>
+        <p className={styles.subtitle}>Exquisite Hand-Poured Perfumes in 50ml &amp; 100ml</p>
       </div>
       <div className={styles.container}>
         <div className={styles.grid}>
           {PRODUCTS.map(product => (
             <div key={product.id} className={styles.productWrapper}>
-              <ProductCard 
+              <ProductCard
                 name={product.name}
-                price={new Intl.NumberFormat('en-IN').format(product.perfumePrice50ml)}
+                basePrice={product.perfumePrice50ml}
                 imageUrl={product.image}
                 link={`/products/${product.id}`}
               />
-              <p className={styles.sizeInfo}>50ml & 100ml</p>
+              <p className={styles.sizeInfo}>50ml &amp; 100ml</p>
             </div>
           ))}
         </div>

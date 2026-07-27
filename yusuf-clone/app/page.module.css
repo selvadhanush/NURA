@@ -17,6 +17,26 @@
   overflow: hidden;
 }
 
+.heroImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1.2s ease-in-out;
+  z-index: 0;
+}
+
+.heroImageVisible {
+  opacity: 1;
+}
+
+.fallbackImage {
+  object-fit: cover;
+  object-position: center center;
+}
+
 .heroVideo {
   position: absolute;
   top: 0;
@@ -25,7 +45,16 @@
   height: 100%;
   object-fit: cover;
   object-position: center center;
-  z-index: 0;
+  z-index: 1;
+  transition: opacity 1.2s ease-in-out;
+  /* Ensures video never leaves empty bars on any aspect ratio */
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.heroVideoHidden {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .hero::before {
@@ -36,7 +65,20 @@
   right: 0;
   bottom: 0;
   background: radial-gradient(circle, transparent 40%, #070c08 95%);
-  z-index: 1;
+  z-index: 2;
+}
+
+/* Extra bottom gradient to keep CTA readable on any device */
+.hero::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 35%;
+  background: linear-gradient(to top, #070c08 0%, transparent 100%);
+  z-index: 2;
+  pointer-events: none;
 }
 
 .heroContent {
@@ -47,7 +89,7 @@
   align-items: center;
   width: 100%;
   max-width: 600px;
-  padding: 0 2rem;
+  padding: 0 1.5rem;
 }
 
 .heroSubtitle {
@@ -153,6 +195,14 @@
     padding-bottom: 5rem;
   }
 
+  .heroVideo {
+    object-position: center top;
+  }
+
+  .fallbackImage {
+    object-position: center top;
+  }
+
   .productGrid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -211,10 +261,31 @@
 
 @media (max-width: 768px) {
   .hero {
-    height: 100vh;
+    height: 100svh;
     height: 100dvh;
-    min-height: 450px;
-    padding-bottom: 4.5rem;
+    min-height: 480px;
+    padding-bottom: 4rem;
+    align-items: flex-end;
+  }
+
+  .heroVideo {
+    /* On portrait phones keep the focal point visible */
+    object-position: center 20%;
+  }
+
+  .fallbackImage {
+    object-position: center 20%;
+  }
+
+  .hero::before {
+    background: radial-gradient(ellipse at center, transparent 20%, #070c08 90%);
+  }
+
+  .heroContent {
+    padding: 0 1.25rem;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    width: 100%;
+    max-width: 100%;
   }
 
   .section {
@@ -249,16 +320,66 @@
 
   .primaryButton {
     padding: 1rem 2.5rem;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     letter-spacing: 2px;
-    width: auto;
-    max-width: 90%;
+    width: 100%;
+    max-width: 320px;
+    text-align: center;
   }
 
   .heroSubtitle {
     font-size: 0.9rem;
     letter-spacing: 0.3rem;
     margin-bottom: 2rem;
+  }
+}
+
+/* Small phones (≤ 480px) */
+@media (max-width: 480px) {
+  .hero {
+    min-height: 420px;
+    padding-bottom: 3rem;
+  }
+
+  .heroVideo {
+    object-position: center 15%;
+  }
+
+  .fallbackImage {
+    object-position: center 15%;
+  }
+
+  .primaryButton {
+    font-size: 0.8rem;
+    letter-spacing: 1.5px;
+    padding: 0.9rem 2rem;
+  }
+}
+
+/* Landscape phones */
+@media (max-width: 900px) and (orientation: landscape) {
+  .hero {
+    height: 100svh;
+    height: 100dvh;
+    min-height: 320px;
+    padding-bottom: 2.5rem;
+  }
+
+  .heroVideo {
+    object-position: center center;
+  }
+
+  .fallbackImage {
+    object-position: center center;
+  }
+
+  .hero::before {
+    background: radial-gradient(ellipse at center, transparent 30%, #070c08 88%);
+  }
+
+  .primaryButton {
+    padding: 0.75rem 2rem;
+    font-size: 0.8rem;
   }
 }
 
