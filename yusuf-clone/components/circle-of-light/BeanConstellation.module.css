@@ -2,7 +2,7 @@
   position: relative;
   width: 100%;
   max-width: 1000px;
-  height: 240px;
+  height: 210px;
   margin: 0 auto;
   user-select: none;
 }
@@ -44,11 +44,11 @@
 /* ══════════════════════════════════════
    5 DOWNWARD U-CURVE ARC SLOTS
 ══════════════════════════════════════ */
-.slot_outerLeft  { left: 18%; top: 22%; }
-.slot_innerLeft  { left: 33%; top: 46%; }
+.slot_outerLeft  { left: 18%; top: 6%; }
+.slot_innerLeft  { left: 33%; top: 38%; }
 .slot_center     { left: 50%; top: 66%; } /* Center lowest position (Spotlight Apex) */
-.slot_innerRight { left: 67%; top: 46%; }
-.slot_outerRight { left: 82%; top: 22%; }
+.slot_innerRight { left: 67%; top: 38%; }
+.slot_outerRight { left: 82%; top: 6%; }
 
 /* ══════════════════════════════════════
    SLEEK CIRCULAR GLASS ORB DISC (~58px)

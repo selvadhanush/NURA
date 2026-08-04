@@ -55,12 +55,21 @@ export default function CircleOfLightInteractive() {
 
   useEffect(() => {
     updatePositions();
-    const timer = setTimeout(updatePositions, 50);
-    const timer2 = setTimeout(updatePositions, 200);
+    
+    // Continuously measure active bean coordinates at native monitor refresh rate (60fps/120fps)
+    let animId: number;
+    const startTime = performance.now();
+    const loop = () => {
+      updatePositions();
+      if (performance.now() - startTime < 900) {
+        animId = requestAnimationFrame(loop);
+      }
+    };
+    animId = requestAnimationFrame(loop);
+
     window.addEventListener('resize', updatePositions);
     return () => {
-      clearTimeout(timer);
-      clearTimeout(timer2);
+      cancelAnimationFrame(animId);
       window.removeEventListener('resize', updatePositions);
     };
   }, [activeBrandIndex]);
@@ -69,11 +78,19 @@ export default function CircleOfLightInteractive() {
     if (index === activeBrandIndex) return;
 
     setIsTransitioning(true);
-    setTimeout(() => {
-      setActiveBrandIndex(index);
-      setIsTransitioning(false);
-      setTimeout(updatePositions, 60);
-    }, 250);
+    setActiveBrandIndex(index);
+
+    let animId: number;
+    const startTime = performance.now();
+    const loop = () => {
+      updatePositions();
+      if (performance.now() - startTime < 850) {
+        animId = requestAnimationFrame(loop);
+      } else {
+        setIsTransitioning(false);
+      }
+    };
+    animId = requestAnimationFrame(loop);
   };
 
   return (

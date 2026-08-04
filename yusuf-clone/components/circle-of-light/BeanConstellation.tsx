@@ -76,9 +76,9 @@ export default function BeanConstellation({
   return (
     <div ref={containerRef} className={styles.arcContainer}>
       {/* Dashed Downward U-Curve Arc Guide Line matching reference image */}
-      <svg className={styles.arcSvg} viewBox="0 0 1000 240" preserveAspectRatio="none">
+      <svg className={styles.arcSvg} viewBox="0 0 1000 210" preserveAspectRatio="none">
         <path
-          d="M 180 50 Q 500 160 820 50"
+          d="M 180 12 Q 500 138 820 12"
           fill="none"
           stroke="rgba(232, 216, 160, 0.18)"
           strokeWidth="1.5"

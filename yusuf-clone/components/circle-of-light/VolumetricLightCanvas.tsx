@@ -97,10 +97,9 @@ export default function VolumetricLightCanvas({
 
       ctx.clearRect(0, 0, width, height);
 
-      // Smooth Lerp factor = 0.08 for smooth beam transition
-      const lerpFactor = 0.08;
-      currentOriginRef.current.x += (targetOriginRef.current.x - currentOriginRef.current.x) * lerpFactor;
-      currentOriginRef.current.y += (targetOriginRef.current.y - currentOriginRef.current.y) * lerpFactor;
+      // Direct 1:1 real-time frame tracking (no lerp lag) matching the bean's smooth CSS arc transition
+      currentOriginRef.current.x = targetOriginRef.current.x;
+      currentOriginRef.current.y = targetOriginRef.current.y;
 
       const beanCenterX = currentOriginRef.current.x;
       const beanCenterY = currentOriginRef.current.y;
@@ -109,10 +108,9 @@ export default function VolumetricLightCanvas({
         const targetCenterX = targetArea.x + targetArea.width / 2;
         const targetTopY = targetArea.y;
 
-        // Refined orb radius (34px)
-        const orbRadius = 34;
-        const beamTopY = beanCenterY + orbRadius * 0.75;
-        const topBeamWidth = 48; // Sleek beam top width
+        // Beam geometry matching reference image (emerges from behind 4 o'clock & 8 o'clock tangents of active orb)
+        const beamTopY = beanCenterY + 14; // Starts inside lower half of active orb
+        const topBeamWidth = 36; // Emerges seamlessly from lower curve of active orb
         const bottomBeamWidth = targetArea.width || Math.min(width * 0.72, 650); // Matches top width of card
 
         const topLeftX = beanCenterX - topBeamWidth / 2;
@@ -120,43 +118,60 @@ export default function VolumetricLightCanvas({
         const bottomLeftX = targetCenterX - bottomBeamWidth / 2;
         const bottomRightX = targetCenterX + bottomBeamWidth / 2;
 
-        // 1. Outer Soft Ambient Light Bloom
-        const gradOuter = ctx.createLinearGradient(beanCenterX, beamTopY, targetCenterX, targetTopY + 60);
-        gradOuter.addColorStop(0, 'rgba(240, 252, 245, 0.38)');
-        gradOuter.addColorStop(0.3, 'rgba(215, 240, 225, 0.2)');
-        gradOuter.addColorStop(0.7, 'rgba(185, 220, 200, 0.07)');
+        // 1. Radiant Emitter Glow Source contained inside lower half of active orb (never extends above top edge)
+        const sourceGlow = ctx.createRadialGradient(
+          beanCenterX, beanCenterY + 18, 0,
+          beanCenterX, beanCenterY + 18, 30
+        );
+        sourceGlow.addColorStop(0, 'rgba(255, 255, 245, 0.88)');
+        sourceGlow.addColorStop(0.35, 'rgba(235, 222, 170, 0.48)');
+        sourceGlow.addColorStop(0.7, 'rgba(194, 167, 122, 0.12)');
+        sourceGlow.addColorStop(1, 'rgba(0, 0, 0, 0)');
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(beanCenterX, beanCenterY + 18, 30, 0, Math.PI * 2);
+        ctx.fillStyle = sourceGlow;
+        ctx.fill();
+        ctx.restore();
+
+        // 2. Outer Soft Ambient Light Cone
+        const gradOuter = ctx.createLinearGradient(beanCenterX, beamTopY, targetCenterX, targetTopY + 30);
+        gradOuter.addColorStop(0, 'rgba(240, 252, 245, 0.35)');
+        gradOuter.addColorStop(0.3, 'rgba(215, 240, 225, 0.18)');
+        gradOuter.addColorStop(0.7, 'rgba(185, 220, 200, 0.06)');
         gradOuter.addColorStop(1, 'rgba(0, 0, 0, 0)');
 
         ctx.save();
         ctx.beginPath();
-        ctx.moveTo(topLeftX - 8, beamTopY);
-        ctx.lineTo(topRightX + 8, beamTopY);
-        ctx.lineTo(bottomRightX + 18, targetTopY + 60);
-        ctx.lineTo(bottomLeftX - 18, targetTopY + 60);
+        ctx.moveTo(topLeftX - 6, beamTopY);
+        ctx.lineTo(topRightX + 6, beamTopY);
+        ctx.lineTo(bottomRightX + 14, targetTopY + 30);
+        ctx.lineTo(bottomLeftX - 14, targetTopY + 30);
         ctx.closePath();
         ctx.fillStyle = gradOuter;
         ctx.fill();
         ctx.restore();
 
-        // 2. Core Solid Volumetric Light Pillar
-        const gradCore = ctx.createLinearGradient(beanCenterX, beamTopY, targetCenterX, targetTopY + 20);
-        gradCore.addColorStop(0, 'rgba(255, 255, 255, 0.75)');
-        gradCore.addColorStop(0.2, 'rgba(235, 248, 240, 0.45)');
-        gradCore.addColorStop(0.6, 'rgba(205, 235, 220, 0.2)');
+        // 3. Core Solid Volumetric Light Cone
+        const gradCore = ctx.createLinearGradient(beanCenterX, beamTopY, targetCenterX, targetTopY + 5);
+        gradCore.addColorStop(0, 'rgba(255, 255, 255, 0.78)');
+        gradCore.addColorStop(0.18, 'rgba(235, 248, 240, 0.45)');
+        gradCore.addColorStop(0.6, 'rgba(205, 235, 220, 0.18)');
         gradCore.addColorStop(1, 'rgba(175, 215, 195, 0.02)');
 
         ctx.save();
         ctx.beginPath();
         ctx.moveTo(topLeftX, beamTopY);
         ctx.lineTo(topRightX, beamTopY);
-        ctx.lineTo(bottomRightX, targetTopY + 20);
-        ctx.lineTo(bottomLeftX, targetTopY + 20);
+        ctx.lineTo(bottomRightX, targetTopY + 5);
+        ctx.lineTo(bottomLeftX, targetTopY + 5);
         ctx.closePath();
         ctx.fillStyle = gradCore;
         ctx.fill();
 
-        // Crisp beam side border stroke
-        ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
+        // Crisp beam side border stroke matching reference image
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.38)';
         ctx.lineWidth = 1.0;
         ctx.stroke();
         ctx.restore();

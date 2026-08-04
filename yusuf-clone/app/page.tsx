@@ -31,15 +31,17 @@ export default function Home() {
   const [shouldRenderVideo] = useState(() => !hasPlayedVideoGlobal);
   const videoRef = useRef<HTMLVideoElement>(null);
 
+  const [isPlayingCraftVideo, setIsPlayingCraftVideo] = useState(false);
+  const craftVideoRef = useRef<HTMLVideoElement>(null);
 
-
-  useEffect(() => {
-    if (shouldRenderVideo && videoRef.current) {
-      videoRef.current.play().catch(err => {
-        console.log("Autoplay check:", err);
+  const handlePlayCraftVideo = () => {
+    setIsPlayingCraftVideo(true);
+    if (craftVideoRef.current) {
+      craftVideoRef.current.play().catch(err => {
+        console.log("Craft video play error:", err);
       });
     }
-  }, [shouldRenderVideo]);
+  };
 
   const handleVideoEnded = () => {
     setVideoEnded(true);
@@ -111,23 +113,38 @@ export default function Home() {
             <p className={styles.craftStory}>
               Every NURA fragrance is hand-poured in micro-batches using only the finest botanical extracts, precious woods, and natural essential oils. Inspired by the rich traditions of Arabian perfumery and refined with modern French design, our collection is curated for those who demand long-lasting projection and absolute sophistication.
             </p>
-            <div className={styles.videoPlayerPlaceholder}>
-              <div className={styles.videoThumbnailWrapper}>
-                <Image
-                  src="/hero-desktop-wide.jpg"
-                  alt="Cinematic Perfume Crafting"
-                  fill
-                  className={styles.videoThumbnail}
+            <div
+              className={`${styles.videoPlayerPlaceholder} ${isPlayingCraftVideo ? styles.videoPlaying : ''}`}
+              onClick={handlePlayCraftVideo}
+            >
+              {isPlayingCraftVideo ? (
+                <video
+                  ref={craftVideoRef}
+                  src="/craftsmanship-film.mp4"
+                  className={styles.craftVideoElement}
+                  controls
+                  autoPlay
+                  playsInline
+                  onEnded={() => setIsPlayingCraftVideo(false)}
                 />
-              </div>
-              <div className={styles.playOverlay}>
-                <div className={styles.playButtonIcon}>
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                  </svg>
-                </div>
-                <span>WATCH CRAFTSMANSHIP FILM</span>
-              </div>
+              ) : (
+                <>
+                  <Image
+                    src="/nura-green-bottle-thumb.png"
+                    alt="NURA Craftsmanship Film"
+                    fill
+                    className={styles.videoThumbnail}
+                  />
+                  <div className={styles.playOverlay}>
+                    <div className={styles.playButtonIcon}>
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <polygon points="6 3 20 12 6 21 6 3"></polygon>
+                      </svg>
+                    </div>
+                    <span>WATCH CRAFTSMANSHIP FILM</span>
+                  </div>
+                </>
+              )}
             </div>
           </div>
 
