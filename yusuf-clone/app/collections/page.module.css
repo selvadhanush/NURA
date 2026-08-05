@@ -12,17 +12,22 @@
 }
 
 .header h1 {
-  font-size: 2.5rem;
-  font-weight: 400;
-  letter-spacing: 4px;
+  font-family: var(--font-serif);
+  font-size: var(--text-h1);
+  font-weight: 300;
+  letter-spacing: var(--tracking-serif-title);
+  color: var(--color-gold);
+  text-transform: uppercase;
 }
 
 .subtitle {
-  font-size: 0.9rem;
-  letter-spacing: 2px;
-  margin-top: 1rem;
-  opacity: 0.8;
+  font-family: var(--font-sans);
+  font-size: var(--text-h4);
+  letter-spacing: var(--tracking-subheading);
+  margin-top: 0.8rem;
+  opacity: 0.85;
   text-transform: uppercase;
+  color: var(--color-champagne);
 }
 
 .container {

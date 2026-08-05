@@ -20,17 +20,20 @@
 }
 
 .heroContent h1 {
-  font-size: 3rem;
-  font-weight: 400;
-  letter-spacing: 0.4rem;
+  font-family: var(--font-serif);
+  font-size: var(--text-h1);
+  font-weight: 300;
+  letter-spacing: var(--tracking-serif-title);
   margin-bottom: 1rem;
-  text-shadow: 0 0 20px rgba(194, 167, 122, 0.4);
+  color: var(--color-gold);
+  text-transform: uppercase;
 }
 
 .heroContent p {
-  font-size: 1.1rem;
-  letter-spacing: 2px;
-  color: #fff;
+  font-family: var(--font-sans);
+  font-size: var(--text-h4);
+  letter-spacing: var(--tracking-subheading);
+  color: var(--color-champagne);
   opacity: 0.9;
   text-transform: uppercase;
 }
@@ -47,13 +50,16 @@
 }
 
 .section h2 {
-  font-size: 2rem;
-  font-weight: 350;
-  letter-spacing: 3px;
+  font-family: var(--font-serif);
+  font-size: var(--text-h2);
+  font-weight: 300;
+  letter-spacing: var(--tracking-serif-title);
   margin-bottom: 2rem;
   position: relative;
   display: inline-block;
   padding-bottom: 0.5rem;
+  text-transform: uppercase;
+  color: var(--color-gold);
 }
 
 .section h2::after {
@@ -68,9 +74,10 @@
 }
 
 .section p {
-  color: #e0e0e0;
-  line-height: 1.9;
-  font-size: 1.1rem;
+  font-family: var(--font-body);
+  color: var(--color-text-muted);
+  line-height: var(--lh-loose);
+  font-size: 1.08rem;
   font-weight: 400;
   margin-bottom: 1.5rem;
   text-align: justify;
@@ -104,17 +111,20 @@
 }
 
 .card h3 {
-  font-size: 1.4rem;
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
   font-weight: 400;
-  letter-spacing: 2px;
+  letter-spacing: var(--tracking-serif-title);
   margin-bottom: 1rem;
   color: var(--color-gold);
+  text-transform: uppercase;
 }
 
 .card p {
+  font-family: var(--font-body);
   font-size: 0.95rem;
-  line-height: 1.7;
-  color: #c0c0c0;
+  line-height: var(--lh-body);
+  color: var(--color-text-muted);
   text-align: center;
 }
 

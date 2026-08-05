@@ -1,13 +1,76 @@
 :root {
-  --color-primary-dark: #121914;
+  /* ==========================================================================
+     COLOR PALETTE - Haute Perfumery Palette
+     ========================================================================== */
+  --color-primary-dark: #090c0a;
+  --color-matte-black: #0b0e0c;
+  --color-dark-charcoal: #141815;
   --color-gold: #c2a77a;
-  --color-text-light: #fdfbf7;
-  --color-text-dark: #1c1c1c;
-  --color-bg-light: #fdfbf7;
-  --color-bg-dark: #0a0d0b;
-  --font-body: 'Instrument Sans', 'Inter', sans-serif;
-  --font-display: 'Instrument Sans', sans-serif;
-  --font-nav: 'Instrument Sans', sans-serif;
+  --color-gold-bright: #d4af37;
+  --color-champagne: #dfd0b8;
+  --color-ivory: #fdfbf7;
+  --color-soft-beige: #f4f0ea;
+  --color-warm-white: #fafafa;
+  --color-text-muted: #a4b3a9;
+  --color-text-dim: #7a887f;
+  --color-border-gold: rgba(194, 167, 122, 0.2);
+  --color-border-subtle: rgba(255, 255, 255, 0.08);
+
+  /* ==========================================================================
+     TYPOGRAPHY ARCHITECTURE & FONT STACKS
+     Inspired by Chanel, Dior, Tom Ford, MFK & Byredo
+     ========================================================================== */
+  --font-serif: 'Cormorant Garamond', 'Bodoni Moda', 'Playfair Display', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', 'Inter', 'Instrument Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Cormorant Garamond', 'Bodoni Moda', Georgia, serif;
+  --font-body: var(--font-sans);
+  --font-nav: var(--font-sans);
+  --font-button: var(--font-sans);
+  --font-price: var(--font-sans);
+  --font-caption: var(--font-sans);
+
+  /* ==========================================================================
+     FLUID TYPOGRAPHY SCALE (Editorial Hierarchy)
+     ========================================================================== */
+  --text-hero: clamp(2.8rem, 6.5vw, 5.5rem);
+  --text-h1: clamp(2.2rem, 4.5vw, 3.8rem);
+  --text-h2: clamp(1.75rem, 3.2vw, 2.8rem);
+  --text-h3: clamp(1.3rem, 2.2vw, 2.0rem);
+  --text-h4: clamp(1.1rem, 1.6vw, 1.45rem);
+  --text-body-lg: 1.125rem;
+  --text-body: 1.0rem;
+  --text-body-sm: 0.875rem;
+  --text-nav: 0.78rem;
+  --text-btn: 0.78rem;
+  --text-tag: 0.72rem;
+  --text-price: 0.95rem;
+
+  /* ==========================================================================
+     LETTER SPACING TRACKING TOKENS (Refined Micro-Typography)
+     ========================================================================== */
+  --tracking-tight: -0.015em;
+  --tracking-normal: 0em;
+  --tracking-serif-hero: 0.04em;
+  --tracking-serif-title: 0.08em;
+  --tracking-subheading: 0.15em;
+  --tracking-wide: 0.18em;
+  --tracking-nav: 0.22em;
+  --tracking-btn: 0.2em;
+  --tracking-widest: 0.3em;
+
+  /* ==========================================================================
+     LINE HEIGHT RHYTHM
+     ========================================================================== */
+  --lh-tight: 1.1;
+  --lh-heading: 1.25;
+  --lh-title: 1.35;
+  --lh-body: 1.72;
+  --lh-loose: 1.85;
+
+  /* ==========================================================================
+     SPACING & EDITORIAL WHITESPACE RHYTHM
+     ========================================================================== */
+  --space-section: clamp(4.5rem, 8.5vw, 8.5rem);
 }
 
 * {
@@ -17,29 +80,73 @@
 }
 
 html {
-  font-size: 14px; /* Scales down all rem-based typography site-wide */
+  font-size: 15px;
+  scroll-behavior: smooth;
 }
 
 body {
   font-family: var(--font-body);
   background-color: var(--color-primary-dark);
-  color: var(--color-gold);
-  font-size: 1rem;
-  line-height: 1.6;
+  color: var(--color-champagne);
+  font-size: var(--text-body);
+  line-height: var(--lh-body);
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-display);
-  font-weight: 400;
-  letter-spacing: 0.18em;
+/* ==========================================================================
+   GLOBAL HEADINGS & TYPOGRAPHY SYSTEM
+   ========================================================================== */
+h1, .hero-heading {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: var(--text-hero);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tracking-serif-hero);
+  color: var(--color-gold);
+}
+
+h2, .section-title {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: var(--text-h2);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--tracking-serif-title);
   text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+h3, .subtitle {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: var(--text-h4);
+  line-height: var(--lh-title);
+  letter-spacing: var(--tracking-subheading);
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+h4, .product-name {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: var(--text-h4);
+  line-height: var(--lh-heading);
+  letter-spacing: 0.05em;
+  color: var(--color-gold);
+}
+
+p {
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: var(--lh-body);
+  color: var(--color-text-muted);
 }
 
 a {
   color: inherit;
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, opacity 0.3s ease;
 }
 
 ul {
@@ -50,42 +157,53 @@ button {
   cursor: pointer;
   border: none;
   background: none;
-  font-family: var(--font-body);
+  font-family: var(--font-button);
 }
 
 .container {
-  max-width: 1400px;
+  max-width: 1440px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 2.5rem;
 }
 
 .text-center {
   text-align: center;
 }
 
-@media (max-width: 768px) {
-  .container {
-    padding: 0 1.25rem;
-  }
-  
-  h1 { font-size: 2rem !important; }
-  h2 { font-size: 1.6rem !important; }
-  h3 { font-size: 1.3rem !important; }
+/* Luxury Editorial Utility Badges & Tags */
+.tag-uppercase {
+  font-family: var(--font-sans);
+  font-size: var(--text-tag);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-gold);
+  font-weight: 500;
 }
 
-@media (max-width: 480px) {
-  .container {
-    padding: 0 1rem;
-  }
-  
-  h1 { font-size: 1.6rem !important; }
+.price-text {
+  font-family: var(--font-price);
+  font-size: var(--text-price);
+  letter-spacing: 0.08em;
+  color: var(--color-gold);
+  font-weight: 500;
 }
 
+/* Animations */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
+  from { opacity: 0; transform: translateY(12px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 .animate-fade-in {
-  animation: fadeIn 0.8s ease-out forwards;
+  animation: fadeIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+  
+  .container {
+    padding: 0 1.5rem;
+  }
 }

@@ -38,28 +38,33 @@
 }
 
 .name {
-  font-size: 1.1rem;
+  font-family: var(--font-serif);
+  font-size: clamp(1.1rem, 1.4vw, 1.35rem);
   font-weight: 400;
-  letter-spacing: 2px;
-  margin-bottom: 0.3rem;
+  letter-spacing: var(--tracking-serif-title);
+  margin-bottom: 0.4rem;
   text-transform: uppercase;
   color: var(--color-gold);
 }
 
 .price {
-  font-size: 0.95rem;
-  color: var(--color-gold);
-  letter-spacing: 1px;
+  font-family: var(--font-price);
+  font-size: var(--text-price);
+  color: var(--color-champagne);
+  letter-spacing: var(--tracking-subheading);
   text-transform: uppercase;
+  font-weight: 400;
+  opacity: 0.9;
 }
 
 @media (max-width: 480px) {
   .name {
-    font-size: 0.9rem;
-    letter-spacing: 1px;
+    font-size: 0.95rem;
+    letter-spacing: var(--tracking-serif-title);
   }
   .price {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
+    letter-spacing: var(--tracking-subheading);
   }
   .imageContainer {
     margin-bottom: 1rem;

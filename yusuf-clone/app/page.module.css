@@ -88,43 +88,67 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 600px;
+  max-width: 780px;
   padding: 0 1.5rem;
 }
 
 .heroSubtitle {
-  font-size: 1.2rem;
-  letter-spacing: 0.5rem;
-  margin-bottom: 3rem;
-  color: var(--color-gold);
+  font-family: var(--font-sans);
+  font-size: var(--text-tag);
+  letter-spacing: var(--tracking-widest);
+  margin-bottom: 0.8rem;
+  color: var(--color-champagne);
   text-transform: uppercase;
+  font-weight: 500;
+}
+
+.heroHeading {
+  font-family: var(--font-serif);
+  font-size: var(--text-hero);
+  font-weight: 300;
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tracking-serif-hero);
+  color: var(--color-gold);
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.heroLead {
+  font-family: var(--font-body);
+  font-size: clamp(1.0rem, 1.8vw, 1.25rem);
+  line-height: var(--lh-body);
+  color: rgba(253, 251, 247, 0.85);
+  margin-bottom: 2.5rem;
+  font-weight: 300;
+  max-width: 620px;
 }
 
 .primaryButton {
   display: inline-block;
-  background-color: rgba(18, 25, 20, 0.45);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background-color: rgba(9, 12, 10, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: 1px solid var(--color-gold);
   color: var(--color-gold);
   padding: 1.1rem 3.5rem;
-  font-size: 0.95rem;
-  letter-spacing: 3px;
+  font-family: var(--font-button);
+  font-size: var(--text-btn);
+  letter-spacing: var(--tracking-btn);
   text-transform: uppercase;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
 .primaryButton:hover {
   background-color: var(--color-gold);
   color: var(--color-primary-dark);
-  box-shadow: 0 6px 25px rgba(194, 167, 122, 0.4);
+  box-shadow: 0 6px 28px rgba(194, 167, 122, 0.45);
   transform: translateY(-2px);
 }
 
 .section {
-  padding: 3rem 2rem;
-  max-width: 1400px;
+  padding: var(--space-section) 2.5rem;
+  max-width: 1440px;
   margin: 0 auto;
 }
 
@@ -140,24 +164,27 @@
 
 .sectionHeader {
   text-align: center;
-  margin-bottom: 2.5rem;
-}
-
-.sectionHeader h3 {
-  font-size: 1.2rem;
-  font-weight: 400;
-  letter-spacing: 3px;
-  color: var(--color-gold);
-  text-transform: uppercase;
+  margin-bottom: 3.5rem;
 }
 
 .sectionHeader h2 {
-  font-size: 3rem;
+  font-family: var(--font-serif);
+  font-size: var(--text-h2);
   font-weight: 300;
-  letter-spacing: 5px;
+  letter-spacing: var(--tracking-serif-title);
   color: var(--color-gold);
   text-transform: uppercase;
   margin-bottom: 0.5rem;
+}
+
+.sectionHeader h3 {
+  font-family: var(--font-sans);
+  font-size: var(--text-h4);
+  font-weight: 400;
+  letter-spacing: var(--tracking-subheading);
+  color: var(--color-champagne);
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 
 .productGrid {
@@ -241,16 +268,18 @@
   background-color: transparent;
   border: 1px solid var(--color-gold);
   color: var(--color-gold);
-  padding: 0.9rem 3rem;
-  font-size: 0.95rem;
-  letter-spacing: 3px;
+  padding: 1.0rem 3.2rem;
+  font-family: var(--font-button);
+  font-size: var(--text-btn);
+  letter-spacing: var(--tracking-btn);
   text-transform: uppercase;
-  transition: all 0.3s;
+  transition: all 0.3s ease;
 }
 
 .secondaryButton:hover {
   background-color: var(--color-gold);
   color: var(--color-primary-dark);
+  box-shadow: 0 4px 20px rgba(194, 167, 122, 0.3);
 }
 
 .categoriesGrid {
@@ -408,10 +437,12 @@
 }
 
 .categoryCard h4 {
-  font-size: 1.5rem;
-  font-weight: 300;
-  letter-spacing: 3px;
+  font-family: var(--font-serif);
+  font-size: var(--text-h4);
+  font-weight: 400;
+  letter-spacing: var(--tracking-serif-title);
   text-transform: uppercase;
+  color: var(--color-gold);
 }
 
 /* Reviews Section */
@@ -431,13 +462,13 @@
 .reviewCard {
   background: rgba(194, 167, 122, 0.03);
   border: 1px solid rgba(194, 167, 122, 0.15);
-  padding: 2.5rem 2rem;
+  padding: 2.8rem 2.2rem;
   border-radius: 4px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  transition: all 0.3s ease;
+  transition: all 0.35s ease;
 }
 
 .reviewCard:hover {
@@ -448,32 +479,37 @@
 
 .stars {
   color: var(--color-gold);
-  font-size: 1.2rem;
-  letter-spacing: 2px;
+  font-size: 1.1rem;
+  letter-spacing: 3px;
   margin-bottom: 1.5rem;
 }
 
 .reviewText {
-  font-size: 1rem;
-  line-height: 1.7;
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  line-height: var(--lh-loose);
   font-style: italic;
   margin-bottom: 2rem;
-  color: #d1d9d4;
+  color: var(--color-warm-white);
+  font-weight: 300;
 }
 
 .reviewerName {
-  font-size: 1.1rem;
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
   font-weight: 500;
-  letter-spacing: 1px;
+  letter-spacing: 0.08em;
   color: var(--color-gold);
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.25rem;
+  text-transform: uppercase;
 }
 
 .verifiedBuyer {
-  font-size: 0.8rem;
+  font-family: var(--font-sans);
+  font-size: var(--text-tag);
   text-transform: uppercase;
-  letter-spacing: 1px;
-  color: #8fa094;
+  letter-spacing: var(--tracking-widest);
+  color: var(--color-text-dim);
 }
 
 @media (max-width: 1024px) {

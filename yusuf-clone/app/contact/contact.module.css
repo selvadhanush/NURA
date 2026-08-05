@@ -26,19 +26,20 @@
 }
 
 .heroContent h1 {
-  font-family: var(--font-display), serif;
-  font-size: 3.5rem;
-  font-weight: 400;
-  letter-spacing: 0.4rem;
+  font-family: var(--font-serif);
+  font-size: var(--text-h1);
+  font-weight: 300;
+  letter-spacing: var(--tracking-serif-title);
   margin-bottom: 1rem;
   color: var(--color-gold);
-  text-shadow: 0 0 30px rgba(194, 167, 122, 0.35);
+  text-transform: uppercase;
 }
 
 .heroContent p {
-  font-size: 1rem;
-  letter-spacing: 4px;
-  color: #d1d9d4;
+  font-family: var(--font-sans);
+  font-size: var(--text-h4);
+  letter-spacing: var(--tracking-subheading);
+  color: var(--color-champagne);
   opacity: 0.9;
   text-transform: uppercase;
 }

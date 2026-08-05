@@ -77,7 +77,7 @@ export default function ProductDetailClient({ product }: { product: Product | un
               <span className={styles.toastTitle}>Added to Cart</span>
               <h4 className={styles.toastName}>{product.name}</h4>
               <p className={styles.toastMeta}>
-                {type === 'perfume' ? 'Eau de Parfum' : 'Concentrated Oil'} — {size} ({quantity}x)
+                {type === 'perfume' ? 'Scent' : 'Oil'} — {size} ({quantity}x)
               </p>
               <button 
                 onClick={handleToastAction} 
@@ -208,13 +208,13 @@ export default function ProductDetailClient({ product }: { product: Product | un
                     className={`${styles.toggleBtn} ${type === 'perfume' ? styles.toggleBtnActive : ''}`}
                     onClick={() => setType('perfume')}
                   >
-                    Eau de Parfum
+                    Scent
                   </button>
                   <button
                     className={`${styles.toggleBtn} ${type === 'oil' ? styles.toggleBtnActive : ''}`}
                     onClick={() => setType('oil')}
                   >
-                    Concentrated Perfume Oil
+                    Oil
                   </button>
                 </div>
               </div>
@@ -229,13 +229,13 @@ export default function ProductDetailClient({ product }: { product: Product | un
                         className={`${styles.toggleBtn} ${size === '50ml' ? styles.toggleBtnActive : ''}`}
                         onClick={() => setSize('50ml')}
                       >
-                        50ml — {fmt(product.perfumePrice50ml)}
+                        50ml
                       </button>
                       <button
                         className={`${styles.toggleBtn} ${size === '100ml' ? styles.toggleBtnActive : ''}`}
                         onClick={() => setSize('100ml')}
                       >
-                        100ml — {fmt(product.perfumePrice100ml)}
+                        100ml
                       </button>
                     </>
                   ) : (
@@ -244,16 +244,29 @@ export default function ProductDetailClient({ product }: { product: Product | un
                         className={`${styles.toggleBtn} ${size === '6ml' ? styles.toggleBtnActive : ''}`}
                         onClick={() => setSize('6ml')}
                       >
-                        6ml — {fmt(product.oilPrice6ml)}
+                        6ml
                       </button>
                       <button
                         className={`${styles.toggleBtn} ${size === '12ml' ? styles.toggleBtnActive : ''}`}
                         onClick={() => setSize('12ml')}
                       >
-                        12ml — {fmt(product.oilPrice12ml)}
+                        12ml
                       </button>
                     </>
                   )}
+                </div>
+                <div style={{ 
+                  marginTop: '0.75rem', 
+                  fontSize: '1.25rem', 
+                  color: 'var(--color-gold)', 
+                  fontFamily: 'var(--font-price)', 
+                  letterSpacing: '0.04em',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem'
+                }}>
+                  <span style={{ fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'rgba(255, 255, 255, 0.6)', fontFamily: 'var(--font-sans)' }}>Price:</span>
+                  <span style={{ fontWeight: 500 }}>{fmt(currentPriceINR)}</span>
                 </div>
               </div>
 
