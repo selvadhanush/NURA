@@ -1,8 +1,9 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import styles from './Header.module.css';
+
 import Link from 'next/link';
 import { useCart } from './CartContext';
 import CurrencySelector from './CurrencySelector';
@@ -14,14 +15,18 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { setIsCartOpen, totalItems } = useCart();
+  const navListRef = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
     const controlHeader = () => {
       if (typeof window !== 'undefined') {
+        if (isMenuOpen) {
+          setIsVisible(true);
+          return;
+        }
         setIsScrolled(window.scrollY > 50);
         if (window.scrollY > lastScrollY && window.scrollY > 100) {
           setIsVisible(false);
-          setIsMenuOpen(false);
         } else {
           setIsVisible(true);
         }
@@ -30,7 +35,7 @@ export default function Header() {
     };
     window.addEventListener('scroll', controlHeader);
     return () => window.removeEventListener('scroll', controlHeader);
-  }, [lastScrollY]);
+  }, [lastScrollY, isMenuOpen]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -39,6 +44,9 @@ export default function Header() {
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = 'hidden';
+      if (navListRef.current) {
+        navListRef.current.scrollTop = 0;
+      }
     } else {
       document.body.style.overflow = 'unset';
     }
@@ -80,7 +88,9 @@ export default function Header() {
 
           {/* Right-side actions: currency + cart */}
           <div className={styles.headerActions}>
-            <CurrencySelector />
+            <div className={styles.headerCurrency}>
+              <CurrencySelector />
+            </div>
             <button
               className={styles.cartButton}
               onClick={() => setIsCartOpen(true)}
@@ -102,14 +112,16 @@ export default function Header() {
       {isMenuOpen && <div className={styles.overlay} onClick={() => setIsMenuOpen(false)}></div>}
 
       <nav className={`${styles.nav} ${isMenuOpen ? styles.navOpen : ''}`}>
-        <button className={styles.closeBtn} onClick={() => setIsMenuOpen(false)}>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
-          </svg>
-        </button>
+        <div className={styles.navHeader}>
+          <button className={styles.closeBtn} onClick={() => setIsMenuOpen(false)} aria-label="Close menu">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
 
-        <ul className={styles.navList}>
+        <ul className={styles.navList} ref={navListRef}>
           <li><Link href="/" onClick={() => setIsMenuOpen(false)}>HOME</Link></li>
           <li><Link href="/perfume" onClick={() => setIsMenuOpen(false)}>PERFUMES</Link></li>
           <li><Link href="/perfume-oil" onClick={() => setIsMenuOpen(false)}>PERFUME OILS</Link></li>
@@ -122,7 +134,7 @@ export default function Header() {
         {/* Currency selector in mobile slide-in menu footer */}
         <div className={styles.navFooter}>
           <p className={styles.navFooterLabel}>SELECT CURRENCY</p>
-          <CurrencySelector />
+          <CurrencySelector align="left" direction="up" />
         </div>
       </nav>
     </header>

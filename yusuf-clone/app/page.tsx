@@ -248,12 +248,23 @@ export default function Home() {
           </div>
 
           <div className={styles.charityVisual}>
-            <div className={styles.circleGraphic}>
-              <div className={styles.innerCircle}>
-                <span className={styles.innerCircleText}>NURA</span>
-              </div>
-              <div className={styles.orbitingTextContainer}>
-                <span className={styles.orbitingText}>PURITY • COMPASSION • ARTISTRY</span>
+            <div className={styles.charityCardVisual}>
+              <Image
+                src="/charity-essence.jpg"
+                alt="Purification of Trade - NURA"
+                fill
+                className={styles.charityCardImage}
+              />
+              <div className={styles.charityOverlay}>
+                <div className={styles.charityStatBox}>
+                  <span className={styles.charityStatNum}>10%</span>
+                  <span className={styles.charityStatLabel}>PROFIT DEDICATED TO GIVING</span>
+                </div>
+                <div className={styles.charityBadgeRow}>
+                  <span>✦ Education</span>
+                  <span>✦ Clean Water</span>
+                  <span>✦ Vocational Skills</span>
+                </div>
               </div>
             </div>
           </div>
@@ -261,7 +272,7 @@ export default function Home() {
       </section>
 
       {/* 5. Signature Collection (Staff Picks) Section */}
-      <section className={styles.section}>
+      <section className={`${styles.section} ${styles.signatureSection}`}>
         <div className={styles.sectionHeader}>
           <h2>THE SIGNATURE SERIES</h2>
           <h3>Curated Masterpieces by Bin Sadhik</h3>

@@ -5,20 +5,32 @@ import { useCurrency } from './CurrencyContext';
 import { CURRENCIES, CURRENCY_ORDER, CurrencyCode } from '../lib/currency';
 import styles from './CurrencySelector.module.css';
 
-export default function CurrencySelector() {
+interface CurrencySelectorProps {
+  align?: 'left' | 'right';
+  direction?: 'down' | 'up';
+}
+
+export default function CurrencySelector({
+  align = 'right',
+  direction = 'down'
+}: CurrencySelectorProps) {
   const { currency, setCurrency } = useCurrency();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Close on outside click
+  // Close on outside click or touch
   useEffect(() => {
-    const handleClick = (e: MouseEvent) => {
+    const handleClick = (e: MouseEvent | TouchEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
         setIsOpen(false);
       }
     };
     document.addEventListener('mousedown', handleClick);
-    return () => document.removeEventListener('mousedown', handleClick);
+    document.addEventListener('touchstart', handleClick);
+    return () => {
+      document.removeEventListener('mousedown', handleClick);
+      document.removeEventListener('touchstart', handleClick);
+    };
   }, []);
 
   // Close on Escape key
@@ -36,6 +48,12 @@ export default function CurrencySelector() {
   };
 
   const activeCurrency = CURRENCIES[currency];
+
+  const dropdownClasses = [
+    styles.dropdown,
+    align === 'left' ? styles.alignLeft : styles.alignRight,
+    direction === 'up' ? styles.directionUp : styles.directionDown
+  ].join(' ');
 
   return (
     <div className={styles.wrapper} ref={dropdownRef}>
@@ -64,7 +82,7 @@ export default function CurrencySelector() {
 
       {isOpen && (
         <div
-          className={styles.dropdown}
+          className={dropdownClasses}
           role="listbox"
           aria-labelledby="currency-trigger"
         >

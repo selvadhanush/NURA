@@ -152,10 +152,23 @@
   margin: 0 auto;
 }
 
+.signatureSection {
+  padding-bottom: 1.5rem;
+}
+
+.signatureSection .productGrid {
+  margin-bottom: 0;
+}
+
 .scentedDelightsContainer {
   background-color: transparent;
   width: 100%;
-  margin-top: 1rem;
+  margin-top: 0;
+}
+
+.scentedDelightsContainer section {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .bgWhite {
@@ -448,8 +461,10 @@
 /* Reviews Section */
 .reviewsSection {
   background-color: transparent;
-  margin-top: 2rem;
-  margin-bottom: 4rem;
+  padding-top: 1rem;
+  padding-bottom: 1.5rem;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .reviewsGrid {
@@ -966,84 +981,95 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.circleGraphic {
-  position: relative;
-  width: 300px;
-  height: 300px;
-  border: 1px dashed rgba(194, 167, 122, 0.4);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation: rotateCircle 30s linear infinite;
-}
-
-@keyframes rotateCircle {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.innerCircle {
-  position: absolute;
-  width: 140px;
-  height: 140px;
-  background: radial-gradient(circle, #1c2e22 0%, #0b0f0c 100%);
-  border: 2px solid var(--color-gold);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 0 30px rgba(194, 167, 122, 0.15);
-  animation: antiRotate 30s linear infinite;
-}
-
-@keyframes antiRotate {
-  from {
-    transform: rotate(360deg);
-  }
-
-  to {
-    transform: rotate(0deg);
-  }
-}
-
-.innerCircleText {
-  font-family: var(--font-display);
-  font-size: 2.2rem;
-  font-weight: 500;
-  letter-spacing: 3px;
-  color: var(--color-gold);
-}
-
-.orbitingTextContainer {
-  position: absolute;
   width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
-.orbitingText {
-  font-size: 0.75rem;
-  letter-spacing: 5px;
+.charityCardVisual {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  height: 320px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(194, 167, 122, 0.3);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  transition: transform 0.4s ease, border-color 0.4s ease;
+}
+
+.charityCardVisual:hover {
+  transform: translateY(-4px);
+  border-color: rgba(194, 167, 122, 0.6);
+}
+
+.charityCardImage {
+  object-fit: cover;
+  filter: brightness(0.65) contrast(1.1);
+  transition: transform 0.6s ease;
+}
+
+.charityCardVisual:hover .charityCardImage {
+  transform: scale(1.04);
+}
+
+.charityOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(9, 12, 10, 0.95) 0%, rgba(9, 12, 10, 0.35) 60%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 2rem;
+  z-index: 2;
+}
+
+.charityStatBox {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.2rem;
+}
+
+.charityStatNum {
+  font-family: var(--font-serif);
+  font-size: 3.5rem;
+  font-weight: 300;
   color: var(--color-gold);
-  opacity: 0.8;
+  line-height: 1;
+  letter-spacing: 2px;
+}
+
+.charityStatLabel {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  letter-spacing: 2.5px;
+  color: var(--color-champagne);
+  text-transform: uppercase;
   font-weight: 600;
+  margin-top: 0.3rem;
+}
+
+.charityBadgeRow {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.charityBadgeRow span {
+  font-size: 0.72rem;
+  letter-spacing: 1.5px;
+  color: rgba(253, 251, 247, 0.9);
+  background: rgba(194, 167, 122, 0.15);
+  border: 1px solid rgba(194, 167, 122, 0.3);
+  padding: 0.3rem 0.7rem;
+  border-radius: 20px;
+  text-transform: uppercase;
+  font-weight: 500;
 }
 
 /* Newsletter Section styling */
 .newsletterSection {
-  padding: 4rem 2rem;
+  padding: 1.5rem 2rem 1.5rem;
   max-width: 1000px;
-  margin: 4rem auto;
+  margin: 1rem auto 0;
 }
 
 .newsletterCard {

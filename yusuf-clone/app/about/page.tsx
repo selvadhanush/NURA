@@ -5,40 +5,36 @@ export default function About() {
     <div className={styles.page}>
       <div className={styles.hero}>
         <div className={styles.heroContent}>
-          <h1>ABOUT NURΛ</h1>
-          <p>More than a fragrance. An Identity.</p>
+          <h1>ABOUT US</h1>
+          <p className={styles.subtitle}>NURA BY BIN SADHIK</p>
         </div>
       </div>
-      
+
       <div className={styles.container}>
-        <section className={styles.section}>
-          <h2>THE ESSENCE OF NURΛ</h2>
-          <p>
-            At NURΛ by Bin Sadhik, we believe that fragrance is more than an accessory—it is a lingering presence, a silent storyteller, and an indelible signature of your character. Born from a legacy of fine scent-making, we craft premium Perfume Oils (6ml & 12ml) and Signature Perfumes (50ml & 100ml) using only the most exquisite ingredients.
-          </p>
-          <p>
-            Each perfume in our collections is designed to balance longevity, complexity, and refinement, offering fragrances that evolve beautifully throughout the day and night.
-          </p>
-        </section>
+        <div className={styles.editorialQuote}>
+          <blockquote>
+            "There is a difference between a fragrance that is made and one that is found."
+          </blockquote>
+        </div>
 
         <section className={styles.section}>
-          <h2>PURIFICATION OF TRADE</h2>
-          <p>
-            We don't view giving back as charity; we view it as a Purification of Trade. Every transaction completes the Circle of Light. We donate exactly 2.5% of all our profits to charity, transforming luxury into a dynamic force for restoration and hope.
-          </p>
-          <p>
-            With NURΛ, your purchase does not just elevate your senses—it brightens a future and shares the light.
+          <p className={styles.paragraph}>
+            At NURA, we do not manufacture scent. We curate it seeking out the rarest oils and attars from the hands that still know how to create them the way they were always meant to be created by proper extraction, not engineering. Drawn patiently from nature before assembled in a lab. It is a process few have the patience, skill, or heritage to master, which is why the artisans we work with are among a handful left, in the nation and in the world, who still practice this craft in its truest form.
           </p>
 
-          <div className={styles.grid}>
-            <div className={styles.card}>
-              <h3>THE CRAFT</h3>
-              <p>Hand-selected ingredients, premium natural oils, and meticulous blending processes define our fragrance curation.</p>
-            </div>
-            <div className={styles.card}>
-              <h3>THE LIGHT</h3>
-              <p>2.5% of profits go directly to charity, making luxury a medium for positive change and brighter futures.</p>
-            </div>
+          <p className={styles.paragraph}>
+            This is what sets NURA apart. While much of the industry has moved toward speed and synthetic shortcuts, we have moved in the opposite direction, toward depth, toward origin, toward oils that carry the weight of time and mastery in every drop. Every bottle we place our name on has been sourced, tested, and selected with the same discernment a jeweler brings to a rare stone. True luxury is never crafted, it is unveiled.
+          </p>
+
+          <div className={styles.highlightBanner}>
+            <p className={styles.highlightText}>
+              We are not a factory. We are a house of curation acting as a bridge between the world's finest perfume artisans and those who refuse to wear the ordinary.
+            </p>
+          </div>
+
+          <div className={styles.identityTagline}>
+            <h2>NURA BY BIN SADHIK</h2>
+            <span className={styles.taglineSub}>MORE THAN FRAGRANCE, AN IDENTITY.</span>
           </div>
         </section>
       </div>

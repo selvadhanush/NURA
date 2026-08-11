@@ -1,22 +1,20 @@
 .page {
   min-height: 100vh;
-  background-color: #0a0e0b;
+  background-color: #070c08;
   color: var(--color-gold);
   padding-bottom: 6rem;
 }
 
 .hero {
   position: relative;
-  height: 40vh;
-  min-height: 300px;
+  height: 38vh;
+  min-height: 280px;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  background-image: linear-gradient(rgba(10, 14, 11, 0.7), rgba(10, 14, 11, 0.9)), url('/hero-desktop-green.png');
-  background-size: cover;
-  background-position: center;
-  border-bottom: 1px solid rgba(194, 167, 122, 0.2);
+  background-color: #0b0f0c;
+  border-bottom: 1px solid rgba(194, 167, 122, 0.15);
 }
 
 .heroContent h1 {
@@ -24,130 +22,136 @@
   font-size: var(--text-h1);
   font-weight: 300;
   letter-spacing: var(--tracking-serif-title);
-  margin-bottom: 1rem;
+  margin-bottom: 0.8rem;
   color: var(--color-gold);
   text-transform: uppercase;
 }
 
-.heroContent p {
+.subtitle {
   font-family: var(--font-sans);
   font-size: var(--text-h4);
   letter-spacing: var(--tracking-subheading);
   color: var(--color-champagne);
-  opacity: 0.9;
+  opacity: 0.85;
   text-transform: uppercase;
 }
 
 .container {
-  max-width: 900px;
+  max-width: 860px;
   margin: 0 auto;
   padding: 4rem 2rem 0;
 }
 
-.section {
-  margin-bottom: 5rem;
+.editorialQuote {
   text-align: center;
+  margin-bottom: 3.5rem;
+  padding: 0 1rem;
 }
 
-.section h2 {
+.editorialQuote blockquote {
   font-family: var(--font-serif);
-  font-size: var(--text-h2);
+  font-size: clamp(1.4rem, 2.5vw, 2.1rem);
   font-weight: 300;
-  letter-spacing: var(--tracking-serif-title);
-  margin-bottom: 2rem;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--color-champagne);
+  letter-spacing: 0.04em;
   position: relative;
-  display: inline-block;
-  padding-bottom: 0.5rem;
-  text-transform: uppercase;
-  color: var(--color-gold);
 }
 
-.section h2::after {
-  content: '';
+.editorialQuote blockquote::before {
+  content: '“';
+  font-size: 4rem;
+  color: rgba(194, 167, 122, 0.3);
   position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 50px;
-  height: 1px;
-  background-color: var(--color-gold);
+  top: -1.5rem;
+  left: -1rem;
 }
 
-.section p {
+.section {
+  margin-bottom: 4rem;
+}
+
+.paragraph {
   font-family: var(--font-body);
-  color: var(--color-text-muted);
-  line-height: var(--lh-loose);
-  font-size: 1.08rem;
-  font-weight: 400;
-  margin-bottom: 1.5rem;
+  color: #a4b3a9;
+  line-height: 1.95;
+  font-size: 1.12rem;
+  font-weight: 300;
+  margin-bottom: 2.2rem;
   text-align: justify;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 3rem;
-  margin-top: 4rem;
+.highlightBanner {
+  background: linear-gradient(135deg, rgba(22, 34, 26, 0.6) 0%, rgba(12, 18, 14, 0.8) 100%);
+  border: 1px solid rgba(194, 167, 122, 0.25);
+  border-radius: 8px;
+  padding: 2.5rem 2.2rem;
+  margin: 3.5rem 0;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
 }
 
-.card {
-  background: rgba(26, 36, 29, 0.3);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(194, 167, 122, 0.15);
-  border-radius: 12px;
-  padding: 3rem 2rem;
-  text-align: center;
-  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.card:hover {
-  transform: translateY(-6px);
-  border-color: var(--color-gold);
-  box-shadow: 
-    0 15px 35px rgba(0, 0, 0, 0.5),
-    0 0 25px rgba(194, 167, 122, 0.3),
-    inset 0 0 15px rgba(194, 167, 122, 0.15);
-}
-
-.card h3 {
+.highlightText {
   font-family: var(--font-serif);
-  font-size: 1.35rem;
+  font-size: 1.25rem;
+  line-height: 1.8;
+  color: var(--color-champagne);
   font-weight: 400;
+  text-align: center;
+  letter-spacing: 0.03em;
+  margin: 0;
+}
+
+.identityTagline {
+  text-align: center;
+  margin-top: 4.5rem;
+  padding-top: 3rem;
+  border-top: 1px solid rgba(194, 167, 122, 0.15);
+}
+
+.identityTagline h2 {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  font-weight: 300;
   letter-spacing: var(--tracking-serif-title);
-  margin-bottom: 1rem;
   color: var(--color-gold);
+  margin-bottom: 0.6rem;
   text-transform: uppercase;
 }
 
-.card p {
-  font-family: var(--font-body);
-  font-size: 0.95rem;
-  line-height: var(--lh-body);
-  color: var(--color-text-muted);
-  text-align: center;
+.taglineSub {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  letter-spacing: 3.5px;
+  color: var(--color-champagne);
+  text-transform: uppercase;
+  font-weight: 500;
+  display: block;
 }
 
 @media (max-width: 768px) {
+  .container {
+    padding: 2.5rem 1.25rem 0;
+  }
   .heroContent h1 {
     font-size: 2.2rem;
-    letter-spacing: 0.2rem;
   }
-  .heroContent p {
-    font-size: 0.95rem;
-  }
-  .section h2 {
-    font-size: 1.6rem;
-  }
-  .section p {
+  .paragraph {
     font-size: 1rem;
-    line-height: 1.7;
+    line-height: 1.8;
+    text-align: left;
   }
-  .grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
+  .highlightBanner {
+    padding: 1.8rem 1.25rem;
   }
-  .card {
-    padding: 2rem 1.5rem;
+  .highlightText {
+    font-size: 1.05rem;
+  }
+  .identityTagline h2 {
+    font-size: 1.7rem;
+  }
+  .taglineSub {
+    font-size: 0.75rem;
+    letter-spacing: 2px;
   }
 }
