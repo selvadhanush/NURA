@@ -67,8 +67,8 @@ export default function ContactPage() {
             <div>
               <h2>We'd Love to Hear From You</h2>
               <p className={styles.introText}>
-                Whether you have questions about our fragrance compositions, need custom recommendations, 
-                or want to inquire about private labeling, our team is here to assist you.
+                Whether you have questions about our fragrance compositions or need custom recommendations, 
+                our team is here to assist you.
               </p>
             </div>
 
@@ -220,7 +220,7 @@ export default function ContactPage() {
                     value={formData.subject}
                     onChange={handleChange}
                     className={styles.input}
-                    placeholder="General Inquiry / Bespoke Experience / Private Labeling"
+                    placeholder="General Inquiry / Bespoke Experience"
                   />
                 </div>
 

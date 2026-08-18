@@ -30,10 +30,7 @@ export default function Footer() {
           <div className={styles.column}>
             <h4>Our Services</h4>
             <ul>
-              <li><Link href="/franchising">Franchise</Link></li>
-              <li><Link href="/private-labeling">Private Labeling</Link></li>
               <li><Link href="/bespoke">BeSpoke Experience</Link></li>
-              <li><Link href="/workshops">Workshops</Link></li>
             </ul>
           </div>
           <div className={styles.column}>

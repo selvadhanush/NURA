@@ -17,6 +17,7 @@ export default function Perfume() {
             <div key={product.id} className={styles.productWrapper}>
               <ProductCard
                 name={product.name}
+                subtitle={product.subtitle}
                 basePrice={product.perfumePrice50ml}
                 imageUrl={product.image}
                 link={`/products/${product.id}`}

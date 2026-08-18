@@ -178,6 +178,19 @@ export default function ProductDetailClient({ product }: { product: Product | un
           <div className={styles.detailsColumn}>
             <span className={styles.brandTag}>NURA BY BIN SADHIK</span>
             <h1 className={styles.productName}>{product.name}</h1>
+            {product.subtitle && (
+              <p style={{
+                fontFamily: 'var(--font-sans)',
+                fontSize: '0.95rem',
+                fontStyle: 'italic',
+                color: 'var(--color-champagne)',
+                marginTop: '-0.3rem',
+                marginBottom: '0.8rem',
+                letterSpacing: '0.04em'
+              }}>
+                {product.subtitle}
+              </p>
+            )}
 
             {/* Price display with currency badge */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>

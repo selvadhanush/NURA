@@ -6,13 +6,14 @@ import { useCurrency } from './CurrencyContext';
 
 interface ProductCardProps {
   name: string;
+  subtitle?: string;
   /** Raw INR base price (from products.ts) */
   basePrice: number;
   imageUrl: string;
   link: string;
 }
 
-export default function ProductCard({ name, basePrice, imageUrl, link }: ProductCardProps) {
+export default function ProductCard({ name, subtitle, basePrice, imageUrl, link }: ProductCardProps) {
   const { fmt } = useCurrency();
 
   return (
@@ -22,6 +23,7 @@ export default function ProductCard({ name, basePrice, imageUrl, link }: Product
       </div>
       <div className={styles.details}>
         <h3 className={styles.name}>{name}</h3>
+        {subtitle && <span className={styles.subtitle}>{subtitle}</span>}
         <p className={styles.price}>FROM {fmt(basePrice)}</p>
       </div>
     </Link>

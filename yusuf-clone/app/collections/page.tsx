@@ -148,6 +148,7 @@ export default function Collections() {
               <div key={product.id} className={styles.productWrapper}>
                 <ProductCard 
                   name={product.name}
+                  subtitle={product.subtitle}
                   basePrice={product.oilPrice6ml}
                   imageUrl={product.image}
                   link={`/products/${product.id}`}

@@ -19,11 +19,11 @@ export default function Home() {
   const signatureCollection = PRODUCTS.filter(product => product.tags.includes('Signature')).slice(0, 4);
 
   const hotspots = [
-    { id: 1, name: 'Jasmine Signature', price: 569, description: 'A beautiful and natural floral aroma that feels fresh and elegant. The fragrance lasts for hours without being overpowering.', sizeInfo: '6ml & 12ml Oil | 50ml & 100ml Perfume', x: 17.5, y: 65.0, link: '/products/jasmine' },
-    { id: 2, name: 'Al-Zaf Royal', price: 520, description: 'Deep, rich woody notes combined with amber and sweet musk. A truly mesmerizing experience.', sizeInfo: '6ml & 12ml Oil | 50ml & 100ml Perfume', x: 35.0, y: 46.5, link: '/products/al-zaf' },
-    { id: 3, name: 'Al Harun Signature Edition', price: 710, description: 'An exotic, spicy blend with hints of saffron, precious oud, and warm vanilla.', sizeInfo: '6ml & 12ml Oil | 50ml & 100ml Perfume', x: 52.0, y: 34.0, link: '/products/al-haroon' },
-    { id: 4, name: 'Khamrah Collection', price: 729, description: 'Warm, sweet, and comforting with cinnamon, praline, dates, and rich wood tones.', sizeInfo: '6ml & 12ml Oil | 50ml & 100ml Perfume', x: 68.5, y: 43.5, link: '/products/latafa-khamrah' },
-    { id: 5, name: 'Al Marziyah', price: 680, description: 'A sophisticated combination of rich floral scents, warm vanilla, and smooth white musk.', sizeInfo: '6ml & 12ml Oil | 50ml & 100ml Perfume', x: 84.5, y: 55.0, link: '/products/almarziyah' },
+    { id: 1, name: 'AL-ZAF', price: 520, description: "A beautiful blend of shadowy and sunny elements for the men and women of contrast ZAFIZZY's iconic AL-ZAF Perfume Oil is a daring vet practical fragrance...", sizeInfo: '6ml & 12ml Oil | 50ml & 100ml Perfume', x: 17.5, y: 65.0, link: '/products/al-zaf' },
+    { id: 2, name: 'Al Harun V-1', price: 710, description: 'Al Harun V-1 by ZAFIZZY Perfumers tells a story as you wear it. Bold leather and geranium into a refined smoky-woody heart...', sizeInfo: '6ml & 12ml Oil | 50ml & 100ml Perfume', x: 35.0, y: 46.5, link: '/products/al-harun' },
+    { id: 3, name: 'Al Kamrah V-1', price: 729, description: 'Al Kamrah V-1 is rich, warm, and a little indulgent. Think Middle Eastern comfort meets sweet, gourmand depth...', sizeInfo: '6ml & 12ml Oil | 50ml & 100ml Perfume', x: 52.0, y: 34.0, link: '/products/al-kamrah' },
+    { id: 4, name: 'Al Marziyah', price: 680, description: 'Al Marziyah by ZAFIZY is a sophisticated unisex scent, celebrated for its exceptional value. Sunset in a bottle...', sizeInfo: '6ml & 12ml Oil | 50ml & 100ml Perfume', x: 84.5, y: 55.0, link: '/products/almarziyah' },
+    { id: 5, name: 'Al Marj V1', price: 620, description: 'Al Marj is a luxurious unisex scent that layers juicy tropical fruits over rich woods and warm spice...', sizeInfo: '6ml & 12ml Oil | 50ml & 100ml Perfume', x: 68.5, y: 43.5, link: '/products/almarj' },
   ];
 
   const [activeHotspot, setActiveHotspot] = useState<any>(null);
@@ -92,6 +92,7 @@ export default function Home() {
             <ProductCard
               key={product.id}
               name={product.name}
+              subtitle={product.subtitle}
               basePrice={product.oilPrice6ml}
               imageUrl={product.image}
               link={`/products/${product.id}`}
@@ -217,6 +218,7 @@ export default function Home() {
             <ProductCard
               key={product.id}
               name={product.name}
+              subtitle={product.subtitle}
               basePrice={product.oilPrice6ml}
               imageUrl={product.image}
               link={`/products/${product.id}`}
@@ -283,6 +285,7 @@ export default function Home() {
             <ProductCard
               key={product.id}
               name={product.name}
+              subtitle={product.subtitle}
               basePrice={product.oilPrice6ml}
               imageUrl={product.image}
               link={`/products/${product.id}`}
