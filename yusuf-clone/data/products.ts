@@ -477,7 +477,11 @@ export function getProductById(id: string): Product | undefined {
       (normalizedId.includes('kayali') && normalizedPid.includes('pistachio')) ||
       (normalizedId.includes('sheikh') && normalizedPid.includes('sheikh')) ||
       (normalizedId.includes('tam') && normalizedPid.includes('tam')) ||
-      (normalizedId.includes('dao') && normalizedPid.includes('tam'))
+      (normalizedId.includes('dao') && normalizedPid.includes('tam')) ||
+      (normalizedId.includes('ardor') && normalizedPid.includes('zaf')) ||
+      (normalizedId.includes('passio') && normalizedPid.includes('harun')) ||
+      (normalizedId.includes('pragma') && normalizedPid.includes('kamrah')) ||
+      (normalizedId.includes('devoir') && normalizedPid.includes('marziyah'))
     );
   });
 }
