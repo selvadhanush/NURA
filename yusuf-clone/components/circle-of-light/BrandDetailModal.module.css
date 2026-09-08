@@ -22,7 +22,7 @@
   max-width: 740px;
   max-height: 88vh;
   overflow-y: auto;
-  background: linear-gradient(160deg, #122117 0%, #0a140d 100%);
+  background: linear-gradient(160deg, #24362b 0%, #1d2d24 100%);
   border: 1px solid rgba(194, 167, 122, 0.3);
   border-radius: 20px;
   padding: 3rem 2.8rem;
@@ -178,7 +178,7 @@
 
 .closeCtaBtn {
   background: #c2a77a;
-  color: #0c1710;
+  color: var(--color-primary-dark);
   border: none;
   padding: 0.9rem 2.5rem;
   border-radius: 8px;

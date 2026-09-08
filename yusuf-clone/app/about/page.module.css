@@ -1,6 +1,6 @@
 .page {
   min-height: 100vh;
-  background-color: #070c08;
+  background-color: var(--color-primary-dark);
   color: var(--color-gold);
   padding-bottom: 6rem;
 }
@@ -13,7 +13,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  background-color: #0b0f0c;
+  background-color: #24362b;
   border-bottom: 1px solid rgba(194, 167, 122, 0.15);
 }
 

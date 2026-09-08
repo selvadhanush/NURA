@@ -1,7 +1,7 @@
 .interactiveContainer {
   width: 100%;
   min-height: 100vh;
-  background: #0a170e;
+  background: var(--color-primary-dark);
   color: #ffffff;
   padding-bottom: 6rem;
   overflow-x: hidden;
@@ -16,7 +16,7 @@
   min-height: 780px;
   padding: 0 1.5rem 2.5rem;
   margin-top: 0;
-  background: radial-gradient(ellipse 90% 60% at 50% -5%, #183321 0%, #0c1a11 65%, #08120c 100%);
+  background: radial-gradient(ellipse 90% 60% at 50% -5%, #3b5c49 0%, var(--color-primary-dark) 65%, #24362b 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -152,7 +152,7 @@
 }
 
 .storyCard {
-  background: linear-gradient(160deg, #101c13 0%, #0a130d 100%);
+  background: linear-gradient(160deg, #24362b 0%, #1d2d24 100%);
   border: 1px solid rgba(194, 167, 122, 0.18);
   padding: 2.8rem;
   border-radius: 16px;
@@ -226,7 +226,7 @@
 .primaryBtn {
   display: inline-block;
   background: #c2a77a;
-  color: #08110b;
+  color: var(--color-primary-dark);
   padding: 1rem 2.2rem;
   border-radius: 8px;
   font-size: 0.85rem;

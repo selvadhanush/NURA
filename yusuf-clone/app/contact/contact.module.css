@@ -1,6 +1,6 @@
 .page {
   min-height: 100vh;
-  background-color: #0d120e;
+  background-color: var(--color-primary-dark);
   color: #ffffff;
   padding-bottom: 6rem;
   font-family: var(--font-body), sans-serif;
@@ -14,7 +14,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  background-image: linear-gradient(rgba(13, 18, 14, 0.7), rgba(13, 18, 14, 0.95)), url('/hero-desktop-green.png');
+  background-image: linear-gradient(rgba(36, 54, 43, 0.7), rgba(46, 68, 55, 0.95)), url('/hero-desktop-green.png');
   background-size: cover;
   background-position: center;
   border-bottom: 1px solid rgba(194, 167, 122, 0.15);
@@ -229,7 +229,7 @@
 .submitBtn {
   width: 100%;
   background: linear-gradient(135deg, #d4af37 0%, #c2a77a 100%);
-  color: #0d120e;
+  color: var(--color-primary-dark);
   border: none;
   border-radius: 8px;
   padding: 1.1rem;
@@ -306,7 +306,7 @@
 
 .successBtn:hover {
   background: var(--color-gold);
-  color: #0d120e;
+  color: var(--color-primary-dark);
 }
 
 /* Animations */

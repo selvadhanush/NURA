@@ -11,6 +11,10 @@ export const metadata: Metadata = {
   description: "NURA by Bin Sadhik is a luxury perfume brand offering hand-poured custom perfumes, concentrated perfume oils, and niche scents.",
 };
 
+export const viewport = {
+  themeColor: "#2e4437",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{

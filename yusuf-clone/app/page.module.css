@@ -6,7 +6,7 @@
   height: 100vh;
   height: 100dvh;
   min-height: 600px;
-  background-color: #070c08;
+  background-color: var(--color-primary-dark);
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -64,7 +64,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle, transparent 40%, #070c08 95%);
+  background: radial-gradient(circle, transparent 40%, var(--color-primary-dark) 95%);
   z-index: 2;
 }
 
@@ -76,7 +76,7 @@
   right: 0;
   bottom: 0;
   height: 35%;
-  background: linear-gradient(to top, #070c08 0%, transparent 100%);
+  background: linear-gradient(to top, var(--color-primary-dark) 0%, transparent 100%);
   z-index: 2;
   pointer-events: none;
 }
@@ -125,7 +125,7 @@
 
 .primaryButton {
   display: inline-block;
-  background-color: rgba(9, 12, 10, 0.55);
+  background-color: rgba(36, 54, 43, 0.65);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid var(--color-gold);
@@ -320,7 +320,7 @@
   }
 
   .hero::before {
-    background: radial-gradient(ellipse at center, transparent 20%, #070c08 90%);
+    background: radial-gradient(ellipse at center, transparent 20%, var(--color-primary-dark) 90%);
   }
 
   .heroContent {
@@ -416,7 +416,7 @@
   }
 
   .hero::before {
-    background: radial-gradient(ellipse at center, transparent 30%, #070c08 88%);
+    background: radial-gradient(ellipse at center, transparent 30%, var(--color-primary-dark) 88%);
   }
 
   .primaryButton {
@@ -713,7 +713,7 @@
 .cardBtn {
   font-size: 0.8rem;
   font-weight: 500;
-  color: #070c08;
+  color: var(--color-primary-dark);
   background: var(--color-gold);
   padding: 0.5rem 1rem;
   border-radius: 4px;
@@ -885,7 +885,7 @@
 
 /* Charity Section styling */
 .charitySection {
-  background-color: #0b0f0c;
+  background-color: #24362b;
   padding: 6rem 2rem;
   border-top: 1px solid rgba(194, 167, 122, 0.1);
   border-bottom: 1px solid rgba(194, 167, 122, 0.1);
@@ -1073,7 +1073,7 @@
 }
 
 .newsletterCard {
-  background: linear-gradient(135deg, #16221a 0%, #0c120e 100%);
+  background: linear-gradient(135deg, #375343 0%, #24362b 100%);
   border: 1px solid rgba(194, 167, 122, 0.2);
   border-radius: 12px;
   padding: 4rem 3rem;

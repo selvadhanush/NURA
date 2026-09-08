@@ -75,7 +75,7 @@
   position: absolute;
   min-width: 260px;
   max-width: calc(100vw - 2rem);
-  background: linear-gradient(145deg, #16221a 0%, #0d1710 100%);
+  background: linear-gradient(145deg, #375343 0%, #24362b 100%);
   border: 1px solid rgba(194, 167, 122, 0.25);
   border-radius: 8px;
   box-shadow:
