@@ -6,7 +6,7 @@
   height: 100vh;
   height: 100dvh;
   min-height: 600px;
-  background-color: var(--color-primary-dark);
+  background-color: #000000;
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -64,7 +64,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle, transparent 40%, var(--color-primary-dark) 95%);
+  background: radial-gradient(circle, transparent 40%, #000000 95%);
   z-index: 2;
 }
 
@@ -76,7 +76,7 @@
   right: 0;
   bottom: 0;
   height: 35%;
-  background: linear-gradient(to top, var(--color-primary-dark) 0%, transparent 100%);
+  background: linear-gradient(to top, #000000 0%, transparent 100%);
   z-index: 2;
   pointer-events: none;
 }
@@ -125,7 +125,7 @@
 
 .primaryButton {
   display: inline-block;
-  background-color: rgba(36, 54, 43, 0.65);
+  background-color: rgba(0, 0, 0, 0.55);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid var(--color-gold);
@@ -141,7 +141,7 @@
 
 .primaryButton:hover {
   background-color: var(--color-gold);
-  color: var(--color-primary-dark);
+  color: #000000;
   box-shadow: 0 6px 28px rgba(194, 167, 122, 0.45);
   transform: translateY(-2px);
 }
@@ -320,7 +320,7 @@
   }
 
   .hero::before {
-    background: radial-gradient(ellipse at center, transparent 20%, var(--color-primary-dark) 90%);
+    background: radial-gradient(ellipse at center, transparent 20%, #000000 90%);
   }
 
   .heroContent {
@@ -416,7 +416,7 @@
   }
 
   .hero::before {
-    background: radial-gradient(ellipse at center, transparent 30%, var(--color-primary-dark) 88%);
+    background: radial-gradient(ellipse at center, transparent 30%, #000000 88%);
   }
 
   .primaryButton {
