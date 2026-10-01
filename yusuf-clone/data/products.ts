@@ -197,11 +197,11 @@ export const PRODUCTS: Product[] = [
     }
   },
   {
-    id: 'warmed-dior',
-    name: 'Warmed Dior',
+    id: 'delighted-dior',
+    name: 'Delighted Dior',
     subtitle: '(The Natural Simple Fusion)',
-    image: '/products/warmed_dior.png',
-    description: "Warmed Dior by ZAFIZZY Perfumers has this dark, romantic, almost mysterious feel to it. It opens with a gothic little twist think blood orange, dark plum, or red berries, with just a hint of something metallic and intriguing. Then it settles into something softer and deeply seductive: musk, vanilla, and woody notes that feel warm, unisex, and surprisingly long-lasting. Perfect when you want romance with a bit of an edge.",
+    image: '/products/delighted_dior.png',
+    description: "Delighted Dior by NURA Perfumers has this dark, romantic, almost mysterious feel to it. It opens with a gothic little twist think blood orange, dark plum, or red berries, with just a hint of something metallic and intriguing. Then it settles into something softer and deeply seductive: musk, vanilla, and woody notes that feel warm, unisex, and surprisingly long-lasting. Perfect when you want romance with a bit of an edge.",
     perfumePrice50ml: 2690,
     perfumePrice100ml: 3990,
     oilPrice6ml: 579,
@@ -366,10 +366,10 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'pistachio-gelato',
-    name: 'Yum Pistachio Gelato 33',
-    subtitle: '(Kayali - Flirty Gourmand Indulgence)',
+    name: 'Pistachio Gelato',
+    subtitle: '(Kayali Yum 33 - Flirty Gourmand Indulgence)',
     image: '/products/pistachio_gelato.png',
-    description: "Kayali’s Yum Pistachio Gelato 33 is a gourmand that doesn’t take itself too seriously it’s pure, flirty indulgence. The opening is unmistakably nutty, with pistachio and a whisper of roasted hazelnut, but it softens quickly into a creamy, cloud-like sweetness. Whipped cream, pillowy marshmallow, and spun sugar give it that just-desserted scent trail, while staying airy rather than heavy. It’s playful, cozy, and genuinely hard not to smile at.",
+    description: "Kayali’s Yum Pistachio Gelato is a gourmand that doesn’t take itself too seriously—it’s pure, flirty indulgence. The opening is unmistakably nutty, with pistachio and a whisper of roasted hazelnut, but it softens quickly into a creamy, cloud-like sweetness. Whipped cream, pillowy marshmallow, and spun sugar give it that just-desserted scent trail, while staying airy rather than heavy. It’s playful, cozy, and genuinely hard not to smile at.",
     perfumePrice50ml: 2690,
     perfumePrice100ml: 3990,
     oilPrice6ml: 579,
@@ -394,10 +394,10 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'sheikh-musk',
-    name: 'Sheikh Musk V-1',
-    subtitle: '(The Natural Simple Fusion)',
+    name: 'Sheikh Musk',
+    subtitle: '(A Royal Blend - The Natural Simple Fusion)',
     image: '/products/sheikh_musk.png',
-    description: "Sheikh Musk V-1 by ZAFIZZY feels like slipping into something effortlessly luxurious. It opens with a generous, almost edible sweetness vanilla and amber folded together then slowly reveals a darker, woodier backbone that keeps it from ever becoming too dessert-like. There’s a quiet tension between the gourmand warmth and the grounded, smoky undertones that makes it magnetic on both men and women. What really stands out, though, is how long it stays with you; hours after applying, it still hums softly on the skin. The dry-down is pure comfort: plush, sensual, and polished, leaving a trail that feels intimate rather than loud, like a secret you want to lean in closer to catch.",
+    description: "Sheikh Musk by NURA feels like slipping into something effortlessly luxurious. It opens with a generous, almost edible sweetness vanilla and amber folded together then slowly reveals a darker, woodier backbone that keeps it from ever becoming too dessert-like. There’s a quiet tension between the gourmand warmth and the grounded, smoky undertones that makes it magnetic on both men and women. What really stands out, though, is how long it stays with you; hours after applying, it still hums softly on the skin. The dry-down is pure comfort: plush, sensual, and polished, leaving a trail that feels intimate rather than loud, like a secret you want to lean in closer to catch.",
     perfumePrice50ml: 2990,
     perfumePrice100ml: 4490,
     oilPrice6ml: 710,
@@ -465,6 +465,8 @@ export function getProductById(id: string): Product | undefined {
       (normalizedId.includes('marj') && normalizedPid.includes('marj')) ||
       (normalizedId.includes('summer') && normalizedPid.includes('summer')) ||
       (normalizedId.includes('dior') && normalizedPid.includes('dior')) ||
+      (normalizedId.includes('delighted') && normalizedPid.includes('dior')) ||
+      (normalizedId.includes('warmed') && normalizedPid.includes('dior')) ||
       (normalizedId.includes('lemon') && normalizedPid.includes('lemon')) ||
       (normalizedId.includes('erba') && normalizedPid.includes('erba')) ||
       (normalizedId.includes('wardha') && normalizedPid.includes('wardha')) ||
