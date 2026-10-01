@@ -1,19 +1,23 @@
 :root {
   /* ==========================================================================
-     COLOR PALETTE - Haute Perfumery Palette
+     COLOR PALETTE - NURA Official Haute Perfumery Palette
+     Matches exact brand emerald green (#004025) & warm antique gold
      ========================================================================== */
-  --color-primary-dark: #2e4437;
-  --color-matte-black: #24362b;
-  --color-dark-charcoal: #1d2d24;
-  --color-gold: #c2a77a;
-  --color-gold-bright: #d4af37;
+  --color-primary-dark: #004025;
+  --color-matte-black: #002d1a;
+  --color-dark-charcoal: #001f12;
+  --color-surface-elevated: #004d2d;
+  --color-emerald-glow: #005a35;
+  --color-gold: #c5a66c;
+  --color-gold-bright: #dfb758;
+  --color-gold-dark: #9e8146;
   --color-champagne: #dfd0b8;
   --color-ivory: #fdfbf7;
   --color-soft-beige: #f4f0ea;
   --color-warm-white: #fafafa;
-  --color-text-muted: #a4b3a9;
-  --color-text-dim: #7a887f;
-  --color-border-gold: rgba(194, 167, 122, 0.2);
+  --color-text-muted: #a0baa9;
+  --color-text-dim: #70917e;
+  --color-border-gold: rgba(197, 166, 108, 0.22);
   --color-border-subtle: rgba(255, 255, 255, 0.08);
 
   /* ==========================================================================

@@ -14,10 +14,10 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  background-image: linear-gradient(rgba(36, 54, 43, 0.7), rgba(46, 68, 55, 0.95)), url('/hero-desktop-green.png');
+  background-image: linear-gradient(rgba(0, 45, 26, 0.75), rgba(0, 64, 37, 0.96)), url('/hero-desktop-green.png');
   background-size: cover;
   background-position: center;
-  border-bottom: 1px solid rgba(194, 167, 122, 0.15);
+  border-bottom: 1px solid var(--color-border-gold);
 }
 
 .heroContent {
@@ -217,8 +217,8 @@
 .input:focus, .textarea:focus {
   outline: none;
   border-color: var(--color-gold);
-  background: rgba(13, 18, 14, 0.9);
-  box-shadow: 0 0 0 3px rgba(194, 167, 122, 0.15);
+  background: rgba(0, 32, 19, 0.95);
+  box-shadow: 0 0 0 3px var(--color-border-gold);
 }
 
 .textarea {

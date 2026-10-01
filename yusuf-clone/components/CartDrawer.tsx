@@ -206,11 +206,11 @@ Thank you! 🌿`;
               {/* Exchange rate notice */}
               <p style={{
                 fontSize: '0.68rem',
-                color: '#5a6e62',
+                color: '#70917e',
                 fontStyle: 'italic',
                 marginTop: '0.5rem',
                 lineHeight: 1.5,
-                borderTop: '1px solid rgba(194,167,122,0.1)',
+                borderTop: '1px solid rgba(197,166,108,0.12)',
                 paddingTop: '0.5rem',
               }}>
                 💱 Prices shown in {currencyName} are approximate based on exchange rates. Final price confirmed via WhatsApp.

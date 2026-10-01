@@ -1,6 +1,6 @@
 .header {
   background-color: var(--color-primary-dark);
-  color: #d1c8b8;
+  color: var(--color-champagne);
   width: 100%;
   position: sticky;
   top: 0;
@@ -21,7 +21,7 @@
 .headerTransparent {
   background-color: transparent;
   box-shadow: none;
-  border-bottom: 1px solid rgba(194, 167, 122, 0.08);
+  border-bottom: 1px solid var(--color-border-gold);
 }
 
 .topBar {
@@ -99,7 +99,7 @@
   font-size: 3.2rem;
   font-weight: 700;
   text-transform: uppercase;
-  background: linear-gradient(to bottom, #dfd0b8 0%, #fdfbf7 50%, #c2a77a 100%);
+  background: linear-gradient(180deg, #dfd0b8 0%, #fdfbf7 40%, var(--color-gold) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -113,7 +113,7 @@
   display: inline-block;
   transform: rotate(180deg);
   transform-origin: center center;
-  background: linear-gradient(to bottom, #dfd0b8 0%, #fdfbf7 50%, #c2a77a 100%);
+  background: linear-gradient(180deg, #dfd0b8 0%, #fdfbf7 40%, var(--color-gold) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -270,7 +270,7 @@
     font-size: 1.8rem;
     font-weight: 700;
     text-transform: uppercase;
-    background: linear-gradient(to bottom, #dfd0b8 0%, #fdfbf7 50%, #c2a77a 100%);
+    background: linear-gradient(180deg, #dfd0b8 0%, #fdfbf7 40%, var(--color-gold) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;

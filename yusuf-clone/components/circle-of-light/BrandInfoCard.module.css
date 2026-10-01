@@ -1,24 +1,21 @@
 .cardContainer {
   position: relative;
   width: 100%;
-  max-width: 760px;
+  max-width: 580px; /* Reduced to compact luxury size */
   margin: 0 auto;
-  background: rgba(12, 24, 16, 0.84);
-  border: 1px solid rgba(232, 216, 160, 0.3);
-  border-radius: 20px;
-  padding: 2.2rem 2.4rem;
-  backdrop-filter: blur(20px) saturate(140%);
-  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  background: rgba(0, 36, 21, 0.92);
+  border: 1px solid rgba(232, 216, 160, 0.32);
+  border-radius: 16px;
+  padding: 1.4rem 1.65rem; /* Reduced padding */
+  backdrop-filter: blur(18px) saturate(130%);
+  -webkit-backdrop-filter: blur(18px) saturate(130%);
   box-shadow:
-    0 25px 60px rgba(0, 0, 0, 0.85),
-    0 0 35px rgba(194, 167, 122, 0.12),
+    0 20px 50px rgba(0, 0, 0, 0.85),
+    0 0 30px rgba(194, 167, 122, 0.1),
     inset 0 1px 2px rgba(255, 255, 255, 0.2);
   color: #ffffff;
   overflow: hidden;
-  transition:
-    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-    opacity 0.4s ease,
-    border-color 0.4s ease;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
 .lightReceiverGlow {
@@ -26,38 +23,35 @@
   top: 0;
   left: 15%;
   right: 15%;
-  height: 2px;
+  height: 2.5px;
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(255, 248, 200, 0.95) 50%,
+    rgba(255, 255, 255, 0.95) 50%,
     transparent 100%
   );
   box-shadow:
-    0 0 12px rgba(255, 248, 200, 0.9),
-    0 0 30px rgba(232, 216, 160, 0.7);
-}
-
-.cardEmerging {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-  animation: cardReveal 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.cardExiting {
-  opacity: 0;
-  transform: translateY(24px) scale(0.96);
+    0 0 12px rgba(255, 255, 255, 0.9),
+    0 0 30px var(--card-accent, rgba(232, 216, 160, 0.8));
   pointer-events: none;
 }
 
-@keyframes cardReveal {
-  0% {
+/* ══════════════════════════════════════
+   SMOOTH, INSTANT CONTENT FADE-IN (280ms)
+══════════════════════════════════════ */
+.cardContentWrap {
+  animation: contentFadeIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: transform, opacity;
+}
+
+@keyframes contentFadeIn {
+  from {
     opacity: 0;
-    transform: translateY(32px) scale(0.95);
+    transform: translate3d(0, 8px, 0);
   }
-  100% {
+  to {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translate3d(0, 0, 0);
   }
 }
 
@@ -65,19 +59,20 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.2rem;
+  margin-bottom: 0.85rem;
 }
 
 .categoryBadge {
-  font-size: 0.7rem;
+  font-size: 0.64rem;
   text-transform: uppercase;
-  letter-spacing: 2.5px;
-  color: #e8d8a0;
+  letter-spacing: 2px;
+  color: var(--card-accent, #e8d8a0);
   font-weight: 600;
+  transition: color 0.35s ease;
 }
 
 .counterBadge {
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-family: var(--font-display, serif);
   color: rgba(232, 216, 160, 0.65);
   letter-spacing: 1.5px;
@@ -86,13 +81,13 @@
 .titleGroup {
   display: flex;
   align-items: center;
-  gap: 1.2rem;
-  margin-bottom: 1.1rem;
+  gap: 0.9rem;
+  margin-bottom: 0.85rem;
 }
 
 .emblemBadge {
-  width: 54px;
-  height: 54px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   background: rgba(194, 167, 122, 0.08);
   border: 1px solid rgba(232, 216, 160, 0.3);
@@ -100,81 +95,87 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 .brandTitle {
   font-family: var(--font-display, serif);
-  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-size: clamp(1.25rem, 2.2vw, 1.55rem);
   font-weight: 400;
-  letter-spacing: 2px;
+  letter-spacing: 1.5px;
   color: #ffffff;
-  margin: 0 0 0.25rem;
+  margin: 0 0 0.15rem;
 }
 
 .brandTagline {
-  font-size: 0.9rem;
-  color: rgba(232, 216, 160, 0.85);
+  font-size: 0.8rem;
+  color: var(--card-accent, rgba(232, 216, 160, 0.85));
   font-style: italic;
   margin: 0;
+  transition: color 0.35s ease;
 }
 
 .brandDescription {
-  font-size: 0.96rem;
-  line-height: 1.7;
+  font-size: 0.84rem;
+  line-height: 1.55;
   color: #b0c4b6;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 /* ══════════════════════════════════════
    FRAGRANCE PYRAMID NOTES GRID
 ══════════════════════════════════════ */
 .notesSection {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .sectionLabel {
-  font-size: 0.68rem;
+  font-size: 0.62rem;
   text-transform: uppercase;
-  letter-spacing: 2.5px;
+  letter-spacing: 2px;
   color: #e8d8a0;
-  margin: 0 0 0.8rem;
+  margin: 0 0 0.55rem;
   font-weight: 600;
 }
 
 .notesGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 0.8rem;
+  gap: 0.55rem;
 }
 
 .noteCard {
   background: rgba(194, 167, 122, 0.05);
   border: 1px solid rgba(194, 167, 122, 0.18);
-  border-radius: 10px;
-  padding: 0.85rem 0.95rem;
+  border-radius: 8px;
+  padding: 0.6rem 0.7rem;
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
+  gap: 0.2rem;
+  transition: border-color 0.25s ease;
+}
+
+.noteCard:hover {
+  border-color: rgba(232, 216, 160, 0.35);
 }
 
 .noteType {
-  font-size: 0.6rem;
+  font-size: 0.55rem;
   text-transform: uppercase;
-  letter-spacing: 1.5px;
+  letter-spacing: 1.2px;
   color: #c2a77a;
   font-weight: 700;
 }
 
 .noteText {
-  font-size: 0.82rem;
+  font-size: 0.74rem;
   color: #ffffff;
-  line-height: 1.4;
+  line-height: 1.35;
 }
 
 /* Highlights */
 .highlightsSection {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .highlightsList {
@@ -183,47 +184,49 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.55rem;
+  gap: 0.4rem;
 }
 
 .highlightsList li {
-  font-size: 0.88rem;
+  font-size: 0.8rem;
   color: #d4e2d8;
   display: flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.5rem;
 }
 
 .bulletSparkle {
-  color: #e8d8a0;
-  font-size: 0.8rem;
+  color: var(--card-accent, #e8d8a0);
+  font-size: 0.72rem;
+  transition: color 0.35s ease;
 }
 
 /* Metrics Bar */
 .metricsBar {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
+  gap: 0.65rem;
   background: rgba(8, 16, 11, 0.6);
   border: 1px solid rgba(194, 167, 122, 0.16);
-  border-radius: 12px;
-  padding: 1rem;
-  margin-bottom: 1.6rem;
+  border-radius: 10px;
+  padding: 0.65rem 0.75rem;
+  margin-bottom: 1.1rem;
   text-align: center;
 }
 
 .metricValue {
   display: block;
   font-family: var(--font-display, serif);
-  font-size: 1.8rem;
-  color: #e8d8a0;
+  font-size: 1.45rem;
+  color: var(--card-accent, #e8d8a0);
   font-weight: 400;
+  transition: color 0.35s ease;
 }
 
 .metricLabel {
-  font-size: 0.68rem;
+  font-size: 0.6rem;
   text-transform: uppercase;
-  letter-spacing: 1.5px;
+  letter-spacing: 1.2px;
   color: rgba(255, 255, 255, 0.7);
 }
 
@@ -232,31 +235,31 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 1rem;
+  padding-top: 0.9rem;
   border-top: 1px solid rgba(194, 167, 122, 0.15);
-  gap: 1rem;
+  gap: 0.8rem;
   flex-wrap: wrap;
 }
 
 .navControls {
   display: flex;
   align-items: center;
-  gap: 0.8rem;
+  gap: 0.65rem;
 }
 
 .navArrowBtn {
   background: rgba(194, 167, 122, 0.08);
   border: 1px solid rgba(194, 167, 122, 0.25);
   color: #e8d8a0;
-  width: 38px;
-  height: 38px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  font-size: 1.1rem;
-  transition: all 0.3s ease;
+  font-size: 0.95rem;
+  transition: all 0.25s ease;
 }
 
 .navArrowBtn:hover {
@@ -267,24 +270,24 @@
 
 .dotTracker {
   display: flex;
-  gap: 0.4rem;
+  gap: 0.35rem;
 }
 
 .dot {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
   background: rgba(194, 167, 122, 0.3);
   border: none;
   padding: 0;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.25s ease;
 }
 
 .activeDot {
-  width: 22px;
-  border-radius: 10px;
-  background: #e8d8a0;
+  width: 18px;
+  border-radius: 8px;
+  background: var(--card-accent, #e8d8a0);
   box-shadow: 0 0 10px rgba(232, 216, 160, 0.8);
 }
 
@@ -292,38 +295,38 @@
   background: linear-gradient(135deg, #c2a77a 0%, #a68426 100%);
   color: #08110b;
   border: none;
-  padding: 0.85rem 1.6rem;
-  border-radius: 8px;
-  font-size: 0.78rem;
+  padding: 0.65rem 1.25rem;
+  border-radius: 7px;
+  font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 2px;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-  box-shadow: 0 6px 20px rgba(194, 167, 122, 0.35);
-  transition: all 0.35s ease;
+  gap: 0.5rem;
+  box-shadow: 0 4px 16px rgba(194, 167, 122, 0.3);
+  transition: all 0.3s ease;
 }
 
 .detailCtaBtn:hover {
   background: linear-gradient(135deg, #e8d8a0 0%, #c2a020 100%);
   transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(232, 216, 160, 0.5);
+  box-shadow: 0 8px 22px rgba(232, 216, 160, 0.45);
 }
 
 .btnArrow {
-  font-size: 1.1rem;
-  transition: transform 0.3s ease;
+  font-size: 1rem;
+  transition: transform 0.25s ease;
 }
 
 .detailCtaBtn:hover .btnArrow {
-  transform: translateX(4px);
+  transform: translateX(3px);
 }
 
 @media (max-width: 680px) {
   .cardContainer {
-    padding: 1.6rem 1.4rem;
+    padding: 1.25rem 1.15rem;
   }
   .notesGrid {
     grid-template-columns: 1fr;

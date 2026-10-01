@@ -46,8 +46,8 @@
 }
 
 .imageCard {
-  background: radial-gradient(circle at center, rgba(194, 167, 122, 0.08) 0%, rgba(12, 17, 14, 0.95) 100%);
-  border: 1px solid rgba(194, 167, 122, 0.3);
+  background: radial-gradient(circle at center, rgba(197, 166, 108, 0.1) 0%, rgba(0, 31, 18, 0.96) 100%);
+  border: 1px solid var(--color-border-gold);
   border-radius: 8px;
   padding: 1.5rem;
   display: flex;

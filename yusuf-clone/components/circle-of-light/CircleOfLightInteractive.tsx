@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { PARTNER_BRANDS, PartnerBrand } from './partnerData';
 import BeanConstellation from './BeanConstellation';
 import VolumetricLightCanvas from './VolumetricLightCanvas';
@@ -9,88 +9,21 @@ import BrandDetailModal from './BrandDetailModal';
 import Link from 'next/link';
 import styles from './CircleOfLightInteractive.module.css';
 
-interface Point {
-  x: number;
-  y: number;
-}
-
 export default function CircleOfLightInteractive() {
   const [activeBrandIndex, setActiveBrandIndex] = useState(2); // Default center bean
-  const [beamOrigin, setBeamOrigin] = useState<Point | null>(null);
-  const [targetCardArea, setTargetCardArea] = useState<{ x: number; y: number; width: number; height: number } | null>(null);
-  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [previousBrandIndex, setPreviousBrandIndex] = useState(2);
   const [detailModalBrand, setDetailModalBrand] = useState<PartnerBrand | null>(null);
 
   const heroSectionRef = useRef<HTMLDivElement | null>(null);
   const cardRef = useRef<HTMLDivElement | null>(null);
+  const constellationRef = useRef<HTMLDivElement | null>(null);
 
   const activeBrand = PARTNER_BRANDS[activeBrandIndex];
 
-  // Measure exact pixel coordinates of the active bean relative to heroSection for the light beam source
-  const updatePositions = () => {
-    if (!heroSectionRef.current) return;
-    const heroRect = heroSectionRef.current.getBoundingClientRect();
-
-    // 1. Target Card position
-    if (cardRef.current) {
-      const cardRect = cardRef.current.getBoundingClientRect();
-      setTargetCardArea({
-        x: cardRect.left - heroRect.left,
-        y: cardRect.top - heroRect.top,
-        width: cardRect.width,
-        height: cardRect.height,
-      });
-    }
-
-    // 2. Active Bean position relative to heroSection
-    const activeBeanEl = heroSectionRef.current.querySelector(`[data-bean-id="${activeBrand.id}"]`);
-    if (activeBeanEl) {
-      const beanRect = activeBeanEl.getBoundingClientRect();
-      setBeamOrigin({
-        x: beanRect.left + beanRect.width / 2 - heroRect.left,
-        y: beanRect.top + beanRect.height / 2 - heroRect.top,
-      });
-    }
-  };
-
-  useEffect(() => {
-    updatePositions();
-    
-    // Continuously measure active bean coordinates at native monitor refresh rate (60fps/120fps)
-    let animId: number;
-    const startTime = performance.now();
-    const loop = () => {
-      updatePositions();
-      if (performance.now() - startTime < 900) {
-        animId = requestAnimationFrame(loop);
-      }
-    };
-    animId = requestAnimationFrame(loop);
-
-    window.addEventListener('resize', updatePositions);
-    return () => {
-      cancelAnimationFrame(animId);
-      window.removeEventListener('resize', updatePositions);
-    };
-  }, [activeBrandIndex]);
-
   const handleSelectIndex = (index: number) => {
     if (index === activeBrandIndex) return;
-
-    setIsTransitioning(true);
+    setPreviousBrandIndex(activeBrandIndex);
     setActiveBrandIndex(index);
-
-    let animId: number;
-    const startTime = performance.now();
-    const loop = () => {
-      updatePositions();
-      if (performance.now() - startTime < 850) {
-        animId = requestAnimationFrame(loop);
-      } else {
-        setIsTransitioning(false);
-      }
-    };
-    animId = requestAnimationFrame(loop);
   };
 
   return (
@@ -106,21 +39,23 @@ export default function CircleOfLightInteractive() {
           <p className={styles.mainSubtitle}>Discover the essence of NURA</p>
         </div>
 
-        {/* GPU-Accelerated Volumetric Light Canvas Beam - originating directly from active bean */}
+        {/* GPU-Accelerated Volumetric Light Canvas Beam - Smooth 60/120fps internal animation */}
         <VolumetricLightCanvas
-          origin={beamOrigin}
-          targetArea={targetCardArea}
-          isActive={true}
+          heroRef={heroSectionRef}
+          cardRef={cardRef}
+          constellationRef={constellationRef}
+          activeBrandIndex={activeBrandIndex}
+          previousBrandIndex={previousBrandIndex}
           accentColor={activeBrand.accentColor}
         />
 
         {/* Semi-Circular Arc of Star-Icon Bean Orbs */}
         <div className={styles.constellationWrap}>
           <BeanConstellation
+            ref={constellationRef}
             brands={PARTNER_BRANDS}
             activeBrandIndex={activeBrandIndex}
             onSelectBrandIndex={handleSelectIndex}
-            onUpdateActivePos={() => setTimeout(updatePositions, 20)}
           />
         </div>
 
@@ -131,7 +66,6 @@ export default function CircleOfLightInteractive() {
             brand={activeBrand}
             activeBrandIndex={activeBrandIndex}
             totalBrands={PARTNER_BRANDS.length}
-            isTransitioning={isTransitioning}
             onSelectBrandIndex={handleSelectIndex}
             onOpenDetails={(brand) => setDetailModalBrand(brand)}
           />

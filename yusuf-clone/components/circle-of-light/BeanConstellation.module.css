@@ -2,7 +2,7 @@
   position: relative;
   width: 100%;
   max-width: 1000px;
-  height: 210px;
+  height: 160px;
   margin: 0 auto;
   user-select: none;
 }
@@ -18,12 +18,12 @@
 }
 
 /* ══════════════════════════════════════
-   CIRCULAR ORB BUTTON BASE
+   CIRCULAR ORB BUTTON BASE - GPU ACCELERATED
 ══════════════════════════════════════ */
 .beanOrbButton {
   position: absolute;
   z-index: 10;
-  transform: translate(-50%, -50%);
+  transform: translate3d(-50%, -50%, 0);
   background: transparent;
   border: none;
   padding: 0;
@@ -32,23 +32,44 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Smooth carousel sliding animation along the U-arc */
+  /* Fluid 60/120fps carousel motion along the U-arc */
   transition:
-    left 0.75s cubic-bezier(0.34, 1.2, 0.64, 1),
-    top 0.75s cubic-bezier(0.34, 1.2, 0.64, 1),
-    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
-    box-shadow 0.4s ease,
-    opacity 0.4s ease;
+    left 0.7s cubic-bezier(0.25, 1, 0.5, 1),
+    top 0.7s cubic-bezier(0.25, 1, 0.5, 1),
+    opacity 0.35s ease;
+  will-change: left, top;
 }
 
 /* ══════════════════════════════════════
-   5 DOWNWARD U-CURVE ARC SLOTS
+   5 DOWNWARD U-CURVE ARC SLOTS (Elevated higher towards nav)
 ══════════════════════════════════════ */
-.slot_outerLeft  { left: 18%; top: 6%; }
-.slot_innerLeft  { left: 33%; top: 38%; }
-.slot_center     { left: 50%; top: 66%; } /* Center lowest position (Spotlight Apex) */
-.slot_innerRight { left: 67%; top: 38%; }
-.slot_outerRight { left: 82%; top: 6%; }
+.slot_outerLeft  { left: 18%; top: 16%; }
+.slot_innerLeft  { left: 33%; top: 44%; }
+.slot_center     { left: 50%; top: 68%; } /* Center lowest position (Spotlight Apex) */
+.slot_innerRight { left: 67%; top: 44%; }
+.slot_outerRight { left: 82%; top: 16%; }
+
+/* ══════════════════════════════════════
+   FLOATING WRAPPER (Separated from button transform)
+══════════════════════════════════════ */
+.orbFloatWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform;
+}
+
+.float_0 { animation: orbFloatAnim 5.2s ease-in-out infinite alternate 0s; }
+.float_1 { animation: orbFloatAnim 5.8s ease-in-out infinite alternate -1.2s; }
+.float_2 { animation: orbFloatAnim 4.6s ease-in-out infinite alternate -2.5s; }
+.float_3 { animation: orbFloatAnim 5.4s ease-in-out infinite alternate -0.8s; }
+.float_4 { animation: orbFloatAnim 5.0s ease-in-out infinite alternate -3.1s; }
+
+@keyframes orbFloatAnim {
+  0%   { transform: translate3d(0, 0px, 0); }
+  50%  { transform: translate3d(0, -4px, 0); }
+  100% { transform: translate3d(0, 3px, 0); }
+}
 
 /* ══════════════════════════════════════
    SLEEK CIRCULAR GLASS ORB DISC (~58px)
@@ -58,9 +79,9 @@
   width: 58px;
   height: 58px;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #224332 0%, #142a1f 65%, #0d1c14 100%);
-  backdrop-filter: blur(14px) saturate(130%);
-  -webkit-backdrop-filter: blur(14px) saturate(130%);
+  background: radial-gradient(circle at 35% 35%, var(--color-surface-elevated) 0%, var(--color-matte-black) 65%, var(--color-dark-charcoal) 100%);
+  backdrop-filter: blur(12px) saturate(120%);
+  -webkit-backdrop-filter: blur(12px) saturate(120%);
   border: 1px solid rgba(175, 220, 195, 0.35);
   box-shadow:
     0 8px 20px rgba(0, 0, 0, 0.75),
@@ -69,7 +90,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  transition:
+    transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+    border-color 0.35s ease,
+    box-shadow 0.35s ease,
+    background 0.35s ease;
+  will-change: transform;
 }
 
 .starLogoInactive {
@@ -80,23 +106,8 @@
 
 .starLogoActive {
   color: #e8d8a0;
-  filter: drop-shadow(0 0 8px rgba(232, 216, 160, 0.9));
+  filter: drop-shadow(0 0 8px rgba(232, 216, 160, 0.95));
   transition: all 0.35s ease;
-}
-
-/* ══════════════════════════════════════
-   STAGGERED LIVING FLOATING
-══════════════════════════════════════ */
-.float_0 { animation: orbFloat 4.8s ease-in-out infinite alternate 0s; }
-.float_1 { animation: orbFloat 5.4s ease-in-out infinite alternate -1.2s; }
-.float_2 { animation: orbFloat 4.2s ease-in-out infinite alternate -2.5s; }
-.float_3 { animation: orbFloat 5.0s ease-in-out infinite alternate -0.8s; }
-.float_4 { animation: orbFloat 4.6s ease-in-out infinite alternate -3.1s; }
-
-@keyframes orbFloat {
-  0%   { transform: translate(-50%, -50%) translateY(0px); }
-  50%  { transform: translate(-50%, -50%) translateY(-5px); }
-  100% { transform: translate(-50%, -50%) translateY(3px); }
 }
 
 /* ══════════════════════════════════════
@@ -107,18 +118,18 @@
 }
 
 .beanOrbButton:hover .glassOrbDisc {
-  transform: scale(1.1);
-  background: radial-gradient(circle at 35% 35%, #355e48 0%, #1e3d2c 60%, #12261b 100%);
+  transform: scale3d(1.1, 1.1, 1);
+  background: radial-gradient(circle at 35% 35%, var(--color-emerald-glow) 0%, var(--color-surface-elevated) 60%, var(--color-matte-black) 100%);
   border-color: rgba(255, 248, 180, 0.85);
   box-shadow:
     0 12px 28px rgba(0, 0, 0, 0.8),
-    0 0 26px rgba(255, 245, 170, 0.45),
+    0 0 24px rgba(255, 245, 170, 0.4),
     inset 0 2px 6px rgba(255, 255, 255, 0.35);
 }
 
 .beanOrbButton:hover .starLogoInactive {
   color: #ffffff;
-  transform: scale(1.08);
+  transform: scale3d(1.08, 1.08, 1);
   filter: drop-shadow(0 0 8px rgba(255, 248, 200, 0.95));
 }
 
@@ -127,8 +138,8 @@
   position: absolute;
   top: -42px;
   left: 50%;
-  transform: translateX(-50%) translateY(8px);
-  background: rgba(8, 18, 12, 0.94);
+  transform: translate3d(-50%, 8px, 0);
+  background: rgba(0, 32, 18, 0.95);
   border: 1px solid rgba(232, 216, 160, 0.45);
   backdrop-filter: blur(10px);
   padding: 0.3rem 0.75rem;
@@ -140,7 +151,7 @@
   align-items: center;
   white-space: nowrap;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.75);
-  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
   z-index: 35;
 }
 
@@ -159,11 +170,11 @@
 
 .beanOrbButton:hover .hoverTooltip {
   opacity: 1;
-  transform: translateX(-50%) translateY(0px);
+  transform: translate3d(-50%, 0px, 0);
 }
 
 /* ══════════════════════════════════════
-   ACTIVE CENTER BEAN — EMERALD GLASS WITH LUXURY GOLD GLOW (NO WHITE BULB FILL)
+   ACTIVE CENTER BEAN — EMERALD GLASS WITH LUXURY GOLD GLOW
 ══════════════════════════════════════ */
 .beanActive {
   z-index: 25 !important;
@@ -173,14 +184,28 @@
 .beanActive .glassOrbDisc {
   width: 68px !important;
   height: 68px !important;
-  background: radial-gradient(circle at 35% 35%, #2a523e 0%, #173325 65%, #0f2218 100%) !important;
+  background: radial-gradient(circle at 35% 35%, #005a35 0%, var(--color-surface-elevated) 65%, var(--color-matte-black) 100%) !important;
   border: 1.5px solid #e8d8a0 !important;
   box-shadow:
-    0 0 20px rgba(232, 216, 160, 0.4),
-    0 0 40px rgba(194, 167, 122, 0.2),
+    0 0 20px rgba(232, 216, 160, 0.45),
+    0 0 38px rgba(194, 167, 122, 0.25),
     0 12px 28px rgba(0, 0, 0, 0.85),
     inset 0 2px 6px rgba(255, 255, 255, 0.3) !important;
-  transform: scale(1.05);
+  transform: scale3d(1.05, 1.05, 1);
+}
+
+.activeHaloGlow {
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(232, 216, 160, 0.25) 0%, transparent 70%);
+  animation: haloPulse 3s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes haloPulse {
+  0% { transform: scale3d(0.95, 0.95, 1); opacity: 0.4; }
+  100% { transform: scale3d(1.15, 1.15, 1); opacity: 0.85; }
 }
 
 .clickRipple {
@@ -188,18 +213,18 @@
   inset: -15px;
   border-radius: 50%;
   border: 1.5px solid rgba(232, 216, 160, 0.8);
-  animation: rippleExpand 0.8s ease-out forwards;
+  animation: rippleExpand 0.7s ease-out forwards;
   pointer-events: none;
 }
 
 @keyframes rippleExpand {
-  0%   { transform: scale(0.5); opacity: 1; }
-  100% { transform: scale(1.6); opacity: 0; }
+  0%   { transform: scale3d(0.5, 0.5, 1); opacity: 1; }
+  100% { transform: scale3d(1.6, 1.6, 1); opacity: 0; }
 }
 
 /* Inactive dimming */
 .beanInactive {
-  opacity: 0.8;
+  opacity: 0.82;
 }
 
 .beanInactive:hover {
@@ -209,7 +234,7 @@
 /* Responsive */
 @media (max-width: 768px) {
   .arcContainer {
-    height: 200px;
+    height: 150px;
   }
   .glassOrbDisc {
     width: 48px;

@@ -9,7 +9,7 @@ interface BrandInfoCardProps {
   brand: PartnerBrand;
   activeBrandIndex: number;
   totalBrands: number;
-  isTransitioning: boolean;
+  isTransitioning?: boolean;
   onSelectBrandIndex: (index: number) => void;
   onOpenDetails: (brand: PartnerBrand) => void;
 }
@@ -20,7 +20,6 @@ const BrandInfoCard = forwardRef<HTMLDivElement, BrandInfoCardProps>(
       brand,
       activeBrandIndex,
       totalBrands,
-      isTransitioning,
       onSelectBrandIndex,
       onOpenDetails,
     },
@@ -39,78 +38,82 @@ const BrandInfoCard = forwardRef<HTMLDivElement, BrandInfoCardProps>(
     return (
       <div
         ref={ref}
-        className={`
-          ${styles.cardContainer}
-          ${isTransitioning ? styles.cardExiting : styles.cardEmerging}
-        `}
+        className={styles.cardContainer}
+        style={{
+          // Custom accent color passed to card CSS variables
+          ['--card-accent' as any]: brand.accentColor || '#e8d8a0',
+        }}
       >
         {/* Top Volumetric Light Receiver Bar */}
         <div className={styles.lightReceiverGlow} />
 
-        {/* Card Header Tag & Category */}
-        <div className={styles.cardHeader}>
-          <span className={styles.categoryBadge}>✦ {brand.category}</span>
-          <span className={styles.counterBadge}>
-            0{activeBrandIndex + 1} / 0{totalBrands}
-          </span>
-        </div>
-
-        {/* Brand Title & Tagline with 9-Star Emblem */}
-        <div className={styles.titleGroup}>
-          <div className={styles.emblemBadge}>
-            <NineStarLogo size={36} color="#e8d8a0" />
+        {/* Dynamic Card Content - Keyed for crisp, instant 0.25s transition */}
+        <div key={brand.id} className={styles.cardContentWrap}>
+          {/* Card Header Tag & Category */}
+          <div className={styles.cardHeader}>
+            <span className={styles.categoryBadge}>✦ {brand.category}</span>
+            <span className={styles.counterBadge}>
+              0{activeBrandIndex + 1} / 0{totalBrands}
+            </span>
           </div>
-          <div>
-            <h2 className={styles.brandTitle}>{brand.name}</h2>
-            <p className={styles.brandTagline}>{brand.tagline}</p>
-          </div>
-        </div>
 
-        {/* Brand Short Story */}
-        <p className={styles.brandDescription}>{brand.story}</p>
-
-        {/* Fragrance Pyramid Notes */}
-        <div className={styles.notesSection}>
-          <h4 className={styles.sectionLabel}>FRAGRANCE PYRAMID NOTES</h4>
-          <div className={styles.notesGrid}>
-            <div className={styles.noteCard}>
-              <span className={styles.noteType}>TOP NOTES</span>
-              <span className={styles.noteText}>{brand.notes.top.join(' • ')}</span>
+          {/* Brand Title & Tagline with 9-Star Emblem */}
+          <div className={styles.titleGroup}>
+            <div className={styles.emblemBadge}>
+              <NineStarLogo size={26} color={brand.accentColor || '#e8d8a0'} />
             </div>
-            <div className={styles.noteCard}>
-              <span className={styles.noteType}>HEART NOTES</span>
-              <span className={styles.noteText}>{brand.notes.heart.join(' • ')}</span>
-            </div>
-            <div className={styles.noteCard}>
-              <span className={styles.noteType}>BASE NOTES</span>
-              <span className={styles.noteText}>{brand.notes.base.join(' • ')}</span>
+            <div>
+              <h2 className={styles.brandTitle}>{brand.name}</h2>
+              <p className={styles.brandTagline}>{brand.tagline}</p>
             </div>
           </div>
-        </div>
 
-        {/* Key Highlights */}
-        <div className={styles.highlightsSection}>
-          <h4 className={styles.sectionLabel}>KEY HIGHLIGHTS & IMPACT</h4>
-          <ul className={styles.highlightsList}>
-            {brand.highlights.map((item, idx) => (
-              <li key={idx}>
-                <span className={styles.bulletSparkle}>✦</span> {item}
-              </li>
+          {/* Brand Short Story */}
+          <p className={styles.brandDescription}>{brand.story}</p>
+
+          {/* Fragrance Pyramid Notes */}
+          <div className={styles.notesSection}>
+            <h4 className={styles.sectionLabel}>FRAGRANCE PYRAMID NOTES</h4>
+            <div className={styles.notesGrid}>
+              <div className={styles.noteCard}>
+                <span className={styles.noteType}>TOP NOTES</span>
+                <span className={styles.noteText}>{brand.notes.top.join(' • ')}</span>
+              </div>
+              <div className={styles.noteCard}>
+                <span className={styles.noteType}>HEART NOTES</span>
+                <span className={styles.noteText}>{brand.notes.heart.join(' • ')}</span>
+              </div>
+              <div className={styles.noteCard}>
+                <span className={styles.noteType}>BASE NOTES</span>
+                <span className={styles.noteText}>{brand.notes.base.join(' • ')}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Key Highlights */}
+          <div className={styles.highlightsSection}>
+            <h4 className={styles.sectionLabel}>KEY HIGHLIGHTS & IMPACT</h4>
+            <ul className={styles.highlightsList}>
+              {brand.highlights.map((item, idx) => (
+                <li key={idx}>
+                  <span className={styles.bulletSparkle}>✦</span> {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Metrics Bar */}
+          <div className={styles.metricsBar}>
+            {brand.metrics.map((m, idx) => (
+              <div key={idx} className={styles.metricItem}>
+                <span className={styles.metricValue}>{m.value}</span>
+                <span className={styles.metricLabel}>{m.label}</span>
+              </div>
             ))}
-          </ul>
+          </div>
         </div>
 
-        {/* Metrics Bar */}
-        <div className={styles.metricsBar}>
-          {brand.metrics.map((m, idx) => (
-            <div key={idx} className={styles.metricItem}>
-              <span className={styles.metricValue}>{m.value}</span>
-              <span className={styles.metricLabel}>{m.label}</span>
-            </div>
-          ))}
-        </div>
-
-        {/* Navigation & Action Footer */}
+        {/* Navigation & Action Footer (Remains stable & interactive) */}
         <div className={styles.cardFooter}>
           <div className={styles.navControls}>
             <button
@@ -146,7 +149,7 @@ const BrandInfoCard = forwardRef<HTMLDivElement, BrandInfoCardProps>(
             onClick={() => onOpenDetails(brand)}
             className={styles.detailCtaBtn}
           >
-            <span>LEARN MORE ABOUT FRAGRANCE</span>
+            <span>LEARN MORE ABOUT MISSION</span>
             <span className={styles.btnArrow}>→</span>
           </button>
         </div>
