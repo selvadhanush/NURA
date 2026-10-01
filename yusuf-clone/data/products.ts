@@ -3,6 +3,7 @@ export interface Product {
   name: string;
   subtitle?: string;
   image: string;
+  oilImage?: string;
   description: string;
   perfumePrice50ml: number;
   perfumePrice100ml: number;
@@ -33,6 +34,7 @@ export const PRODUCTS: Product[] = [
     name: 'AL-ZAF',
     subtitle: '(The Natural Simple Fusion)',
     image: '/products/al_zaf.png',
+    oilImage: '/oils/al_zaf.png',
     description: "A beautiful blend of shadowy and sunny elements for the men and women of contrast ZAFIZZY's iconic AL-ZAF Perfume Oil is a daring vet practical fragrance reflecting ZAFIZZY's unique vision of the chic of the best woman. The sweet alluring qualities of jasmine bring AL-ZAF a bright for everyone. Richly fragrant cocoa and stimulating coumarin add AL-ZAF's strange side, while almond and coffee bring notes of vivid vivacity",
     perfumePrice50ml: 2390,
     perfumePrice100ml: 3790,
@@ -58,10 +60,11 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'al-harun',
-    name: 'Al Harun V-1',
-    subtitle: '(The Entire Pure Combination)',
+    name: 'Al-Harun',
+    subtitle: '(A Legacy in Every Drop)',
     image: '/products/al_harun.png',
-    description: "Al Harun V-1 by ZAFIZZY Perfumers tells a story as you wear it. It opens with bold leather and geranium, then settles into a refined smoky-woody heart of patchouli and cedar. The dry down is where it truly shines warm amber, soft musk, creamy sandalwood, and earthy moss come together for a comforting, intimate finish that lingers close to the skin.",
+    oilImage: '/oils/al_harun.png',
+    description: "Al-Harun by NURA Perfumers tells a story as you wear it. It opens with bold leather and geranium, then settles into a refined smoky-woody heart of patchouli and cedar. The dry down is where it truly shines warm amber, soft musk, creamy sandalwood, and earthy moss come together for a comforting, intimate finish that lingers close to the skin.",
     perfumePrice50ml: 2990,
     perfumePrice100ml: 4490,
     oilPrice6ml: 710,
@@ -86,10 +89,11 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'al-kamrah',
-    name: 'Al Kamrah V-1',
-    subtitle: '(Almost The Entire Pure Combination)',
-    image: '/products/al_kamrah.png',
-    description: "Al Kamrah V-1 is rich, warm, and a little indulgent. Think Middle Eastern comfort meets sweet, gourmand depth. It opens with a bright pop of peppery bergamot, then softens into sticky date, buttery praline, and a touch of cinnamon. On the dry-down, you get creamy vanilla, resinous amber, and woody tonka bean deep, sensual, and cozy. This is the kind of scent you reach for on cold evenings or intimate nights in. Modern, yes but unapologetically luxurious.",
+    name: 'Lattafa Khamrah',
+    subtitle: '(Sweet Memories Last Forever)',
+    image: '/products/lattafa_khamrah.png',
+    oilImage: '/oils/lattafa_khamrah.png',
+    description: "Lattafa Khamrah is rich, warm, and deeply indulgent. Think Middle Eastern comfort meets sweet, gourmand depth. It opens with a bright pop of peppery bergamot, then softens into sticky date, buttery praline, and a touch of cinnamon. On the dry-down, you get creamy vanilla, resinous amber, and woody tonka bean deep, sensual, and cozy. This is the kind of scent you reach for on cold evenings or intimate nights in. Modern, yes but unapologetically luxurious.",
     perfumePrice50ml: 3090,
     perfumePrice100ml: 4690,
     oilPrice6ml: 729,
@@ -115,9 +119,10 @@ export const PRODUCTS: Product[] = [
   {
     id: 'almarziyah',
     name: 'Al Marziyah',
-    subtitle: '(The Entire Pure Combination)',
+    subtitle: '(A Harmony of Rose, Oud & Royal Elegance)',
     image: '/products/al_marziyah.png',
-    description: "Al Marziyah by ZAFIZY is a sophisticated unisex scent, celebrated for its exceptional value. It captures a sunset in a bottle, opening with juicy fruits, flowing through a floral heart, and settling into a warm, woody base subtly enhanced with dark leather and oud for mystery.",
+    oilImage: '/oils/al_marziyah.png',
+    description: "Al Marziyah by NURA is a sophisticated unisex scent, celebrated for its exceptional value. It captures a sunset in a bottle, opening with juicy fruits, flowing through a floral heart, and settling into a warm, woody base subtly enhanced with dark leather and oud for mystery.",
     perfumePrice50ml: 2890,
     perfumePrice100ml: 4390,
     oilPrice6ml: 680,
@@ -142,9 +147,10 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'almarj',
-    name: 'Al Marj V1',
-    subtitle: '(The Entire Pure Combination)',
+    name: 'Al Marj',
+    subtitle: '(The Essence of Green Oasis)',
     image: '/products/al_marj.png',
+    oilImage: '/oils/al_marj.png',
     description: "Al Marj is a luxurious unisex scent that layers juicy tropical fruits over rich woods and warm spice. It opens bright with sweet raspberry and pear, then softens into honey, delicate florals, and a refined leather base that feels effortlessly sophisticated.",
     perfumePrice50ml: 2750,
     perfumePrice100ml: 4150,
@@ -313,6 +319,7 @@ export const PRODUCTS: Product[] = [
     name: 'Flower Jazz',
     subtitle: '(Jasmin: Feel It Real - The Natural Simple Fusion)',
     image: '/products/flower_jazz.png',
+    oilImage: '/oils/jasmine.png',
     description: "ZAFIZZY’s Flower Jazz (Jasmin: Feel It Real) is a unisex scent that takes the lush, sweet character of jasmine and grounds it with soft, earthy warmth no rigid gender lines, just a clean, modern floral that feels equally right on anyone. A lively citrus lift or a gentle trail of amber and vanilla gives it quiet depth, so it wears fresh and easy during the day and slips naturally into something more intimate when evening comes.",
     perfumePrice50ml: 2590,
     perfumePrice100ml: 3990,
@@ -461,6 +468,7 @@ export function getProductById(id: string): Product | undefined {
       (normalizedId.includes('haroon') && normalizedPid.includes('harun')) ||
       (normalizedId.includes('kamrah') && normalizedPid.includes('kamrah')) ||
       (normalizedId.includes('khamrah') && normalizedPid.includes('kamrah')) ||
+      (normalizedId.includes('lattafa') && normalizedPid.includes('kamrah')) ||
       (normalizedId.includes('marziyah') && normalizedPid.includes('marziyah')) ||
       (normalizedId.includes('marj') && normalizedPid.includes('marj')) ||
       (normalizedId.includes('summer') && normalizedPid.includes('summer')) ||

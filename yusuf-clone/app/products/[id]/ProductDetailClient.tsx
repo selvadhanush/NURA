@@ -48,11 +48,13 @@ export default function ProductDetailClient({ product }: { product: Product | un
     currentPriceINR = size === '12ml' ? product.oilPrice12ml : product.oilPrice6ml;
   }
 
+  const currentDisplayImage = (type === 'oil' && product.oilImage) ? product.oilImage : product.image;
+
   const handleAddToCart = () => {
     addToCart({
       productId: product.id,
       name: product.name,
-      image: product.image,
+      image: currentDisplayImage,
       type,
       size,
       price: currentPriceINR, // Store base INR price in cart; display is handled by fmt()
@@ -72,7 +74,7 @@ export default function ProductDetailClient({ product }: { product: Product | un
       {showToast && (
         <div className={styles.toastContainer}>
           <div className={styles.toastCard}>
-            <img src={product.image} alt={product.name} className={styles.toastImage} />
+            <img src={currentDisplayImage} alt={product.name} className={styles.toastImage} />
             <div className={styles.toastInfo}>
               <span className={styles.toastTitle}>Added to Cart</span>
               <h4 className={styles.toastName}>{product.name}</h4>
@@ -125,7 +127,7 @@ export default function ProductDetailClient({ product }: { product: Product | un
             <div className={styles.imageCard}>
               <div style={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <img 
-                  src={product.image} 
+                  src={currentDisplayImage} 
                   alt={product.name} 
                   className={`${styles.productImage} ${activeImageTab === 'detail' ? styles.detailViewImage : ''}`} 
                 />

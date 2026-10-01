@@ -19,7 +19,7 @@ export default function PerfumeOil() {
                 name={product.name}
                 subtitle={product.subtitle}
                 basePrice={product.oilPrice6ml}
-                imageUrl={product.image}
+                imageUrl={product.oilImage || product.image}
                 link={`/products/${product.id}`}
               />
               <p className={styles.sizeInfo}>6ml &amp; 12ml</p>
